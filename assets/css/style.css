@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+h1 {
+    padding: 15px 0;
+}
+
+p {
+    margin: 0;
+}
+
+nav p, nav .nav-link {
+    padding: 0 20px;
+}
