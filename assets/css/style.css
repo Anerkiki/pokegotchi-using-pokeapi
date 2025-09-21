@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Monofett&display=swap');
+
 body {
+    font-family: "Dongle", sans-serif;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 2.5rem;
 }
 
 h1 {
+    font-family: "Monofett", monospace;
     padding: 15px 0;
+    font-size: 5rem;
 }
 
 p {
