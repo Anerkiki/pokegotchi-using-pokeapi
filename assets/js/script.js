@@ -34,4 +34,13 @@ function updateInventory() {
     });
 }
 
+// have this function called when first pokemon select button is pressed
+function afterFirstPokemonAdded() {
+    // add hidden class to first pokemon choice form
+    // remove hidden class from shelter link in navbar
+    // 
+    // updateCollection();
+    // updateInventory();
+}
+
 updateInventory();

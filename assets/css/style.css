@@ -4,18 +4,77 @@ body {
     font-family: "Dongle", sans-serif;
     text-align: center;
     font-size: 2.5rem;
+    background-color: aquamarine;
+    /* border-color: blueviolet; */
 }
 
 h1 {
     font-family: "Monofett", monospace;
     padding: 15px 0;
     font-size: 5rem;
+    color: blueviolet;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3rem;
 }
 
 p {
     margin: 0;
+    line-height: 1;
 }
 
 nav p, nav .nav-link {
     padding: 0 20px;
+    color: blueviolet;
+}
+
+input[type='radio'] { 
+     transform: scale(2.5);
+}
+
+input[type='text'] { 
+     padding: 10px;
+     /* reduce size too? */
+}
+
+button, .border {
+    border-radius: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.page-section {
+    margin: 20px 0;
+    padding: 30px;
+    border: 5px solid blueviolet;
+    border-radius: 20px;
+}
+
+.starter {
+    background-color: whitesmoke;
+}
+
+#inventory-button {
+    border: none;
+    border-radius: 0px;
+}
+
+@media (max-width: 560px) {
+    body {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+    h2, h3 {
+        font-size: 2rem;
+    }    
 }

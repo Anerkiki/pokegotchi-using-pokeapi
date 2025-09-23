@@ -23,7 +23,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-sm bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container">
             <!--  -->
             <p class="d-none d-sm-block">
                 Pokemon: <span class="pokemon-count"></span>
@@ -50,7 +50,7 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shelter.html">Shelter</a>
+                        <a class="nav-link hidden" href="shelter.html">Shelter</a>
                     </li>
                 </ul>
             </div>
@@ -58,38 +58,99 @@
     </nav>
 
     <!-- Main Content -->
-    <main>
+    <main class="container">
 
-        <div class="container">
-            <div class="row justify-content-evenly">
+            <!-- Buttons Section -->
+            <div id="buttons" class="row justify-content-evenly">
 
-                <div id="button-section">
-
-                    <!-- View Inventory Button - Appears on smaller devices -->
-                    <button type="button"
-                            class="btn-lg dropdown-toggle d-sm-none"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">View Inventory
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><p class="dropdown-item">Pokemon: <span class="pokemon-count"></span></p></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><p class="dropdown-item">Berries: <span class="berries-count"></span></p></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><p class="dropdown-item">Potions: <span class="potions-count"></span></p></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><p class="dropdown-item">Coins: <span class="coins-count"></span></p></li>
-                    </ul>
-                    <!-- End of View Inventory Button -->
-
-                </div>
+                <!-- View Inventory Button - Appears on smaller devices -->
+                <button type="button"
+                        id="inventory-button"
+                        class="btn-lg dropdown-toggle d-sm-none"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">View Inventory
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><p class="dropdown-item">Pokemon: <span class="pokemon-count"></span></p></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><p class="dropdown-item">Berries: <span class="berries-count"></span></p></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><p class="dropdown-item">Potions: <span class="potions-count"></span></p></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><p class="dropdown-item">Coins: <span class="coins-count"></span></p></li>
+                </ul>
+                <!-- End of View Inventory Button -->
 
             </div>
-        </div>
+            <!-- End of Buttons Section -->
 
-        <!-- TO DO: Put a footer in and make sure is always stuck to bottom -->
+            <!-- Choose First Pokemon Form (Hidden after first selection) -->
+            <form id="starter-options-form" class="container justify-content-center page-section">
+
+                <h2>Select your first Pokémon:</h2>
+                <div class="starter-container row justify-content-between">
+                    <!-- WORK OUT WHY THERE AREN'T GOING IN A ROW -->
+
+                    <!-- Starter Option 1 - Bulbasaur -->
+                    <div class="col-12 col-md-4 starter border">
+                        <h3>Bulbasaur</h3>
+                        <div class="row justify-content-center">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" class="img-fluid col-6 col-md-12 order-2 order-md-1" alt="Bulbasaur">
+                            <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                <p>Level: 1</pp>
+                                <p>Type: Grass</pp>
+                                <p>Personality: ${personality}</p>
+                            </div>
+                        </div>
+                        <input type="radio" name="starter" value="1">
+                    </div>
+
+                    <!-- Starter Option 2 - Charmander -->
+                    <div class="col-12 col-md-4 starter border">
+                        <h3>Charmander</h3>
+                        <div class="row justify-content-center">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" class="img-fluid col-6 col-md-12 order-2 order-md-1" alt="Charmander">
+                            <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                <p>Level: 1</pp>
+                                <p>Type: Fire</pp>
+                                <p>Personality: ${personality}</p>
+                            </div>
+                        </div>
+                        <input type="radio" name="starter" value="2">
+                    </div>
+
+                    <!-- Starter Option 3 - Squirtle -->
+                    <div class="col-12 col-md-4 starter border">
+                        <h3>Squirtle</h3>
+                        <div class="row justify-content-center">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" class="img-fluid col-6 col-md-12 order-2 order-md-1" alt="Squirtle">
+                            <div class="col-4 col-md-12 order-sm-1 order-md-2 align-self-center">
+                                <p>Level: 1</pp>
+                                <p>Type: Water</pp>
+                                <p>Personality: ${personality}</p>
+                            </div>
+                        </div>
+                        <input type="radio" name="starter" value="3">
+                    </div>
+
+                </div>
+                
+                <h2 class="m2-2">Give your Pokémon a name:</h2>
+                <input type="text" class="col-10">
+
+                <button type="submit" class="col-8 col-md-4 mt-5">Go</button>
+                <!-- ADD A FUNCTION TO THIS BUTTON -->
+            </form>
+            <!-- End of Starter Options Form -->
+
+            <!-- User Pet Collection -->
+            <div id="allPets" class="row justify-content-evenly">
+                <!-- EMPTY UNTIL FILLED WITH JAVASCRIPT -->
+            </div>
+            <!-- End of User Pet Collection -->
 
     </main>
+    <!-- TO DO: Put a footer in (?) and make sure is always stuck to bottom -->
     <!-- Main JavaScript -->
     <script src="assets/js/script.js"></script>
     <!--Bootstrap JS-->
