@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Monofett&display=swap');
 
+
+/* tertiary-color: f8f9fa; */
+
 body {
     font-family: "Dongle", sans-serif;
     text-align: center;
     font-size: 2.5rem;
     background-color: aquamarine;
-    /* border-color: blueviolet; */
+    /* width: 100vh; */
+    /* fix width issue */
 }
 
 h1 {
@@ -21,6 +25,7 @@ h2 {
 
 h3 {
     font-size: 3rem;
+    margin: 0;
 }
 
 p {
@@ -57,8 +62,12 @@ button, .border {
     border-radius: 20px;
 }
 
+.navbar > div {
+    margin-top: 7px;
+}
+
 .starter {
-    background-color: whitesmoke;
+    background-color: #f8f9fa;
 }
 
 #inventory-button {
@@ -66,15 +75,42 @@ button, .border {
     border-radius: 0px;
 }
 
+@media (max-width: 800px) {
+
+    h2 {
+        font-size: 2.8rem;
+    }    
+}
+
 @media (max-width: 560px) {
+
     body {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     h1 {
         font-size: 3rem;
     }
+
     h2, h3 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }    
+}
+
+@media (max-width: 395px) {
+
+    h2, h3 {
+        font-size: 2.2rem;
+    }
+
+    input[type='text'] { 
+     padding: 0;
+    }
+}
+
+@media (max-width: 359px) {
+
+    h2, h3 {
+        font-size: 1.8rem;
+    }   
 }
