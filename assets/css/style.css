@@ -1,22 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Monofett&display=swap');
 
+:root {
+    /* Fonts */
+        --font-heading: "Monofett", monospace;
+        --font-paragraph: "Dongle", sans-serif;
 
-/* tertiary-color: f8f9fa; */
+    /* Colour Palette Colours */
+        --primary-colour: aquamarine;
+        --secondary-colour: blueviolet;
+        --tertiary-colour: #f8f9fa;
+        /* same as navbar */
+}
+
+/* Global Styles */
 
 body {
-    font-family: "Dongle", sans-serif;
+    font-family: var(--font-paragraph);
     text-align: center;
     font-size: 2.5rem;
-    background-color: aquamarine;
+    background-color: var(--primary-colour);
     /* width: 100vh; */
     /* fix width issue */
 }
 
 h1 {
-    font-family: "Monofett", monospace;
+    font-family: var(--font-heading);
     padding: 15px 0;
     font-size: 5rem;
-    color: blueviolet;
+    color: var(--secondary-colour);
 }
 
 h2 {
@@ -24,7 +35,7 @@ h2 {
 }
 
 h3 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin: 0;
 }
 
@@ -35,15 +46,20 @@ p {
 
 nav p, nav .nav-link {
     padding: 0 20px;
-    color: blueviolet;
+    color: var(--secondary-colour);
 }
 
 input[type='radio'] { 
      transform: scale(2.5);
+     accent-color: var(--primary-colour);
 }
 
 input[type='text'] { 
      padding: 10px;
+     color: var(--secondary-colour);
+     border: 4px solid var(--secondary-colour);
+     border-radius: 20px;
+     background-color: var(--tertiary-colour);
      /* reduce size too? */
 }
 
@@ -51,14 +67,40 @@ button, .border {
     border-radius: 20px;
 }
 
+button[type='submit'] {
+    border: 4px solid var(--secondary-colour);
+    text-transform: capitalize;
+    padding-top: 7px;
+    color: black;
+}
+
+button[type='submit']:hover {
+    background-color: var(--secondary-colour);
+    color: var(--primary-colour);
+}
+
+img.sprite {
+    /* border-radius: 0px; */
+    background-color: var(--tertiary-colour);
+    margin: 0 20px;
+    height: 95%;
+    width: 95%;
+    /* This targets only sprite classes which are on img elements */
+}
+
 .hidden {
     display: none;
+}
+
+.black-border {
+    border: 5px solid black;
+    border-radius: 20px;
 }
 
 .page-section {
     margin: 20px 0;
     padding: 30px;
-    border: 5px solid blueviolet;
+    border: 5px solid var(--secondary-colour);
     border-radius: 20px;
 }
 
@@ -67,7 +109,17 @@ button, .border {
 }
 
 .starter {
-    background-color: #f8f9fa;
+    background-color: var(--secondary-colour);
+    color: var(--primary-colour);
+}
+
+.starter>h3 {
+    text-transform: capitalize;
+    /* Ensures Pokémon names are always capitalised */
+}
+
+.starter .details {
+    padding-top: 5px;
 }
 
 #inventory-button {
