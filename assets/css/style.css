@@ -26,8 +26,10 @@ body {
 h1 {
     font-family: var(--font-heading);
     padding: 15px 0;
-    font-size: 5rem;
+    font-size: 6rem;
     color: var(--secondary-colour);
+    padding: 0;
+    margin: 0;
 }
 
 h2 {
@@ -70,8 +72,9 @@ button, .border {
 button[type='submit'] {
     border: 4px solid var(--secondary-colour);
     text-transform: capitalize;
-    padding-top: 7px;
+    padding: 7px 5px 0px 5px;
     color: black;
+    /* white-space:nowrap; */
 }
 
 button[type='submit']:hover {
@@ -80,13 +83,14 @@ button[type='submit']:hover {
 }
 
 img.sprite {
-    /* border-radius: 0px; */
-    background-color: var(--tertiary-colour);
-    margin: 0 20px;
-    height: 95%;
-    width: 95%;
-    /* This targets only sprite classes which are on img elements */
+    /* background-color: var(--tertiary-colour); */
+    /* margin: 0 20px;
+    height: 85%;
+    width: 85%; */
+    border-radius: 50%;
 }
+
+/* WORK OUT HOW TO GET RID OF BORDERS HERE */
 
 .hidden {
     display: none;
@@ -111,6 +115,7 @@ img.sprite {
 .starter {
     background-color: var(--secondary-colour);
     color: var(--primary-colour);
+    border-radius: 15%;
 }
 
 .starter>h3 {
@@ -127,11 +132,20 @@ img.sprite {
     border-radius: 0px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 992px) {
+
+    h3 {
+        font-size: 2.5rem;
+    }    
+}
+
+@media (max-width: 768px) {
 
     h2 {
         font-size: 2.8rem;
-    }    
+    }
+
+    /* img.sprite class needs removing here */
 }
 
 @media (max-width: 560px) {
@@ -144,9 +158,13 @@ img.sprite {
         font-size: 3rem;
     }
 
-    h2, h3 {
+    h2 {
         font-size: 2.5rem;
-    }    
+    }
+    
+    .starter .details {
+        display: none;
+    }
 }
 
 @media (max-width: 395px) {
