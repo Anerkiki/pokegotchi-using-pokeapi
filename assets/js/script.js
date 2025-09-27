@@ -6,7 +6,7 @@ const inventory = {
     potions: 0,
 };
 
-const petPersonality = [
+const pokemonPersonality = [
     "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
     "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
     "Lonely", "Mild", "Modest", "Naive", "Naughty", "Quiet",
@@ -55,7 +55,7 @@ function addStarterPokemon(event) {
     }
 
     // Get nickname or default to species string
-    let nickname = $("#petNickname").val().trim();
+    let nickname = $("#pokemonNickname").val().trim();
     if (!nickname) {
         nickname = species; // fallback = "1", "4", or "7"
     }
@@ -78,7 +78,21 @@ function addStarterPokemon(event) {
 
 function displayUserPokemon() {
     if (userPokemon.length > 0) {
-        // display user Pokemon
+        let html = "";
+
+        // Loop through all Pokémon in the userPokemon array
+        for (const pokemon of userPokemon) {
+            html += `
+              <div class="page-section"><h3>${pokemon.nickname} the ${pokemon.species}</h3>
+              <button class="delete-button">Delete</button></div>
+            `;
+        }
+
+        // Replace #allPokemon content with the current list
+        $("#allPokemon").html(html);
+    } else {
+        $("#starter-options-form").removeClass("hidden");
+        $("#walk-button").addClass("hidden");
     }
 }
 
