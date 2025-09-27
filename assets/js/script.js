@@ -26,6 +26,8 @@ $(document).ready(function() {
             .join(" ");
     }
 
+
+
     function updateInventory() {
         document.querySelectorAll(".pokemon-count").forEach(count => {
             count.textContent = userPokemon.length;
@@ -40,6 +42,18 @@ $(document).ready(function() {
     }
 
     updateInventory();
+
+    function addPersonalitiesToStarterChoices () {
+        let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+        let personality2 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+        let personality3 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+
+        $(".starter-personality-1").text(personality1);
+        $(".starter-personality-2").text(personality2);
+        $(".starter-personality-3").text(personality3);
+    }
+
+    addPersonalitiesToStarterChoices();
 
     $("#add-first-pokemon").on("click", addStarterPokemon);
 
@@ -109,7 +123,7 @@ $(document).ready(function() {
                                 <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center">
                                     <p>Level: 1</p>
                                     <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
-                                    <p>Personality: ...</p>
+                                    <p>Personality: {pokemon.personality}</p>
                                 </div>
                             </div>
                         </div>
