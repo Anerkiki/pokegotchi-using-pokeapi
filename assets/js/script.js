@@ -1,4 +1,10 @@
-const inventory = { pokemon: 80, berries: 3, potions: 1, coins: 50 };
+const userPokemon = [];
+
+const inventory = {
+    pokemon: userPokemon.length,
+    berries: 0,
+    potions: 0
+};
 
 const petPersonality = [
     "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
@@ -20,7 +26,7 @@ function capitalizeWords(str) {
 
 function updateInventory() {
     document.querySelectorAll(".pokemon-count").forEach(count => {
-        count.textContent = inventory.pokemon;
+        count.textContent = userPokemon.length;
     });
     // these need a foreach to loop through every display of each count
     document.querySelectorAll(".berries-count").forEach(count => {
@@ -29,18 +35,10 @@ function updateInventory() {
     document.querySelectorAll(".potions-count").forEach(count => {
         count.textContent = inventory.potions;
     });
-    document.querySelectorAll(".coins-count").forEach(count => {
-        count.textContent = inventory.coins;
-    });
 }
 
-// have this function called when first pokemon select button is pressed
-function afterFirstPokemonAdded() {
-    // add hidden class to first pokemon choice form
-    // remove hidden class from shelter link in navbar
-    // 
-    // updateCollection();
-    // updateInventory();
-}
+$("#walk-button").on("click", goForAWalk);
 
-updateInventory();
+function goForAWalk () {
+    $("#walkResults").modal("show");
+}
