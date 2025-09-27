@@ -26,8 +26,6 @@ $(document).ready(function() {
             .join(" ");
     }
 
-
-
     function updateInventory() {
         document.querySelectorAll(".pokemon-count").forEach(count => {
             count.textContent = userPokemon.length;
@@ -45,12 +43,12 @@ $(document).ready(function() {
 
     function addPersonalitiesToStarterChoices () {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
-        let personality2 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
-        let personality3 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+        let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+        let personality7 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
 
         $(".starter-personality-1").text(personality1);
-        $(".starter-personality-2").text(personality2);
-        $(".starter-personality-3").text(personality3);
+        $(".starter-personality-4").text(personality4);
+        $(".starter-personality-7").text(personality7);
     }
 
     addPersonalitiesToStarterChoices();
@@ -76,6 +74,8 @@ $(document).ready(function() {
             nickname = species; // fallback if user leaves blank
         }
 
+        let personality = $(`.starter-personality-${species}`).text();
+
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
@@ -91,6 +91,7 @@ $(document).ready(function() {
                     sprite: spriteUrl,
                     nickname: nickname,
                     type: primaryType,
+                    personality: personality,
                 });
 
                 updateInventory();
@@ -123,7 +124,7 @@ $(document).ready(function() {
                                 <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center">
                                     <p>Level: 1</p>
                                     <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
-                                    <p>Personality: {pokemon.personality}</p>
+                                    <p>Personality: ${pokemon.personality}</p>
                                 </div>
                             </div>
                         </div>
