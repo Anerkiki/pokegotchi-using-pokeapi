@@ -1,103 +1,122 @@
-const userPokemon = [];
+$(document).ready(function() {
 
-const inventory = {
-    pokemon: userPokemon.length,
-    berries: 0,
-    potions: 0,
-};
+    const userPokemon = [];
 
-const pokemonPersonality = [
-    "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
-    "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
-    "Lonely", "Mild", "Modest", "Naive", "Naughty", "Quiet",
-    "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
-];
+    const inventory = {
+        pokemon: userPokemon.length,
+        berries: 0,
+        potions: 0,
+    };
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+    const pokemonPersonality = [
+        "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
+        "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
+        "Lonely", "Mild", "Modest", "Naive", "Naughty", "Quiet",
+        "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
+    ];
 
-function capitalizeWords(str) {
-    return str
-        .split(" ")
-        .map(word => capitalizeFirstLetter(word))
-        .join(" ");
-}
-
-function updateInventory() {
-    document.querySelectorAll(".pokemon-count").forEach(count => {
-        count.textContent = userPokemon.length;
-    });
-    // these need a foreach to loop through every display of each count
-    document.querySelectorAll(".berries-count").forEach(count => {
-        count.textContent = inventory.berries;
-    });
-    document.querySelectorAll(".potions-count").forEach(count => {
-        count.textContent = inventory.potions;
-    });
-}
-
-updateInventory();
-
-$("#add-first-pokemon").on("click", addStarterPokemon);
-
-function addStarterPokemon(event) {
-    event.preventDefault();
-
-    // Get the selected starter (radio value as string)
-    const species = $("input[name='starter']:checked").val();
-
-    // If no starter selected, show modal and stop
-    if (!species) {
-        $("#errorModal .modal-body").text("You need to pick a Pokémon!");
-        $("#errorModal").modal("show");
-        return;
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    // Get nickname or default to species string
-    let nickname = $("#pokemonNickname").val().trim();
-    if (!nickname) {
-        nickname = species; // fallback = "1", "4", or "7"
+    function capitalizeWords(str) {
+        return str
+            .split(" ")
+            .map(word => capitalizeFirstLetter(word))
+            .join(" ");
     }
 
-    // Add new Pokémon object to the array
-    userPokemon.push({
-        species: species,   // stays string
-        nickname: nickname
-    });
+    function updateInventory() {
+        document.querySelectorAll(".pokemon-count").forEach(count => {
+            count.textContent = userPokemon.length;
+        });
+        // these need a foreach to loop through every display of each count
+        document.querySelectorAll(".berries-count").forEach(count => {
+            count.textContent = inventory.berries;
+        });
+        document.querySelectorAll(".potions-count").forEach(count => {
+            count.textContent = inventory.potions;
+        });
+    }
 
     updateInventory();
-    displayUserPokemon();
 
-    $("#starter-options-form").addClass("hidden");
-    $("#walk-button").removeClass("hidden");
+    $("#add-first-pokemon").on("click", addStarterPokemon);
 
-    console.log("Starter chosen:", userPokemon);
-    console.log("Inventory:", inventory);
-}
+    function addStarterPokemon(event) {
+        event.preventDefault();
 
-function displayUserPokemon() {
-    if (userPokemon.length > 0) {
-        let html = "";
+        // Get the selected starter radio value
+        const species = $("input[name='starter']:checked").val();
 
-        // Loop through all Pokémon in the userPokemon array
-        for (const pokemon of userPokemon) {
-            html += `
-              <div class="page-section"><h3>${pokemon.nickname} the ${pokemon.species}</h3>
-              <button class="delete-button">Delete</button></div>
-            `;
+        // If no starter selected, show modal and stop
+        if (!species) {
+            $("#errorModal .modal-body").text("You need to pick a Pokémon!");
+            $("#errorModal").modal("show");
+            return;
         }
 
-        // Replace #allPokemon content with the current list
-        $("#allPokemon").html(html);
-    } else {
-        $("#starter-options-form").removeClass("hidden");
-        $("#walk-button").addClass("hidden");
+        // Get nickname or default to species string
+        let nickname = $("#pokemonNickname").val().trim();
+        if (!nickname) {
+            nickname = species; // fallback if user leaves blank
+        }
+
+        // Fetch Pokémon data from PokéAPI
+        fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
+            .then(response => response.json())
+            .then(data => {
+                const pokemonName = data.name; // e.g. "bulbasaur"
+                const spriteUrl = data.sprites.front_default; // official sprite
+
+                // Push new Pokémon to array
+                userPokemon.push({
+                    species: species,
+                    name: pokemonName,
+                    sprite: spriteUrl,
+                    nickname: nickname
+                });
+
+                updateInventory();
+                displayUserPokemon();
+
+                $("#starter-options-form").addClass("hidden");
+                $("#walk-button").removeClass("hidden");
+
+                console.log("Starter chosen:", userPokemon);
+                console.log("Inventory:", inventory);
+            })
+            .catch(error => {
+                console.error("Error fetching Pokémon:", error);
+            });
     }
-}
 
-$("#walk-button").on("click", goForAWalk);
+    function displayUserPokemon() {
+        if (userPokemon.length > 0) {
+            let html = "";
 
-function goForAWalk () {
-    $("#walkResults").modal("show");
-}
+            // Loop through all Pokémon in the userPokemon array
+            for (const pokemon of userPokemon) {
+                html += `
+                <div class="pokemon-card">
+                    <h3>${pokemon.nickname} the ${pokemon.name}</h3>
+                    <img src="${pokemon.sprite}" alt="${pokemon.name}">
+                </div>
+                `;
+            }
+
+            // Replace #allPokemon content with the current list
+            $("#allPokemon").html(html);
+        } else {
+            $("#starter-options-form").removeClass("hidden");
+            $("#walk-button").addClass("hidden");
+        }
+    }
+
+    $("#walk-button").on("click", goForAWalk);
+
+    function goForAWalk () {
+        $("#walkResults").modal("show");
+    }
+
+});
