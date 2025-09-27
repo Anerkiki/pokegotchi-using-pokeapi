@@ -30,7 +30,8 @@ $(document).ready(function() {
         document.querySelectorAll(".pokemon-count").forEach(count => {
             count.textContent = userPokemon.length;
         });
-        // these need a foreach to loop through every display of each count
+        // these need a foreach to loop through every display 
+        // of each count as there are more than 1 of each
         document.querySelectorAll(".berries-count").forEach(count => {
             count.textContent = inventory.berries;
         });
@@ -69,12 +70,9 @@ $(document).ready(function() {
         }
 
         // Get nickname or default to species string
-        let nickname = $("#pokemonNickname").val().trim();
-        if (!nickname) {
-            nickname = species; // fallback if user leaves blank
-        }
+        let nicknameInput = $("#pokemonNickname").val().trim();
 
-        let personality = $(`.starter-personality-${species}`).text();
+        let personality = $(`.starter-personality-${species}`).first().text();
 
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
@@ -84,6 +82,15 @@ $(document).ready(function() {
                 const spriteUrl = data.sprites.front_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
+
+                let nickname;
+
+                if (nicknameInput.length > 0) {
+                nickname = nicknameInput;
+                }
+                else {
+                nickname = pokemonName;
+                }
 
                 userPokemon.push({
                     species: species,
