@@ -66,15 +66,17 @@ $(document).ready(function() {
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
             .then(data => {
-                const pokemonName = data.name; // e.g. "bulbasaur"
-                const spriteUrl = data.sprites.front_default; // official sprite
+                const pokemonName = data.name;
+                const spriteUrl = data.sprites.front_default;
+                // Just the first type
+                const primaryType = data.types[0].type.name;
 
-                // Push new Pokémon to array
                 userPokemon.push({
                     species: species,
                     name: pokemonName,
                     sprite: spriteUrl,
-                    nickname: nickname
+                    nickname: nickname,
+                    type: primaryType,
                 });
 
                 updateInventory();
@@ -98,10 +100,20 @@ $(document).ready(function() {
             // Loop through all Pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 html += `
-                <div class="pokemon-card">
-                    <h3>${pokemon.nickname} the ${pokemon.name}</h3>
-                    <img src="${pokemon.sprite}" alt="${pokemon.name}">
-                </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="pokemon-card">
+                            <h3>${capitalizeWords(pokemon.nickname)} the ${capitalizeWords(pokemon.name)}</h3>
+                            <div class="row justify-content-center">
+                                <img src="${pokemon.sprite}" 
+                                    class="sprite img-fluid col-6 col-md-12 order-2 order-md-1" alt="pixelated image of ${pokemon.name}">
+                                <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                    <p>Level: 1</p>
+                                    <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
+                                    <p>Personality: ...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
             }
 

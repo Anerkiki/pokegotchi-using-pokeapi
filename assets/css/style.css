@@ -39,6 +39,7 @@ h2 {
 h3 {
     font-size: 3.5rem;
     margin: 0;
+    line-height: 1;
 }
 
 p {
@@ -108,14 +109,31 @@ img.sprite {
     border-radius: 20px;
 }
 
+.pokemon-card {
+    margin: 10px 0;
+    padding: 10px 0;
+    border: 5px solid var(--secondary-colour);
+    border-radius: 20px;
+}
+
+.pokemon-card>h3 {
+    line-height: 0.7;
+}
+
+.details>p {
+    line-height: 0.8;
+}
+
 .navbar > div {
     margin-top: 7px;
 }
 
 .starter {
+    margin: 10px 0;
+    border-radius: 20px;
     background-color: var(--secondary-colour);
     color: var(--primary-colour);
-    border-radius: 15%;
+    padding-top: 10px;
 }
 
 .starter>h3 {
@@ -129,7 +147,7 @@ img.sprite {
 
 .small-details {
     font-size: 1.8rem;
-    line-height: 0.5;
+    line-height: 0.8;
 }
 
 #inventory-button {
