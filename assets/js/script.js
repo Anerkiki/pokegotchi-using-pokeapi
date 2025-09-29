@@ -147,33 +147,50 @@ $(document).ready(function() {
         }
     }
 
+    // These need to be created outside of the goForAWalk function so that the variables are global and 
+    // can also be used in the addWalkResultsToInventory function
+    let lastBerryWalkResult = 0;
+    let lastPotionWalkResult = 0;
+
     $("#walk-button").on("click", goForAWalk);
+    $("#add-walk-items").on("click", addWalkResultsToInventory);
 
     function goForAWalk () {
+
         // generate random pokemon name from user's pokemon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // add the random pokemon nickname to the text in the modal
         $("#randomUserPokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
 
-        // Generating a random number between 2 and 10
-        let randomBerryNumber = Math.floor(Math.random() * 9) + 2;
+        // Set the walk results:
 
-        let randomPotionNumber = Math.floor(Math.random() * 4) + 2;
+        // Generating a random number between 2 and 10 for berries and between 2 and 3 for potions
+        lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
+        lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
 
-        let results = randomBerryNumber + " berries"
+        let results = lastBerryWalkResult + " berries"
 
-        if (randomBerryNumber < 3) {
-            results += " and " + randomPotionNumber + " potions"
+        if (lastBerryWalkResult < 4) {
+            results += " and " + lastPotionWalkResult + " potions"
+        } else {
+            lastPotionWalkResult = 0;
         }
 
         // TO ADD LATER: Random Pokémon Encounter as an option on walks
+        // if pokemon level < 10, default to above code
+        //  else pokemon encounter chance
 
-        // the results of the walk
+        // the results of the walk:
+
+        // updating the inner text
         $("#walk-results").text(results);
-
+        // displaying the modal
         $("#walkResults").modal("show");
     }
 
-    // to add walk items to inventory - use this button ("#add-walk-items")
-
+    function addWalkResultsToInventory () {
+        inventory.berries = inventory.berries + lastBerryWalkResult;
+        inventory.potions = inventory.potions + lastPotionWalkResult;
+        updateInventory();
+    }
 });
