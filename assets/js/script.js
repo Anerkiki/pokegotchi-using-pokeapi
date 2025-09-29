@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    // Global Variables
     const userPokemon = [];
 
     const inventory = {
@@ -15,6 +16,26 @@ $(document).ready(function() {
         "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
     ];
 
+    // These variables need to be created outside of the goForAWalk function so that 
+    // they are global and can also be used in the addWalkResultsToInventory function
+    let lastBerryWalkResult = 0;
+    let lastPotionWalkResult = 0;
+
+    // Functions to be called on page-load
+    updateInventory();
+    addPersonalitiesToStarterChoices();
+
+    // Event Handlers
+    $("#add-first-pokemon").on("click", addStarterPokemon);
+    $("#walk-button").on("click", goForAWalk);
+    $("#add-walk-items").on("click", addWalkResultsToInventory);
+    $("#action-pet").on("click", petPokemon); // needs connecting
+    $("#action-feed-berry").on("click", feedBerry);
+    $("#action-feed-potion").on("click", feedPotion);
+    $("#action-battle").on("click", battleInArena);
+    $(".delete-pokemon").on("click", deletePokemon);
+    
+    // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -26,6 +47,7 @@ $(document).ready(function() {
             .join(" ");
     }
 
+    // Functions that fire on startup
     function updateInventory() {
         document.querySelectorAll(".pokemon-count").forEach(count => {
             count.textContent = userPokemon.length;
@@ -40,8 +62,6 @@ $(document).ready(function() {
         });
     }
 
-    updateInventory();
-
     function addPersonalitiesToStarterChoices () {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
@@ -52,10 +72,7 @@ $(document).ready(function() {
         $(".starter-personality-7").text(personality7);
     }
 
-    addPersonalitiesToStarterChoices();
-
-    $("#add-first-pokemon").on("click", addStarterPokemon);
-
+    // Functions that happen when triggered by certain events
     function addStarterPokemon(event) {
         event.preventDefault();
 
@@ -71,13 +88,9 @@ $(document).ready(function() {
 
         // Get nickname or default to species string
         let nicknameInput = $("#pokemonNickname").val().trim();
-
         let personality = $(`.starter-personality-${species}`).first().text();
-
         let level = 1;
-
         let happiness = 80;
-
         let health = 80;
         let hunger = 80;
 
@@ -126,6 +139,7 @@ $(document).ready(function() {
             });
     }
 
+    // Triggered once first pokemon is chosen
     function displayUserPokemon() {
         if (userPokemon.length > 0) {
             let html = "";
@@ -156,7 +170,7 @@ $(document).ready(function() {
                                     </div>
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
-                                        <progress id="happiness" max="100" value="${pokemon.hunger}"></progress>
+                                        <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
                                     </div>
                                 </div>
 
@@ -168,56 +182,48 @@ $(document).ready(function() {
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <button class="dropdown-item"
+                                        <button id="action-pet" class="dropdown-item"
                                             aria-label="">Pet</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="dropdown-item"
+                                        <button id="action-feed-berry" class="dropdown-item"
                                             aria-label="">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="dropdown-item"
+                                        <button id="action-feed-potion" class="dropdown-item"
                                             aria-label="">Feed Potion</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="dropdown-item"
+                                        <button id="action-battle" class="dropdown-item"
                                             aria-label="">Battle in Arena</button>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <button class="rename" type="button">Rename</button>
-                                <button class="delete" type="button">Delete</button>
+                                <button class="rename" type="button">Rename ${capitalizeWords(pokemon.nickname)}</button>
+                                <button class="release-pokemon" type="button">Release ${capitalizeWords(pokemon.nickname)}</button>
                             </div>
                         </div>
                     </div>
                 `;
             }
 
-            // Replace #allPokemon content with the current list
-            $("#allPokemon").html(html);
+            // Replace #pokemon-collection content with the current list
+            $("#pokemon-collection").html(html);
         } else {
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
         }
     }
-
-    // These variables need to be created outside of the goForAWalk function so that 
-    // they are global and can also be used in the addWalkResultsToInventory function
-    let lastBerryWalkResult = 0;
-    let lastPotionWalkResult = 0;
-
-    $("#walk-button").on("click", goForAWalk);
-    $("#add-walk-items").on("click", addWalkResultsToInventory);
 
     function goForAWalk () {
 
@@ -258,4 +264,26 @@ $(document).ready(function() {
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
     }
+
+    function petPokemon () {
+        // make sure is only on clicked pokemon
+    }
+
+    function feedBerry () {
+        // make sure is only on clicked pokemon
+    }
+
+    function feedPotion () {
+        // make sure is only on clicked pokemon
+    }
+
+    function battleInArena () {
+        // make sure is only on clicked pokemon
+    }
+
+    function deletePokemon () {
+        // make sure is only on clicked pokemon
+        // should remove selected pokemon from userPokemon array
+    }
+
 });
