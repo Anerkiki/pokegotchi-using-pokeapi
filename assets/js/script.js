@@ -150,6 +150,14 @@ $(document).ready(function() {
     $("#walk-button").on("click", goForAWalk);
 
     function goForAWalk () {
+        // generate random pokemon name from user's pokemon collection
+        const randomPokemon = Math.floor(Math.random() * userPokemon.length);
+        // add the random pokemon nickname to the text in the modal
+        $("#randomUserPokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
+        // the results of the walk
+        // (will update more to randomly generate amount and add to inventory later)
+        $("#walk-results").text("5 berries");
+        
         $("#walkResults").modal("show");
     }
 
