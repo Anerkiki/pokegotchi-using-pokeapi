@@ -154,11 +154,26 @@ $(document).ready(function() {
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // add the random pokemon nickname to the text in the modal
         $("#randomUserPokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
+
+        // Generating a random number between 2 and 10
+        let randomBerryNumber = Math.floor(Math.random() * 9) + 2;
+
+        let randomPotionNumber = Math.floor(Math.random() * 4) + 2;
+
+        let results = randomBerryNumber + " berries"
+
+        if (randomBerryNumber < 3) {
+            results += " and " + randomPotionNumber + " potions"
+        }
+
+        // TO ADD LATER: Random Pokémon Encounter as an option on walks
+
         // the results of the walk
-        // (will update more to randomly generate amount and add to inventory later)
-        $("#walk-results").text("5 berries");
-        
+        $("#walk-results").text(results);
+
         $("#walkResults").modal("show");
     }
+
+    // to add walk items to inventory - use this button ("#add-walk-items")
 
 });
