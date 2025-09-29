@@ -76,6 +76,11 @@ $(document).ready(function() {
 
         let level = 1;
 
+        let happiness = 80;
+
+        let health = 80;
+        let hunger = 80;
+
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
@@ -102,6 +107,9 @@ $(document).ready(function() {
                     type: primaryType,
                     personality: personality,
                     level: level,
+                    happiness: happiness,
+                    health: health,
+                    hunger: hunger,
                 });
 
                 updateInventory();
@@ -137,21 +145,19 @@ $(document).ready(function() {
                                     
                                     <img src="${pokemon.sprite}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
 
-                                <div class="col-11 col-sm-6">
-                                
+                                <div class="progress-bars col-11 col-sm-6">
                                     <div>
                                         <p><label for="happiness">Happiness:</label></p>
-                                        <progress id="happiness" max="100" value="70">70%</progress>
+                                        <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
                                     </div>
                                     <div>
                                         <p><label for="health">Health:</label></p>
-                                        <progress id="health" max="100" value="80">80%</progress>
+                                        <progress id="health" max="100" value="${pokemon.health}"></progress>
                                     </div>
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
-                                        <progress id="happiness" max="100" value="50">50%</progress>
+                                        <progress id="happiness" max="100" value="${pokemon.hunger}"></progress>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -162,29 +168,29 @@ $(document).ready(function() {
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a href="" class="dropdown-item"
-                                            aria-label="">Pet</a>
+                                        <button class="dropdown-item"
+                                            aria-label="">Pet</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a href="" class="dropdown-item"
-                                            aria-label="">Feed Berry</a>
+                                        <button class="dropdown-item"
+                                            aria-label="">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a href="" class="dropdown-item"
-                                            aria-label="">Feed Potion</a>
+                                        <button class="dropdown-item"
+                                            aria-label="">Feed Potion</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a href="" class="dropdown-item"
-                                            aria-label="">Battle in Arena</a>
+                                        <button class="dropdown-item"
+                                            aria-label="">Battle in Arena</button>
                                     </li>
                                 </ul>
                             </div>
@@ -193,8 +199,8 @@ $(document).ready(function() {
                                 <button class="delete" type="button">Delete</button>
                             </div>
                         </div>
-                    </div>`;
-                
+                    </div>
+                `;
             }
 
             // Replace #allPokemon content with the current list
@@ -205,8 +211,8 @@ $(document).ready(function() {
         }
     }
 
-    // These need to be created outside of the goForAWalk function so that the variables are global and 
-    // can also be used in the addWalkResultsToInventory function
+    // These variables need to be created outside of the goForAWalk function so that 
+    // they are global and can also be used in the addWalkResultsToInventory function
     let lastBerryWalkResult = 0;
     let lastPotionWalkResult = 0;
 
