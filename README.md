@@ -576,6 +576,6 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 
 ## Future Enhancements
 
-- 
+- Adding pokemon collection and inventory to local storage so that if window is closed/refreshed the collection and inventory are still the same.
 
 ---

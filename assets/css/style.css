@@ -91,7 +91,10 @@ img.sprite {
     border-radius: 50%;
 }
 
-/* WORK OUT HOW TO GET RID OF BORDERS HERE */
+progress {
+    width: 100%;
+    max-width: 200px;
+}
 
 .hidden {
     display: none;

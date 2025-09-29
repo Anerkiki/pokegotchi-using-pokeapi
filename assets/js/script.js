@@ -74,6 +74,8 @@ $(document).ready(function() {
 
         let personality = $(`.starter-personality-${species}`).first().text();
 
+        let level = 1;
+
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
@@ -99,6 +101,7 @@ $(document).ready(function() {
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,
+                    level: level,
                 });
 
                 updateInventory();
@@ -122,21 +125,76 @@ $(document).ready(function() {
             // Loop through all Pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 html += `
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <div class="pokemon-card">
-                            <h3>${capitalizeWords(pokemon.nickname)} the ${capitalizeWords(pokemon.name)}</h3>
-                            <div class="row justify-content-center">
-                                <img src="${pokemon.sprite}" 
-                                    class="sprite img-fluid col-6 col-md-12 order-2 order-md-1" alt="pixelated image of ${pokemon.name}">
-                                <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center">
-                                    <p>Level: 1</p>
+
+                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the ${capitalizeWords(pokemon.name)}</h2>
+
+                            <div class = "row justify-content-center text-start">
+                                    <p>Level: ${pokemon.level}</p>
                                     <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                     <p>Personality: ${pokemon.personality}</p>
+                                    
+                                    <img src="${pokemon.sprite}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
+
+                                <div class="col-11 col-sm-6">
+                                
+                                    <div>
+                                        <p><label for="happiness">Happiness:</label></p>
+                                        <progress id="happiness" max="100" value="70">70%</progress>
+                                    </div>
+                                    <div>
+                                        <p><label for="health">Health:</label></p>
+                                        <progress id="health" max="100" value="80">80%</progress>
+                                    </div>
+                                    <div>
+                                        <p><label for="hunger">Hunger:</label></p>
+                                        <progress id="happiness" max="100" value="50">50%</progress>
+                                    </div>
+
                                 </div>
+
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Interact with ${capitalizeWords(pokemon.nickname)}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a href="" class="dropdown-item"
+                                            aria-label="">Pet</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a href="" class="dropdown-item"
+                                            aria-label="">Feed Berry</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a href="" class="dropdown-item"
+                                            aria-label="">Feed Potion</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a href="" class="dropdown-item"
+                                            aria-label="">Battle in Arena</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="rename" type="button">Rename</button>
+                                <button class="delete" type="button">Delete</button>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
+                
             }
 
             // Replace #allPokemon content with the current list
@@ -178,7 +236,8 @@ $(document).ready(function() {
 
         // TO ADD LATER: Random Pokémon Encounter as an option on walks
         // if pokemon level < 10, default to above code
-        //  else pokemon encounter chance
+        // else pokemon encounter chance - change the whole inner HTML of modal to 
+        // randomised pokemon (from API) encounter
 
         // the results of the walk:
 
