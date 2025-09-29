@@ -83,16 +83,9 @@ button[type='submit']:hover {
     color: var(--primary-colour);
 }
 
-img.sprite {
-    width: 100%;
-    height: auto; 
-    /* this should stop the image being squashed but not working yet
-    - LOOK AT LATER */
-}
-
 progress {
     width: 100%;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .hidden {
