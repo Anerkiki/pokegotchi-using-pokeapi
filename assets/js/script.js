@@ -93,13 +93,14 @@ $(document).ready(function() {
         let happiness = 80;
         let health = 80;
         let hunger = 80;
+        let uniqueIndex = Date.now();
 
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
-                const spriteUrl = data.sprites.front_default;
+                const imageUrl = data.sprites.front_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
 
@@ -113,9 +114,10 @@ $(document).ready(function() {
                 }
 
                 userPokemon.push({
+                    index: uniqueIndex,
                     species: species,
                     name: pokemonName,
-                    sprite: spriteUrl,
+                    image: imageUrl,
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,
@@ -157,7 +159,7 @@ $(document).ready(function() {
                                     <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                     <p>Personality: ${pokemon.personality}</p>
                                     
-                                    <img src="${pokemon.sprite}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
+                                    <img src="${pokemon.image}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
 
                                 <div class="progress-bars col-11 col-sm-6">
                                     <div>
@@ -183,28 +185,28 @@ $(document).ready(function() {
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <button id="action-pet" class="dropdown-item"
-                                            aria-label="">Pet</button>
+                                            aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button id="action-feed-berry" class="dropdown-item"
-                                            aria-label="">Feed Berry</button>
+                                            aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button id="action-feed-potion" class="dropdown-item"
-                                            aria-label="">Feed Potion</button>
+                                            aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button id="action-battle" class="dropdown-item"
-                                            aria-label="">Battle in Arena</button>
+                                            aria-label="Battle with ${pokemon.nickname} to increase it's level">Battle in Arena</button>
                                     </li>
                                 </ul>
                             </div>
