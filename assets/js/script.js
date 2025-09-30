@@ -52,14 +52,14 @@ $(document).ready(function() {
 
     function actionPet () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
-                pokemon.happiness = pokemon.happiness + 5;
-                // this needs amending so that it doesn't exceed the 100 limit
+                // Math.min will always find the minimum value, so if the
+                // first value is set to 100 then no matter how high the new
+                // happiness value gets after petting, it won't ever exceed 100
+                pokemon.happiness = Math.min(100, pokemon.happiness + 5);
             }
         }
-
         displayUserPokemon();
         updateInventory();
     }
