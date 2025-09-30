@@ -36,16 +36,13 @@ $(document).ready(function() {
     $("#confirm-release-button").on("click", releasePokemon);
 
     // all handlers below are not connected to working functions yet
-
     // Rename pokemon event handlers - to work on later
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
     $("#confirm-rename-button").on("click", renamePokemon);
-
-    $("#action-berry").on("click", actionBerry);
-    $("#action-berry").on("click", actionPotion);
-    $("#action-battle").on("click", actionBattle);
     // LATER - ADD onclick handler to add checked to radio of starter parent element clicked
 
+    $("#pokemon-collection").on("click", ".action-potion", actionPotion);
+    $("#pokemon-collection").on("click", ".action-battle", actionBattle);
 
 
     $("#pokemon-collection").on("click", ".action-pet", actionPet);
@@ -58,13 +55,40 @@ $(document).ready(function() {
                 // first value is set to 100 then no matter how high the new
                 // happiness value gets after petting, it won't ever exceed 100
                 pokemon.happiness = Math.min(100, pokemon.happiness + 5);
+                // this stops it cycling through the rest of the
+                // pokemon once the correct one has been found
+                break;
             }
         }
         displayUserPokemon();
         updateInventory();
     }
 
+    $("#pokemon-collection").on("click", ".action-berry", actionBerry);
 
+    function actionBerry () {
+        if (inventory.berries < 1) {
+            $("#errorModal .modal-body").text("You don't have any berries! Try going for a walk to find more");
+            $("#errorModal").modal("show");
+
+        } else {
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                if (pokemon.hunger === 100) {
+            $("#errorModal .modal-body").text("Your pokémon is now full");
+            $("#errorModal").modal("show");
+                } else {
+                pokemon.hunger = Math.min(100, pokemon.hunger + 5);
+                inventory.berries = inventory.berries - 1;
+                break;
+                }
+            }
+        }
+        displayUserPokemon();
+        updateInventory();
+        }
+    }
 
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -210,28 +234,28 @@ $(document).ready(function() {
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <button class="action-pet" class="dropdown-item"
+                                        <button class="action-pet dropdown-item"
                                             aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-berry" class="dropdown-item"
+                                        <button class="action-berry dropdown-item"
                                             aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-berry" class="dropdown-item"
+                                        <button class="action-potion dropdown-item"
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-battle" class="dropdown-item"
+                                        <button class="action-battle dropdown-item"
                                             aria-label="Battle with ${pokemon.nickname} to increase it's level">Battle in Arena</button>
                                     </li>
                                 </ul>
@@ -331,10 +355,6 @@ $(document).ready(function() {
     }
 
     function renamePokemon () {
-        //
-    }
-
-    function actionBerry () {
         //
     }
 
