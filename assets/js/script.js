@@ -16,8 +16,7 @@ $(document).ready(function() {
         "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
     ];
 
-    // These variables need to be created outside of the goForAWalk function so that 
-    // they are global and can also be used in the addWalkResultsToInventory function
+    // These variables need to be global so they can be used in the goForAWalk & addWalkResultsToInventory functions
     let lastBerryWalkResult = 0;
     let lastPotionWalkResult = 0;
 
@@ -30,10 +29,10 @@ $(document).ready(function() {
     $("#walk-button").on("click", goForAWalk);
     $("#add-walk-items").on("click", addWalkResultsToInventory);
     $("#action-pet").on("click", petPokemon); // needs connecting
-    $("#action-feed-berry").on("click", feedBerry);
-    $("#action-feed-potion").on("click", feedPotion);
-    $("#action-battle").on("click", battleInArena);
-    $(".delete-pokemon").on("click", deletePokemon);
+    $("#action-feed-berry").on("click", feedBerry); // needs connecting
+    $("#action-feed-potion").on("click", feedPotion); // needs connecting
+    $("#action-battle").on("click", battleInArena); // needs connecting
+    $(".delete-pokemon").on("click", releasePokemon); // needs connecting
     
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -86,6 +85,9 @@ $(document).ready(function() {
             return;
         }
 
+        // In case new pokemon is slow to load, so the user knows the click has worked
+        $("#add-first-pokemon>h3").text("Adding...");
+
         // Get nickname or default to species string
         let nicknameInput = $("#pokemonNickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
@@ -134,7 +136,6 @@ $(document).ready(function() {
                 $("#walk-button").removeClass("hidden");
 
                 console.log("Starter chosen:", userPokemon);
-                console.log("Inventory:", inventory);
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
@@ -211,8 +212,12 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div>
-                                <button class="rename" type="button">Rename ${capitalizeWords(pokemon.nickname)}</button>
-                                <button class="release-pokemon" type="button">Release ${capitalizeWords(pokemon.nickname)}</button>
+                                <button class="rename" type="button">
+                                    Rename ${capitalizeWords(pokemon.nickname)}
+                                </button>
+                                <button class="release-pokemon" type="button" data-index="${pokemon.index}">
+                                    Release ${capitalizeWords(pokemon.nickname)}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -268,24 +273,25 @@ $(document).ready(function() {
     }
 
     function petPokemon () {
-        // make sure is only on clicked pokemon
+        // to add - make sure is only on clicked pokemon
     }
 
     function feedBerry () {
-        // make sure is only on clicked pokemon
+        // to add - make sure is only on clicked pokemon
     }
 
     function feedPotion () {
-        // make sure is only on clicked pokemon
+        // to add - make sure is only on clicked pokemon
     }
 
     function battleInArena () {
-        // make sure is only on clicked pokemon
+        // to add - make sure is only on clicked pokemon
     }
 
-    function deletePokemon () {
-        // make sure is only on clicked pokemon
+    function releasePokemon () {
+        // to add - make sure is only on clicked pokemon
         // should remove selected pokemon from userPokemon array
+        // have this pop up a modal to confirm the user wants to delete/release the pokemon
     }
 
 });
