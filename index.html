@@ -170,21 +170,20 @@
         </div>
     </div>
 
-    <!-- Confirm Release Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+    <!-- Release Confirmation Modal -->
+    <div class="modal fade" id="releaseModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Release Pokémon?</h5>
+                    <h2 class="modal-title">Release Pokémon</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to release this Pokémon?
-                    <!-- TO DO ----- Change this to include Pokémon's name by injecting message through JS later -->
+                    Are you sure you want to release your Pokémon?
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="confirm-release-btn">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="confirm-release-button" type="button" class="btn btn-danger">Release</button>
                 </div>
             </div>
         </div>

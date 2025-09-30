@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Global Variables
-    const userPokemon = [];
+    let userPokemon = [];
 
     const inventory = {
         pokemon: userPokemon.length,
@@ -26,13 +26,68 @@ $(document).ready(function() {
 
     // Event Handlers
     $("#add-first-pokemon").on("click", addStarterPokemon);
+    // Walk handlers
     $("#walk-button").on("click", goForAWalk);
     $("#add-walk-items").on("click", addWalkResultsToInventory);
-    $("#action-pet").on("click", petPokemon); // needs connecting
-    $("#action-feed-berry").on("click", feedBerry); // needs connecting
-    $("#action-feed-potion").on("click", feedPotion); // needs connecting
-    $("#action-battle").on("click", battleInArena); // needs connecting
-    $(".delete-pokemon").on("click", releasePokemon); // needs connecting
+
+// LATER - ADD onclick handler to add checked to radio of starter parent element clicked
+
+
+
+// Code for removing/releasing pokemon - will move down when working
+
+    // Remove/release event handlers
+    $("#pokemon-collection").on("click", ".release-pokemon", openReleaseModal);
+    $("#confirm-release-button").on("click", releasePokemon);
+
+    // Global variable needed in both remove/release functions
+    let pokemonToReleaseIndex = null;
+
+    // Remove/release functions
+    function openReleaseModal() {
+    // Find the index of the clicked Pokémon
+    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+
+    // Store the index globally so releasePokemon can access it
+    pokemonToReleaseIndex = uniqueIndex;
+
+    console.log(pokemonToReleaseIndex);
+    // This is now showing as the unique index number
+
+    // Show the modal
+    $("#releaseModal").modal("show");
+    }
+
+    function releasePokemon() {
+
+    if (userPokemon.length === 1) {
+        userPokemon = [];
+    } else {
+        let newPokemonArray = [];
+        for (let i = 0; i < userPokemon.length; i++) {
+            let pokemon = userPokemon[i];
+
+            if (pokemon.index !== pokemonToReleaseIndex) {
+                newPokemonArray.push(pokemon);
+            }
+        }
+        userPokemon = newPokemonArray;
+    }
+
+    $("#releaseModal").modal("hide"); 
+
+    pokemonToReleaseIndex = null;
+    updateInventory();
+    displayUserPokemon();
+    }
+
+
+
+    // all below are not connected to working functions yet
+    $("#action-pet").on("click", petPokemon);
+    $("#action-feed-berry").on("click", feedBerry);
+    $("#action-feed-potion").on("click", feedPotion);
+    $("#action-battle").on("click", battleInArena);
     
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -151,7 +206,7 @@ $(document).ready(function() {
             for (const pokemon of userPokemon) {
                 html += `
                     <div class="col-12 col-lg-6">
-                        <div class="pokemon-card">
+                        <div class="pokemon-card" data-index="${pokemon.index}">
 
                             <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the ${capitalizeWords(pokemon.name)}</h2>
 
@@ -212,10 +267,10 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div>
-                                <button class="rename" type="button" data-index="${pokemon.index}>
+                                <button class="rename" type="button">
                                     Rename ${capitalizeWords(pokemon.nickname)}
                                 </button>
-                                <button class="release-pokemon" type="button" data-index="${pokemon.index}">
+                                <button class="release-pokemon" type="button">
                                     Release ${capitalizeWords(pokemon.nickname)}
                                 </button>
                             </div>
@@ -286,12 +341,6 @@ $(document).ready(function() {
 
     function battleInArena () {
         // to add - make sure is only on clicked pokemon
-    }
-
-    function releasePokemon () {
-        // to add - make sure is only on clicked pokemon
-        // should remove selected pokemon from userPokemon array
-        // have this pop up a modal to confirm the user wants to delete/release the pokemon
     }
 
 });

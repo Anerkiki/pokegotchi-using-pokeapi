@@ -6,10 +6,16 @@
         --font-paragraph: "Dongle", sans-serif;
 
     /* Colour Palette Colours */
-        --primary-colour: aquamarine;
+        --primary-colour: #00FFB2;
+         /* #3dd3b9; */
+        /* was aquamarine */
         --secondary-colour: blueviolet;
+        --purple-colour: #8853D3;
+        /* was blueviolet */
         --tertiary-colour: #f8f9fa;
         /* same as navbar */
+        --other-pink: #ec008b;
+        /* could be used for inventory and borders around sections and buttons */
 }
 
 /* Global Styles */
