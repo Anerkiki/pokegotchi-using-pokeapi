@@ -212,7 +212,7 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div>
-                                <button class="rename" type="button">
+                                <button class="rename" type="button" data-index="${pokemon.index}>
                                     Rename ${capitalizeWords(pokemon.nickname)}
                                 </button>
                                 <button class="release-pokemon" type="button" data-index="${pokemon.index}">
