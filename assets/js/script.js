@@ -12,13 +12,15 @@ $(document).ready(function() {
     const pokemonPersonality = [
         "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
         "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
-        "Lonely", "Mild", "Modest", "Naive", "Naughty", "Quiet",
+        "Loud", "Mild", "Modest", "Naive", "Naughty", "Quiet",
         "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
     ];
 
-    // These variables need to be global so they can be used in the goForAWalk & addWalkResultsToInventory functions
+    // Used in the goForAWalk & addWalkResultsToInventory functions
     let lastBerryWalkResult = 0;
     let lastPotionWalkResult = 0;
+    // Used in openReleaseModal & releasePokemon functions
+    let pokemonToReleaseIndex = null;
 
     // Functions to be called on page-load
     updateInventory();
@@ -29,65 +31,21 @@ $(document).ready(function() {
     // Walk handlers
     $("#walk-button").on("click", goForAWalk);
     $("#add-walk-items").on("click", addWalkResultsToInventory);
-
-// LATER - ADD onclick handler to add checked to radio of starter parent element clicked
-
-
-
-// Code for removing/releasing pokemon - will move down when working
-
     // Remove/release event handlers
     $("#pokemon-collection").on("click", ".release-pokemon", openReleaseModal);
     $("#confirm-release-button").on("click", releasePokemon);
 
-    // Global variable needed in both remove/release functions
-    let pokemonToReleaseIndex = null;
+    // all handlers below are not connected to working functions yet
 
-    // Remove/release functions
-    function openReleaseModal() {
-    // Find the index of the clicked Pokémon
-    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+    // Rename pokemon event handlers - to link later
+    $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
+    $("#confirm-rename-button").on("click", renamePokemon);
 
-    // Store the index globally so releasePokemon can access it
-    pokemonToReleaseIndex = uniqueIndex;
-
-    console.log(pokemonToReleaseIndex);
-    // This is now showing as the unique index number
-
-    // Show the modal
-    $("#releaseModal").modal("show");
-    }
-
-    function releasePokemon() {
-
-    if (userPokemon.length === 1) {
-        userPokemon = [];
-    } else {
-        let newPokemonArray = [];
-        for (let i = 0; i < userPokemon.length; i++) {
-            let pokemon = userPokemon[i];
-
-            if (pokemon.index !== pokemonToReleaseIndex) {
-                newPokemonArray.push(pokemon);
-            }
-        }
-        userPokemon = newPokemonArray;
-    }
-
-    $("#releaseModal").modal("hide"); 
-
-    pokemonToReleaseIndex = null;
-    updateInventory();
-    displayUserPokemon();
-    }
-
-
-
-    // all below are not connected to working functions yet
     $("#action-pet").on("click", petPokemon);
     $("#action-feed-berry").on("click", feedBerry);
     $("#action-feed-potion").on("click", feedPotion);
     $("#action-battle").on("click", battleInArena);
+    // LATER - ADD onclick handler to add checked to radio of starter parent element clicked
     
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -200,11 +158,11 @@ $(document).ready(function() {
     // Triggered once first pokemon is chosen
     function displayUserPokemon() {
         if (userPokemon.length > 0) {
-            let html = "";
+            let currentUserPokemon = "";
 
             // Loop through all Pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
-                html += `
+                currentUserPokemon += `
                     <div class="col-12 col-lg-6">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
@@ -267,7 +225,7 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div>
-                                <button class="rename" type="button">
+                                <button class="rename-pokemon" type="button">
                                     Rename ${capitalizeWords(pokemon.nickname)}
                                 </button>
                                 <button class="release-pokemon" type="button">
@@ -280,8 +238,11 @@ $(document).ready(function() {
             }
 
             // Replace #pokemon-collection content with the current list
-            $("#pokemon-collection").html(html);
+            $("#pokemon-collection").html(currentUserPokemon);
         } else {
+            // Clears any old pokemon from the HTML
+            $("#pokemon-collection").html("");
+
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
         }
@@ -327,20 +288,65 @@ $(document).ready(function() {
         updateInventory();
     }
 
+    // Remove/release functions
+    function openReleaseModal() {
+    // Find the index of the clicked Pokémon
+    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+
+    // Store the index globally so releasePokemon can access it
+    pokemonToReleaseIndex = uniqueIndex;
+
+    console.log(pokemonToReleaseIndex);
+    // This is now showing as the unique index number
+
+    // Show the modal
+    $("#releaseModal").modal("show");
+    }
+
+    function releasePokemon() {
+
+    if (userPokemon.length === 1) {
+        userPokemon = [];
+        // Reset the text on the choose starter button back
+        $("#add-first-pokemon>h3").text("Add To Collection")
+    } else {
+        let newPokemonArray = [];
+        for (let i = 0; i < userPokemon.length; i++) {
+            let pokemon = userPokemon[i];
+
+            if (pokemon.index !== pokemonToReleaseIndex) {
+                newPokemonArray.push(pokemon);
+            }
+        }
+        userPokemon = newPokemonArray;
+    }
+
+    $("#releaseModal").modal("hide"); 
+
+    pokemonToReleaseIndex = null;
+    updateInventory();
+    displayUserPokemon();
+    }
+
+    // Future functions - to link in later
+    function renamePokemon () {
+        //
+    }
+
     function petPokemon () {
-        // to add - make sure is only on clicked pokemon
+        //
     }
 
     function feedBerry () {
-        // to add - make sure is only on clicked pokemon
+        //
     }
 
     function feedPotion () {
-        // to add - make sure is only on clicked pokemon
+        //
     }
 
     function battleInArena () {
-        // to add - make sure is only on clicked pokemon
+        //
     }
 
 });
