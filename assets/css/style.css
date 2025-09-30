@@ -60,7 +60,7 @@ nav p, nav .nav-link {
 
 input[type='radio'] { 
      transform: scale(2.5);
-     accent-color: var(--primary-colour);
+     accent-color: var(--secondary-colour);
 }
 
 input[type='text'] { 
@@ -76,15 +76,21 @@ button, .border {
     border-radius: 20px;
 }
 
-button[type='submit'] {
+button {
     border: 4px solid var(--secondary-colour);
     text-transform: capitalize;
     padding: 7px 5px 0px 5px;
-    color: black;
+    color: var(--secondary-colour);
     /* white-space:nowrap; */
 }
 
-button[type='submit']:hover {
+button[type='submit'] {
+    border: 4px solid black;
+    text-transform: capitalize;
+    padding: 7px 5px 0px 5px;
+}
+
+button:hover {
     background-color: var(--secondary-colour);
     color: var(--primary-colour);
 }
@@ -130,20 +136,10 @@ progress {
 }
 
 .starter {
-    margin: 10px 0;
+    /* margin: 10px 0; */
     border-radius: 20px;
-    background-color: var(--secondary-colour);
-    color: var(--primary-colour);
+    color: var(--secondary-colour);
     padding-top: 10px;
-}
-
-.starter>h3 {
-    text-transform: capitalize;
-    /* Ensures Pokémon names are always capitalised */
-}
-
-.starter .details {
-    padding-top: 5px;
 }
 
 .small-details {
@@ -160,13 +156,25 @@ progress {
 
     h3 {
         font-size: 2.5rem;
-    }    
+    }
+
+    .details {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
 
     h2 {
         font-size: 2.8rem;
+    }
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    .details {
+        font-size: 2.5rem;
     }
 
     /* img.sprite class needs removing here */

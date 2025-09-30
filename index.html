@@ -58,66 +58,74 @@
             <!-- End of Form Section -->
 
             <!-- Choose First Pokemon Form (Hidden after first selection) -->
-            <form id="starter-options-form" class="container justify-content-center page-section pt-2">
+            <form id="starter-options-form" class="container justify-content-center page-section pt-2 px-3">
 
                 <h2>Select your first Pokémon:</h2>
                 <div class="starter-container row justify-content-between">
 
                     <!-- Starter Option 1 - Bulbasaur -->
-                    <div class="col-12 col-md-4 starter black-border">
-                        <h3>Bulbasaur</h3>
-                        <p class="d-sm-none small-details">Personality: <span class="starter-personality-1">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" 
-                                class="sprite col-6 col-md-12 order-2 order-md-1" alt="Bulbasaur">
-                            <div class="details col-4 col-md-12 order--1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Level: 1</p>
-                                <p>Type: Grass</p>
-                                <p>Personality: <span class="starter-personality-1">Unknown</span></p>
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter black-border">
+                            <h3>Bulbasaur</h3>
+                            <p class="d-sm-none small-details">Personality: <span class="starter-personality-1">Unknown</span></p>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" 
+                                    class="sprite col-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
+                                <div class="details col-5 col-md-12 order--1 order-md-2 align-self-center d-none d-sm-block">
+                                    <p>Level: 1</p>
+                                    <p>Type: Grass</p>
+                                    <p>Personality: <span class="starter-personality-1">Unknown</span></p>
+                                </div>
                             </div>
+                            <input type="radio" name="starter" value="1">
                         </div>
-                        <input type="radio" name="starter" value="1">
                     </div>
 
                     <!-- Starter Option 2 - Charmander -->
-                    <div class="col-12 col-md-4 starter black-border">
-                        <h3>Charmander</h3>
-                        <p class="d-sm-none small-details">Personality: <span class="starter-personality-4">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" 
-                                class="sprite img-fluid col-6 col-md-12 order-2 order-md-1" alt="Charmander">
-                            <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Level: 1</p>
-                                <p>Type: Fire</p>
-                                <p>Personality: <span class="starter-personality-4">Unknown</span></p>
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter black-border">
+                            <h3>Charmander</h3>
+                            <p class="d-sm-none small-details">Personality: <span class="starter-personality-4">Unknown</span></p>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" 
+                                    class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Charmander">
+                                <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
+                                    <p>Level: 1</p>
+                                    <p>Type: Fire</p>
+                                    <p>Personality: <span class="starter-personality-4">Unknown</span></p>
+                                </div>
                             </div>
+                            <input type="radio" name="starter" value="4">
                         </div>
-                        <input type="radio" name="starter" value="4">
                     </div>
 
                     <!-- Starter Option 3 - Squirtle -->
-                    <div class="col-12 col-md-4 starter black-border">
-                        <h3>Squirtle</h3>
-                        <p class="d-sm-none small-details">Personality: <span class="starter-personality-7">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" 
-                                class="sprite img-fluid col-6 col-md-12 order-2 order-md-1" alt="Squirtle">
-                            <div class="details col-4 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Level: 1</p>
-                                <p>Type: Water</p>
-                                <p>Personality: <span class="starter-personality-7">Unknown</span></p>
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter black-border">
+                            <h3>Squirtle</h3>
+                            <p class="d-sm-none small-details">Personality: <span class="starter-personality-7">Unknown</span></p>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" 
+                                    class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Squirtle">
+                                <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
+                                    <p>Level: 1</p>
+                                    <p>Type: Water</p>
+                                    <p>Personality: <span class="starter-personality-7">Unknown</span></p>
+                                </div>
                             </div>
+                            <input type="radio" name="starter" value="7">
                         </div>
-                        <input type="radio" name="starter" value="7">
                     </div>
 
                 </div>
 
                 <h2 class="mt-3 mb-0"><label for="pokemon-nickname">Give your Pokémon a&nbsp;name:</label></h2>
                 <input id="pokemon-nickname" type="text" class="col-10">
-
                 <button id="add-first-pokemon" type="submit" class="col-10 col-sm-8 col-lg-6 mt-4 mt-sm-5">
                     <h3>Add to collection</h3>
+                </button>
+                <button id="refresh-starter-personalities" class="col-10 col-sm-8 col-lg-6 mt-3">
+                    <h3>Refresh Starters</h3>
                 </button>
             </form>
             <!-- End of Starter Options Form -->
@@ -184,6 +192,26 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button id="confirm-release-button" type="button" class="btn btn-danger">Release</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rename Confirmation Modal -->
+    <div class="modal fade" id="renameModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Rename Pokémon</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>What would you like to rename your pokemon?</p>
+                    <input type="text" id="rename-pokemon-input">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="confirm-rename-button" type="button" class="btn btn-danger">Rename</button>
                 </div>
             </div>
         </div>
