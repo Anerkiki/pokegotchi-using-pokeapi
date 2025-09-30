@@ -37,16 +37,35 @@ $(document).ready(function() {
 
     // all handlers below are not connected to working functions yet
 
-    // Rename pokemon event handlers - to link later
+    // Rename pokemon event handlers - to work on later
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
     $("#confirm-rename-button").on("click", renamePokemon);
 
-    $("#action-pet").on("click", petPokemon);
     $("#action-feed-berry").on("click", feedBerry);
     $("#action-feed-potion").on("click", feedPotion);
     $("#action-battle").on("click", battleInArena);
     // LATER - ADD onclick handler to add checked to radio of starter parent element clicked
     
+
+
+    $("#pokemon-collection").on("click", ".action-pet", petPokemon);
+
+    function petPokemon () {
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                pokemon.happiness = pokemon.happiness + 5;
+                // this needs amending so that it doesn't exceed the 100 limit
+            }
+        }
+
+        displayUserPokemon();
+        updateInventory();
+    }
+
+
+
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -191,28 +210,28 @@ $(document).ready(function() {
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <button id="action-pet" class="dropdown-item"
+                                        <button class="action-pet" class="dropdown-item"
                                             aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button id="action-feed-berry" class="dropdown-item"
+                                        <button class="action-feed-berry" class="dropdown-item"
                                             aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button id="action-feed-potion" class="dropdown-item"
+                                        <button class="action-feed-potion" class="dropdown-item"
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button id="action-battle" class="dropdown-item"
+                                        <button class="action-battle" class="dropdown-item"
                                             aria-label="Battle with ${pokemon.nickname} to increase it's level">Battle in Arena</button>
                                     </li>
                                 </ul>
@@ -307,11 +326,11 @@ $(document).ready(function() {
 
     // Future functions - to link in later
 
-    function renamePokemon () {
+    function openRenameModal () {
         //
     }
 
-    function petPokemon () {
+    function renamePokemon () {
         //
     }
 
