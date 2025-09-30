@@ -113,8 +113,8 @@
 
                 </div>
 
-                <h2 class="mt-3 mb-0">Give your Pokémon a&nbsp;name:</h2>
-                <input id="pokemonNickname" type="text" class="col-10">
+                <h2 class="mt-3 mb-0"><label for="pokemon-nickname">Give your Pokémon a&nbsp;name:</label></h2>
+                <input id="pokemon-nickname" type="text" class="col-10">
 
                 <button id="add-first-pokemon" type="submit" class="col-10 col-sm-8 col-lg-6 mt-4 mt-sm-5">
                     <h3>Add to collection</h3>
@@ -134,7 +134,7 @@
     <!-- Modals -->
 
     <!-- Walk Results Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="walkResults" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,7 +142,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    You and <span id="randomUserPokemon">your pokémon</span> found <span id="walk-results">a lovely stream to walk along</span>!
+                    You and <span id="random-user-pokemon">your pokémon</span> found <span id="walk-results">a lovely stream to walk along</span>!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Leave</button>

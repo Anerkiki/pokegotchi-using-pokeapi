@@ -78,38 +78,34 @@ $(document).ready(function() {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality7 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
-
         $(".starter-personality-1").text(personality1);
         $(".starter-personality-4").text(personality4);
         $(".starter-personality-7").text(personality7);
     }
 
     // Functions that happen when triggered by certain events
+
+    // When first pokémon is chosen
     function addStarterPokemon(event) {
         event.preventDefault();
-
         // Get the selected starter radio value
         const species = $("input[name='starter']:checked").val();
-
         // If no starter selected, show modal and stop
         if (!species) {
             $("#errorModal .modal-body").text("You need to pick a Pokémon!");
             $("#errorModal").modal("show");
             return;
         }
-
         // In case new pokemon is slow to load, so the user knows the click has worked
         $("#add-first-pokemon>h3").text("Adding...");
-
         // Get nickname or default to species string
-        let nicknameInput = $("#pokemonNickname").val().trim();
+        let nicknameInput = $("#pokemon-nickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
         let level = 1;
         let happiness = 80;
         let health = 80;
         let hunger = 80;
         let uniqueIndex = Date.now();
-
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
@@ -118,16 +114,14 @@ $(document).ready(function() {
                 const imageUrl = data.sprites.front_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
-
                 let nickname;
-
                 if (nicknameInput.length > 0) {
                 nickname = nicknameInput;
                 }
                 else {
                 nickname = pokemonName;
                 }
-
+                // Adding the new details as an object in the userPokemon array
                 userPokemon.push({
                     index: uniqueIndex,
                     species: species,
@@ -141,13 +135,13 @@ $(document).ready(function() {
                     health: health,
                     hunger: hunger,
                 });
-
+                // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
-
+                // Remove starter choice form and add walk button
                 $("#starter-options-form").addClass("hidden");
                 $("#walk-button").removeClass("hidden");
-
+                // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
             })
             .catch(error => {
@@ -155,11 +149,10 @@ $(document).ready(function() {
             });
     }
 
-    // Triggered once first pokemon is chosen
+    // Triggered every time user pokémon collection is updated
     function displayUserPokemon() {
         if (userPokemon.length > 0) {
             let currentUserPokemon = "";
-
             // Loop through all Pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 currentUserPokemon += `
@@ -236,7 +229,6 @@ $(document).ready(function() {
                     </div>
                 `;
             }
-
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
         } else {
@@ -248,38 +240,63 @@ $(document).ready(function() {
         }
     }
 
-    function goForAWalk () {
+    // Remove/release functions
 
+    function openReleaseModal() {
+        // Find the index of the clicked Pokémon
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        // Store the index globally so releasePokemon can access it
+        pokemonToReleaseIndex = uniqueIndex;
+        // Show the modal
+        $("#releaseModal").modal("show");
+    }
+
+    function releasePokemon() {
+        if (userPokemon.length === 1) {
+            userPokemon = [];
+            // Reset the text on the choose starter button back
+            $("#add-first-pokemon>h3").text("Add To Collection")
+        } else {
+            let newPokemonArray = [];
+            for (let i = 0; i < userPokemon.length; i++) {
+                let pokemon = userPokemon[i];
+
+                if (pokemon.index !== pokemonToReleaseIndex) {
+                    newPokemonArray.push(pokemon);
+                }
+            }
+            userPokemon = newPokemonArray;
+        }
+        $("#releaseModal").modal("hide"); 
+        pokemonToReleaseIndex = null;
+        updateInventory();
+        displayUserPokemon();
+    }
+
+    // Put rename function here
+
+
+    // Walk button functions
+
+    function goForAWalk () {
         // generate random pokemon name from user's pokemon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // add the random pokemon nickname to the text in the modal
-        $("#randomUserPokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
-
+        $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
         // Set the walk results:
-
-        // Generating a random number between 2 and 10 for berries and between 2 and 3 for potions
         lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
         lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
-
+        // results to display in modal:
         let results = lastBerryWalkResult + " berries"
-
         if (lastBerryWalkResult < 4) {
             results += " and " + lastPotionWalkResult + " potions"
         } else {
             lastPotionWalkResult = 0;
         }
-
-        // TO ADD LATER: Random Pokémon Encounter as an option on walks
-        // if pokemon level < 10, default to above code
-        // else pokemon encounter chance - change the whole inner HTML of modal to 
-        // randomised pokemon (from API) encounter
-
-        // the results of the walk:
-
         // updating the inner text
         $("#walk-results").text(results);
         // displaying the modal
-        $("#walkResults").modal("show");
+        $("#walkResultsModal").modal("show");
     }
 
     function addWalkResultsToInventory () {
@@ -288,47 +305,8 @@ $(document).ready(function() {
         updateInventory();
     }
 
-    // Remove/release functions
-    function openReleaseModal() {
-    // Find the index of the clicked Pokémon
-    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-
-    // Store the index globally so releasePokemon can access it
-    pokemonToReleaseIndex = uniqueIndex;
-
-    console.log(pokemonToReleaseIndex);
-    // This is now showing as the unique index number
-
-    // Show the modal
-    $("#releaseModal").modal("show");
-    }
-
-    function releasePokemon() {
-
-    if (userPokemon.length === 1) {
-        userPokemon = [];
-        // Reset the text on the choose starter button back
-        $("#add-first-pokemon>h3").text("Add To Collection")
-    } else {
-        let newPokemonArray = [];
-        for (let i = 0; i < userPokemon.length; i++) {
-            let pokemon = userPokemon[i];
-
-            if (pokemon.index !== pokemonToReleaseIndex) {
-                newPokemonArray.push(pokemon);
-            }
-        }
-        userPokemon = newPokemonArray;
-    }
-
-    $("#releaseModal").modal("hide"); 
-
-    pokemonToReleaseIndex = null;
-    updateInventory();
-    displayUserPokemon();
-    }
-
     // Future functions - to link in later
+
     function renamePokemon () {
         //
     }
