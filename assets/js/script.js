@@ -41,16 +41,16 @@ $(document).ready(function() {
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
     $("#confirm-rename-button").on("click", renamePokemon);
 
-    $("#action-feed-berry").on("click", feedBerry);
-    $("#action-feed-potion").on("click", feedPotion);
-    $("#action-battle").on("click", battleInArena);
+    $("#action-berry").on("click", actionBerry);
+    $("#action-berry").on("click", actionPotion);
+    $("#action-battle").on("click", actionBattle);
     // LATER - ADD onclick handler to add checked to radio of starter parent element clicked
-    
 
 
-    $("#pokemon-collection").on("click", ".action-pet", petPokemon);
 
-    function petPokemon () {
+    $("#pokemon-collection").on("click", ".action-pet", actionPet);
+
+    function actionPet () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
 
         for (let pokemon of userPokemon) {
@@ -217,14 +217,14 @@ $(document).ready(function() {
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-feed-berry" class="dropdown-item"
+                                        <button class="action-berry" class="dropdown-item"
                                             aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-feed-potion" class="dropdown-item"
+                                        <button class="action-berry" class="dropdown-item"
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
@@ -334,15 +334,15 @@ $(document).ready(function() {
         //
     }
 
-    function feedBerry () {
+    function actionBerry () {
         //
     }
 
-    function feedPotion () {
+    function actionPotion () {
         //
     }
 
-    function battleInArena () {
+    function actionBattle () {
         //
     }
 
