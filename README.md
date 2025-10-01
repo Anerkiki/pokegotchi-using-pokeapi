@@ -417,7 +417,7 @@ There were **no Errors**, **Contrast Errors** or **Alerts** in the 404 Page.
 
 # Fixed Issues
 
-### VS Code Extension *'Prettier'* adding unnecessary closing tags
+Added text-wrap as a class to the interact with pokemon dropdown menu as by having the button as a dropdown toggle on bootstrap, that adds nowrap for some reason when that class is used
 
 ---
 
@@ -591,36 +591,53 @@ ids and classes are all in kebab-case
 with the exception of modal ids which are in camelCase
 
 ## Next:
-At end of displayPokemon function
-- Add a function to open alert modal anytime any pokemon's health or hunger is at 0
-  - That specifies which trait needs rectifying
+
+- Fix Issue - Level is still going up even when health is on 0
+
+- Rename errorModal to alertModal
+
+- Add onclick handler to add 'checked' to radio of starter parent element clicked
+  - Maybe have selected pokemon background light up/change colour when radio is selected
 
 ### Then:
-- Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
-  - Done first bit, but check if can stop it logging multiple times if slow connection
+After testing:
+- When I delete last pokemon and the form comes back up, the page needs to scroll back to the top of the page as still stays at the bottom currently
 
-- FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
+- Change text inside add button while loading to “Adding…” or similar (and stop it adding another?) - Done
+  - Done first bit, but check if can stop it logging multiple times if slow connection
 
 - Reset the selected radio button to none after deleting last pokemon,
 - and also clear the input for the nickname
 
 - Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals so players know.
 
-- Add onclick handler to add 'checked' to radio of starter parent element clicked
-  - Maybe have selected pokemon background light up/change colour when radio is selected
 
 - Maybe add in nickname to modals for deleting and renaming pokemon
 
 - If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
+  - Have a max-width though so it doesn't look weird
 
 - Put a footer in (?) and make sure is always stuck to bottom
 
 #### Style To Dos:
+- FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
+
 - Modals & Dropdown menu:
   - Decorate the in the same style as the rest of the site and make sure fonts are large enough to read/have enough contrast
 
 - When starter pokemon is selected, change the colour of the background to purple or something obvious
 - Maybe change border around starters to be not black and only black when selected! - <--- This!
+
+document.addEventListener('change', function(event) {
+  const target = event.target;
+  if (target.type === 'radio') {
+    const parentDiv = target.closest('div.options'); // Find the closest ancestor 'div' with class 'options'
+    if (parentDiv) {
+      // Manipulate parentDiv here
+      parentDiv.style.borderColor = 'green';
+    }
+  }
+});
 
 ### Ideas
 
