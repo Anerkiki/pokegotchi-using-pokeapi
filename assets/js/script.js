@@ -332,7 +332,7 @@ $(document).ready(function() {
 
     function actionBerry () {
         if (inventory.berries < 1) {
-            $("#errorModal .modal-body").text("You don't have any berries! Try going for a walk to find more.");
+            $("#errorModal .modal-body").html("<p>You don't have any berries!</p><p class='small-details'>(Try going for a walk to find some.)<p>");
             $("#errorModal").modal("show");
         } else {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
@@ -357,7 +357,7 @@ $(document).ready(function() {
 
     function actionPotion () {
         if (inventory.potions < 1) {
-            $("#errorModal .modal-body").text("You don't have any potions! Potions are rarer than berries, so you may have to go on more walks to find some.");
+            $("#errorModal .modal-body").html("<p>You don't have any potions!</p><span class='small-details'>(Potions are rarer than berries, so you may have to go on more walks to find some.)</span>");
             $("#errorModal").modal("show");
         } else {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));

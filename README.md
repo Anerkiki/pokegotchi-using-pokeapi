@@ -599,9 +599,6 @@ At end of displayPokemon function
 - Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
   - Done first bit, but check if can stop it logging multiple times if slow connection
 
-- Modals & Dropdown menu:
-  - Decorate the in the same style as the rest of the site and make sure fonts are large enough to read/have enough contrast
-
 - FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
 
 - Reset the selected radio button to none after deleting last pokemon,
@@ -617,6 +614,13 @@ At end of displayPokemon function
 - If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
 
 - Put a footer in (?) and make sure is always stuck to bottom
+
+#### Style To Dos:
+- Modals & Dropdown menu:
+  - Decorate the in the same style as the rest of the site and make sure fonts are large enough to read/have enough contrast
+
+- When starter pokemon is selected, change the colour of the background to purple or something obvious
+- Maybe change border around starters to be not black and only black when selected! - <--- This!
 
 ### Ideas
 

@@ -59,17 +59,17 @@ nav p, nav .nav-link {
 }
 
 input[type='radio'] { 
-     transform: scale(2.5);
-     accent-color: var(--secondary-colour);
+    transform: scale(2.5);
+    accent-color: var(--secondary-colour);
 }
 
 input[type='text'] { 
-     padding: 10px;
-     color: var(--secondary-colour);
-     border: 4px solid var(--secondary-colour);
-     border-radius: 20px;
-     background-color: var(--tertiary-colour);
-     /* reduce size too? */
+    padding: 10px;
+    color: var(--secondary-colour);
+    border: 4px solid var(--secondary-colour);
+    border-radius: 20px;
+    background-color: var(--tertiary-colour);
+    /* reduce size too? */
 }
 
 button, .border {
@@ -128,6 +128,12 @@ progress {
 
 .details>p {
     line-height: 0.8;
+}
+
+.radio-arrow {
+    color: black;
+    font-weight: 900;
+    font-size: 1.4rem;
 }
 
 .navbar > div {
