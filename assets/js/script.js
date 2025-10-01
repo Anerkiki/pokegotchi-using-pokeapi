@@ -52,7 +52,7 @@ $(document).ready(function() {
         });
     }
 
-    function addPersonalitiesToStarterChoices () {
+    function addPersonalitiesToStarterChoices() {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality7 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
@@ -98,7 +98,7 @@ $(document).ready(function() {
                             </div>
 
                             <div>
-                                <button type="button" class="btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="btn-lg dropdown-toggle text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
                                         Interact with ${capitalizeWords(pokemon.nickname)}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -130,11 +130,11 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div>
+                                <button class="release-pokemon secondary-button" type="button">
+                                    Release ${capitalizeWords(pokemon.nickname)}
+                                </button>
                                 <button class="rename-pokemon" type="button">
                                     Rename ${capitalizeWords(pokemon.nickname)}
-                                </button>
-                                <button class="release-pokemon" type="button">
-                                    Release ${capitalizeWords(pokemon.nickname)}
                                 </button>
                             </div>
                         </div>
@@ -143,17 +143,32 @@ $(document).ready(function() {
             }
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
-            
+
             // TO DO HERE:
             // Add here an 'if' clause that loops through user pokemon and checks if any stats are below 0
             // and if they are made relevant modal pop up if ANY pokemon stats are at 0
 
+            checkForLowStats();
         } else {
             // Clears any old pokemon from the HTML
             $("#pokemon-collection").html("");
 
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
+        }
+    }
+
+    function checkForLowStats() {
+        for (const pokemon of userPokemon) {
+            if (pokemon.health === 0) {
+                $("#alertModal .modal-body").text("Your pokémon need healing with potions!");
+                $("#alertModal").modal("show");
+            } else {
+                if (pokemon.hunger === 0) {
+                    $("#alertModal .modal-body").html("<p>Your pokémon is hungry!<p></p>Try feeding them some berries!</p>");
+                    $("#alertModal").modal("show");
+                }
+            }
         }
     }
 
@@ -167,8 +182,8 @@ $(document).ready(function() {
         const species = $("input[name='starter']:checked").val();
         // If no starter selected, show modal and stop
         if (!species) {
-            $("#errorModal .modal-body").text("You need to pick a Pokémon!");
-            $("#errorModal").modal("show");
+            $("#alertModal .modal-body").text("You need to pick a Pokémon!");
+            $("#alertModal").modal("show");
             return;
         }
         // In case new pokemon is slow to load, so the user knows the click has worked
@@ -191,10 +206,10 @@ $(document).ready(function() {
                 const primaryType = data.types[0].type.name;
                 let nickname;
                 if (nicknameInput.length > 0) {
-                nickname = nicknameInput;
+                    nickname = nicknameInput;
                 }
                 else {
-                nickname = pokemonName;
+                    nickname = pokemonName;
                 }
                 // Adding the new details as an object in the userPokemon array
                 userPokemon.push({
@@ -255,7 +270,7 @@ $(document).ready(function() {
             }
             userPokemon = newPokemonArray;
         }
-        $("#releaseModal").modal("hide"); 
+        $("#releaseModal").modal("hide");
         pokemonToReleaseIndex = null;
         updateInventory();
         displayUserPokemon();
@@ -265,13 +280,13 @@ $(document).ready(function() {
 
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
 
-    function openRenameModal () {
+    function openRenameModal() {
         // TO COMPLETE
     }
 
     $("#confirm-rename-button").on("click", renamePokemon);
 
-    function renamePokemon () {
+    function renamePokemon() {
         // TO COMPLETE
     }
 
@@ -279,7 +294,7 @@ $(document).ready(function() {
 
     $("#walk-button").on("click", goForAWalk);
 
-    function goForAWalk () {
+    function goForAWalk() {
         // generate random pokemon name from user's pokemon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // add the random pokemon nickname to the text in the modal
@@ -302,7 +317,7 @@ $(document).ready(function() {
 
     $("#add-walk-items").on("click", addWalkResultsToInventory);
 
-    function addWalkResultsToInventory () {
+    function addWalkResultsToInventory() {
         inventory.berries = inventory.berries + lastBerryWalkResult;
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
@@ -312,7 +327,7 @@ $(document).ready(function() {
 
     $("#pokemon-collection").on("click", ".action-pet", actionPet);
 
-    function actionPet () {
+    function actionPet() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
@@ -330,57 +345,59 @@ $(document).ready(function() {
 
     $("#pokemon-collection").on("click", ".action-berry", actionBerry);
 
-    function actionBerry () {
+    function actionBerry() {
         if (inventory.berries < 1) {
-            $("#errorModal .modal-body").html("<p>You don't have any berries!</p><p class='small-details'>(Try going for a walk to find some.)<p>");
-            $("#errorModal").modal("show");
+            $("#alertModal .modal-body").html("<p>You don't have any berries!</p><p class='small-details'>(Try going for a walk to&nbsp;find&nbsp;some.)<p>");
+            $("#alertModal").modal("show");
         } else {
-        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-        for (let pokemon of userPokemon) {
-            if (pokemon.index === uniqueIndex) {
-                if (pokemon.hunger === 100) {
-                    $("#errorModal .modal-body").text("Your pokémon is now full!");
-                    $("#errorModal").modal("show");
-                } else {
-                pokemon.hunger = Math.min(100, pokemon.hunger + 5);
-                inventory.berries = inventory.berries - 1;
-                break;
+            const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+            for (let pokemon of userPokemon) {
+                if (pokemon.index === uniqueIndex) {
+                    if (pokemon.hunger === 100) {
+                        $("#alertModal .modal-body").text("Your pokémon is now full!");
+                        $("#alertModal").modal("show");
+                    } else {
+                        pokemon.hunger = Math.min(100, pokemon.hunger + 5);
+                        inventory.berries = inventory.berries - 1;
+                        break;
+                    }
                 }
             }
-        }
-        displayUserPokemon();
-        updateInventory();
+            displayUserPokemon();
+            updateInventory();
         }
     }
 
     $("#pokemon-collection").on("click", ".action-potion", actionPotion);
 
-    function actionPotion () {
+    function actionPotion() {
         if (inventory.potions < 1) {
-            $("#errorModal .modal-body").html("<p>You don't have any potions!</p><span class='small-details'>(Potions are rarer than berries, so you may have to go on more walks to find some.)</span>");
-            $("#errorModal").modal("show");
+            $("#alertModal .modal-body").html("<p>You don't have any potions!</p><span class='small-details'>(Potions are rarer than berries, so you may have to go on more walks to&nbsp;find&nbsp;some.)</span>");
+            $("#alertModal").modal("show");
         } else {
-        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-        for (let pokemon of userPokemon) {
-            if (pokemon.index === uniqueIndex) {
-                if (pokemon.health === 100) {
-                    $("#errorModal .modal-body").text("Your pokémon is now at full health.");
-                    $("#errorModal").modal("show");
-                } else {
-                pokemon.health = Math.min(100, pokemon.health + 5);
-                inventory.potions = inventory.potions - 1;
-                break;
+            const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+            for (let pokemon of userPokemon) {
+                if (pokemon.index === uniqueIndex) {
+                    if (pokemon.health === 100) {
+                        $("#alertModal .modal-body").text("Your pokémon is now at full health.");
+                        $("#alertModal").modal("show");
+                    } else {
+                        pokemon.health = Math.min(100, pokemon.health + 5);
+                        inventory.potions = inventory.potions - 1;
+                        break;
+                    }
                 }
             }
-        }
-        displayUserPokemon();
-        updateInventory();
+            displayUserPokemon();
+            updateInventory();
         }
     }
 
     $("#pokemon-collection").on("click", ".action-battle", actionBattle);
 
-    function actionBattle () {
+    // fix this - if health is on 0, level shouldn't go up and there should be an error/alert modal
+
+    function actionBattle() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
@@ -388,6 +405,7 @@ $(document).ready(function() {
                 // first value is set to 0 then no matter how low the health
                 // value gets from battling, it won't ever be less than 0
                 pokemon.health = Math.max(0, pokemon.health - 10);
+                pokemon.hunger = Math.max(0, pokemon.hunger - 20);
                 pokemon.level = pokemon.level + 0.5;
                 break;
             }

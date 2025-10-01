@@ -6,16 +6,16 @@
         --font-paragraph: "Dongle", sans-serif;
 
     /* Colour Palette Colours */
-        --primary-colour: #00FFB2;
-         /* #3dd3b9; */
-        /* was aquamarine */
+        --primary-colour: #00ffb2;
+        --other-background: #3dd3b9;
+        --aquamarine: aquamarine;
         --secondary-colour: blueviolet;
-        --purple-colour: #8853D3;
+        --purple-colour: #8853d3;
         /* was blueviolet */
-        --tertiary-colour: #f8f9fa;
-        /* same as navbar */
-        --other-pink: #ec008b;
-        /* could be used for inventory and borders around sections and buttons */
+        --tertiary-colour: rgba(var(--bs-tertiary-bg-rgb));
+        /* matches navbar */
+        --quaternary-colour: #ec008b;
+        /* Make this colour slightly less bright, but with enough contrast against white to read */
 }
 
 /* Global Styles */
@@ -25,8 +25,6 @@ body {
     text-align: center;
     font-size: 2.5rem;
     background-color: var(--primary-colour);
-    /* width: 100vh; */
-    /* fix width issue */
 }
 
 h1 {
@@ -55,7 +53,7 @@ p {
 
 nav p, nav .nav-link {
     padding: 0 20px;
-    color: var(--secondary-colour);
+    color: var(--quaternary-colour);
 }
 
 input[type='radio'] { 
@@ -68,7 +66,7 @@ input[type='text'] {
     color: var(--secondary-colour);
     border: 4px solid var(--secondary-colour);
     border-radius: 20px;
-    background-color: var(--tertiary-colour);
+    background-color: rgba(var(--bs-tertiary-bg-rgb));
     /* reduce size too? */
 }
 
@@ -79,14 +77,16 @@ button, .border {
 button {
     border: 4px solid var(--secondary-colour);
     text-transform: capitalize;
-    padding: 7px 10px 0px 10px;
+    padding: 7px 10px 3px 10px;
     color: var(--secondary-colour);
+    background-color: var(--tertiary-colour);
+    font-size: 2.6rem;
 }
 
 button[type='submit'] {
     border: 4px solid black;
     text-transform: capitalize;
-    padding: 7px 5px 0px 5px;
+    padding: 7px 10px 4px 10px;
 }
 
 button:hover {
@@ -94,9 +94,27 @@ button:hover {
     color: var(--primary-colour);
 }
 
+.secondary-button {
+    border: 4px solid var(--quaternary-colour);
+    color: var(--quaternary-colour);
+    background-color: var(--tertiary-colour);
+}
+
+.inventory-button.secondary-button {
+    padding: 16px 20px 14px 20px;
+    border-radius: 17px;
+    font-size: 2.6rem;
+}
+
 progress {
     width: 100%;
-    max-width: 250px;
+    max-width: 100%;
+    /* This fixes the issues with progress bars not filling full space at some screen sizes */
+}
+
+img {
+    min-height: 250px;
+    min-width: 250px;
 }
 
 .hidden {
@@ -141,7 +159,6 @@ progress {
 }
 
 .starter {
-    /* margin: 10px 0; */
     border-radius: 20px;
     color: var(--secondary-colour);
     padding-top: 10px;
