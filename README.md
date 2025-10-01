@@ -579,3 +579,23 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 - Adding pokemon collection and inventory to local storage so that if window is closed/refreshed the collection and inventory are still the same.
 
 ---
+
+# To Dos (Delete from README after)
+
+## Next:
+At end of displayPokemon function
+- Add a function to open alert modal anytime any pokemon's health or hunger is at 0
+  - That specifies which trait needs rectifying
+
+### Then:
+- Reset the selected radio button to none after deleting last pokemon,
+- and also clear the input for the nickname
+
+- Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals so players know.
+
+- Add onclick handler to add 'checked' to radio of starter parent element clicked
+  - Maybe have selected pokemon background light up/change colour when radio is selected
+
+### Ideas
+- in actionBerry function:
+  - maybe change image so pokemon turns around for a second or 2

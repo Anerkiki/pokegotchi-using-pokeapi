@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     // Global Variables
-    let userPokemon = [];
+
+    let userPokemon = []; // This is where collected pokemon are stored/removed from
 
     const inventory = {
         pokemon: userPokemon.length,
@@ -16,79 +17,13 @@ $(document).ready(function() {
         "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
     ];
 
-    // Used in the goForAWalk & addWalkResultsToInventory functions
-    let lastBerryWalkResult = 0;
-    let lastPotionWalkResult = 0;
-    // Used in openReleaseModal & releasePokemon functions
-    let pokemonToReleaseIndex = null;
+    let lastBerryWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
+    let lastPotionWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
+    let pokemonToReleaseIndex = null; // Used in openReleaseModal & releasePokemon functions
 
-    // Functions to be called on page-load
+    // Functions called when page loads
     updateInventory();
     addPersonalitiesToStarterChoices();
-
-    // Event Handlers
-    $("#add-first-pokemon").on("click", addStarterPokemon);
-    // Walk handlers
-    $("#walk-button").on("click", goForAWalk);
-    $("#add-walk-items").on("click", addWalkResultsToInventory);
-    // Remove/release event handlers
-    $("#pokemon-collection").on("click", ".release-pokemon", openReleaseModal);
-    $("#confirm-release-button").on("click", releasePokemon);
-
-    // all handlers below are not connected to working functions yet
-    // Rename pokemon event handlers - to work on later
-    $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
-    $("#confirm-rename-button").on("click", renamePokemon);
-    // LATER - ADD onclick handler to add checked to radio of starter parent element clicked
-
-    $("#pokemon-collection").on("click", ".action-potion", actionPotion);
-    $("#pokemon-collection").on("click", ".action-battle", actionBattle);
-
-
-    $("#pokemon-collection").on("click", ".action-pet", actionPet);
-
-    function actionPet () {
-        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-        for (let pokemon of userPokemon) {
-            if (pokemon.index === uniqueIndex) {
-                // Math.min will always find the minimum value, so if the
-                // first value is set to 100 then no matter how high the new
-                // happiness value gets after petting, it won't ever exceed 100
-                pokemon.happiness = Math.min(100, pokemon.happiness + 5);
-                // this stops it cycling through the rest of the
-                // pokemon once the correct one has been found
-                break;
-            }
-        }
-        displayUserPokemon();
-        updateInventory();
-    }
-
-    $("#pokemon-collection").on("click", ".action-berry", actionBerry);
-
-    function actionBerry () {
-        if (inventory.berries < 1) {
-            $("#errorModal .modal-body").text("You don't have any berries! Try going for a walk to find more");
-            $("#errorModal").modal("show");
-
-        } else {
-        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-        for (let pokemon of userPokemon) {
-            if (pokemon.index === uniqueIndex) {
-                if (pokemon.hunger === 100) {
-            $("#errorModal .modal-body").text("Your pokémon is now full");
-            $("#errorModal").modal("show");
-                } else {
-                pokemon.hunger = Math.min(100, pokemon.hunger + 5);
-                inventory.berries = inventory.berries - 1;
-                break;
-                }
-            }
-        }
-        displayUserPokemon();
-        updateInventory();
-        }
-    }
 
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -124,72 +59,6 @@ $(document).ready(function() {
         $(".starter-personality-1").text(personality1);
         $(".starter-personality-4").text(personality4);
         $(".starter-personality-7").text(personality7);
-    }
-
-    // Functions that happen when triggered by certain events
-
-    // When first pokémon is chosen
-    function addStarterPokemon(event) {
-        event.preventDefault();
-        // Get the selected starter radio value
-        const species = $("input[name='starter']:checked").val();
-        // If no starter selected, show modal and stop
-        if (!species) {
-            $("#errorModal .modal-body").text("You need to pick a Pokémon!");
-            $("#errorModal").modal("show");
-            return;
-        }
-        // In case new pokemon is slow to load, so the user knows the click has worked
-        $("#add-first-pokemon>h3").text("Adding...");
-        // Get nickname or default to species string
-        let nicknameInput = $("#pokemon-nickname").val().trim();
-        let personality = $(`.starter-personality-${species}`).first().text();
-        let level = 1;
-        let happiness = 80;
-        let health = 80;
-        let hunger = 80;
-        let uniqueIndex = Date.now();
-        // Fetch Pokémon data from PokéAPI
-        fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
-            .then(response => response.json())
-            .then(data => {
-                const pokemonName = data.name;
-                const imageUrl = data.sprites.front_default;
-                // Just the first type
-                const primaryType = data.types[0].type.name;
-                let nickname;
-                if (nicknameInput.length > 0) {
-                nickname = nicknameInput;
-                }
-                else {
-                nickname = pokemonName;
-                }
-                // Adding the new details as an object in the userPokemon array
-                userPokemon.push({
-                    index: uniqueIndex,
-                    species: species,
-                    name: pokemonName,
-                    image: imageUrl,
-                    nickname: nickname,
-                    type: primaryType,
-                    personality: personality,
-                    level: level,
-                    happiness: happiness,
-                    health: health,
-                    hunger: hunger,
-                });
-                // Update displays in HTML
-                updateInventory();
-                displayUserPokemon();
-                // Remove starter choice form and add walk button
-                $("#starter-options-form").addClass("hidden");
-                $("#walk-button").removeClass("hidden");
-                // To double check details of new pokémon added
-                console.log("Starter chosen:", userPokemon);
-            })
-            .catch(error => {
-                console.error("Error fetching Pokémon:", error);
-            });
     }
 
     // Triggered every time user pokémon collection is updated
@@ -283,7 +152,76 @@ $(document).ready(function() {
         }
     }
 
+    // Functions with Handlers
+
+    $("#add-first-pokemon").on("click", addStarterPokemon);
+
+    function addStarterPokemon(event) {
+        event.preventDefault();
+        // Get the selected starter radio value
+        const species = $("input[name='starter']:checked").val();
+        // If no starter selected, show modal and stop
+        if (!species) {
+            $("#errorModal .modal-body").text("You need to pick a Pokémon!");
+            $("#errorModal").modal("show");
+            return;
+        }
+        // In case new pokemon is slow to load, so the user knows the click has worked
+        $("#add-first-pokemon>h3").text("Adding...");
+        // Get nickname or default to species string
+        let nicknameInput = $("#pokemon-nickname").val().trim();
+        let personality = $(`.starter-personality-${species}`).first().text();
+        let level = 1;
+        let happiness = 80;
+        let health = 80;
+        let hunger = 80;
+        let uniqueIndex = Date.now();
+        // Fetch Pokémon data from PokéAPI
+        fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
+            .then(response => response.json())
+            .then(data => {
+                const pokemonName = data.name;
+                const imageUrl = data.sprites.front_default;
+                // Just the first type
+                const primaryType = data.types[0].type.name;
+                let nickname;
+                if (nicknameInput.length > 0) {
+                nickname = nicknameInput;
+                }
+                else {
+                nickname = pokemonName;
+                }
+                // Adding the new details as an object in the userPokemon array
+                userPokemon.push({
+                    index: uniqueIndex,
+                    species: species,
+                    name: pokemonName,
+                    image: imageUrl,
+                    nickname: nickname,
+                    type: primaryType,
+                    personality: personality,
+                    level: level,
+                    happiness: happiness,
+                    health: health,
+                    hunger: hunger,
+                });
+                // Update displays in HTML
+                updateInventory();
+                displayUserPokemon();
+                // Remove starter choice form and add walk button
+                $("#starter-options-form").addClass("hidden");
+                $("#walk-button").removeClass("hidden");
+                // To double check details of new pokémon added
+                console.log("Starter chosen:", userPokemon);
+            })
+            .catch(error => {
+                console.error("Error fetching Pokémon:", error);
+            });
+    }
+
     // Remove/release functions
+
+    $("#pokemon-collection").on("click", ".release-pokemon", openReleaseModal);
 
     function openReleaseModal() {
         // Find the index of the clicked Pokémon
@@ -293,6 +231,8 @@ $(document).ready(function() {
         // Show the modal
         $("#releaseModal").modal("show");
     }
+
+    $("#confirm-release-button").on("click", releasePokemon);
 
     function releasePokemon() {
         if (userPokemon.length === 1) {
@@ -316,10 +256,23 @@ $(document).ready(function() {
         displayUserPokemon();
     }
 
-    // Put rename function here
+    // Rename functions
 
+    $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
+
+    function openRenameModal () {
+        // TO COMPLETE
+    }
+
+    $("#confirm-rename-button").on("click", renamePokemon);
+
+    function renamePokemon () {
+        // TO COMPLETE
+    }
 
     // Walk button functions
+
+    $("#walk-button").on("click", goForAWalk);
 
     function goForAWalk () {
         // generate random pokemon name from user's pokemon collection
@@ -342,28 +295,99 @@ $(document).ready(function() {
         $("#walkResultsModal").modal("show");
     }
 
+    $("#add-walk-items").on("click", addWalkResultsToInventory);
+
     function addWalkResultsToInventory () {
         inventory.berries = inventory.berries + lastBerryWalkResult;
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
     }
 
-    // Future functions - to link in later
+    // Action/Interaction functions
 
-    function openRenameModal () {
-        //
+    $("#pokemon-collection").on("click", ".action-pet", actionPet);
+
+    function actionPet () {
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                // Math.min will always find the minimum value, so if the
+                // first value is set to 100 then no matter how high the new
+                // happiness value gets after petting, it won't ever exceed 100
+                pokemon.happiness = Math.min(100, pokemon.happiness + 5);
+                // this stops it cycling through the rest of the
+                // pokemon once the correct one has been found
+                break;
+            }
+        }
+        displayUserPokemon();
     }
 
-    function renamePokemon () {
-        //
+    $("#pokemon-collection").on("click", ".action-berry", actionBerry);
+
+    function actionBerry () {
+        if (inventory.berries < 1) {
+            $("#errorModal .modal-body").text("You don't have any berries! Try going for a walk to find more.");
+            $("#errorModal").modal("show");
+        } else {
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                if (pokemon.hunger === 100) {
+                    $("#errorModal .modal-body").text("Your pokémon is now full!");
+                    $("#errorModal").modal("show");
+                } else {
+                pokemon.hunger = Math.min(100, pokemon.hunger + 5);
+                inventory.berries = inventory.berries - 1;
+                break;
+                }
+            }
+        }
+        displayUserPokemon();
+        updateInventory();
+        }
     }
+
+    $("#pokemon-collection").on("click", ".action-potion", actionPotion);
 
     function actionPotion () {
-        //
+        if (inventory.potions < 1) {
+            $("#errorModal .modal-body").text("You don't have any potions! Potions are rarer than berries, so you may have to go on more walks to find some.");
+            $("#errorModal").modal("show");
+        } else {
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                if (pokemon.health === 100) {
+                    $("#errorModal .modal-body").text("Your pokémon is now at full health.");
+                    $("#errorModal").modal("show");
+                } else {
+                pokemon.health = Math.min(100, pokemon.health + 5);
+                inventory.potions = inventory.potions - 1;
+                break;
+                }
+            }
+        }
+        displayUserPokemon();
+        updateInventory();
+        }
     }
 
+    $("#pokemon-collection").on("click", ".action-battle", actionBattle);
+
     function actionBattle () {
-        //
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        for (let pokemon of userPokemon) {
+            if (pokemon.index === uniqueIndex) {
+                // Math.max will always find the maximum value, so if the
+                // first value is set to 0 then no matter how low the health
+                // value gets from battling, it won't ever be less than 0
+                pokemon.health = Math.max(0, pokemon.health - 10);
+                pokemon.level = pokemon.level + 0.5;
+                break;
+            }
+        }
+        displayUserPokemon();
     }
 
 });
