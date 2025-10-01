@@ -582,12 +582,28 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 
 # To Dos (Delete from README after)
 
+## Add to README
+
+Consistant variable/id/class names - 
+
+ids and classes are all in kebab-case
+
+with the exception of modal ids which are in camelCase
+
 ## Next:
 At end of displayPokemon function
 - Add a function to open alert modal anytime any pokemon's health or hunger is at 0
   - That specifies which trait needs rectifying
 
 ### Then:
+- Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
+  - Done first bit, but check if can stop it logging multiple times if slow connection
+
+- Modals & Dropdown menu:
+  - Decorate the in the same style as the rest of the site and make sure fonts are large enough to read/have enough contrast
+
+- FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
+
 - Reset the selected radio button to none after deleting last pokemon,
 - and also clear the input for the nickname
 
@@ -596,6 +612,17 @@ At end of displayPokemon function
 - Add onclick handler to add 'checked' to radio of starter parent element clicked
   - Maybe have selected pokemon background light up/change colour when radio is selected
 
+- Maybe add in nickname to modals for deleting and renaming pokemon
+
+- If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
+
+- Put a footer in (?) and make sure is always stuck to bottom
+
 ### Ideas
+
 - in actionBerry function:
   - maybe change image so pokemon turns around for a second or 2
+
+- pokemon image fades if health is low
+
+- if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any of those bars are low.

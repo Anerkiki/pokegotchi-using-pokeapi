@@ -143,6 +143,11 @@ $(document).ready(function() {
             }
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
+            
+            // TO DO HERE:
+            // Add here an 'if' clause that loops through user pokemon and checks if any stats are below 0
+            // and if they are made relevant modal pop up if ANY pokemon stats are at 0
+
         } else {
             // Clears any old pokemon from the HTML
             $("#pokemon-collection").html("");
