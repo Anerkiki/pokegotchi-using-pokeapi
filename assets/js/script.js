@@ -71,7 +71,7 @@ $(document).ready(function() {
                     <div class="col-12 col-lg-6">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
-                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the ${capitalizeWords(pokemon.name)}</h2>
+                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the&nbsp;${capitalizeWords(pokemon.name)}</h2>
 
                             <div class = "row justify-content-center text-start">
                                     <p>Level: ${pokemon.level}</p>
@@ -347,7 +347,7 @@ $(document).ready(function() {
 
     function actionBerry() {
         if (inventory.berries < 1) {
-            $("#alertModal .modal-body").html("<p>You don't have any berries!</p><p class='small-details'>(Try going for a walk to&nbsp;find&nbsp;some.)<p>");
+            $("#alertModal .modal-body").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
             $("#alertModal").modal("show");
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
@@ -372,7 +372,7 @@ $(document).ready(function() {
 
     function actionPotion() {
         if (inventory.potions < 1) {
-            $("#alertModal .modal-body").html("<p>You don't have any potions!</p><span class='small-details'>(Potions are rarer than berries, so you may have to go on more walks to&nbsp;find&nbsp;some.)</span>");
+            $("#alertModal .modal-body").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
             $("#alertModal").modal("show");
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
