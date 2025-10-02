@@ -26,9 +26,11 @@
         <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container">
                 
-                <button id="walk-button" class="hidden">Go for a Walk</button>
+                <button id="walk-button" class="hidden">
+                    <h3>Go for a Walk</h3>
+                </button>
 
-                <button class="navbar-toggler secondary-button inventory-button" type="button" data-bs-toggle="collapse"
+                <button id="inventory-button" class="navbar-toggler secondary-button" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><h3>Inventory</h3>
                 </button>
@@ -75,9 +77,8 @@
                                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" 
                                     class="sprite col-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
                                 <div class="details col-5 col-md-12 order--1 order-md-2 align-self-center d-none d-sm-block">
-                                    <p>Level: 1</p>
                                     <p>Type: Grass</p>
-                                    <p>Personality: <span class="starter-personality-1">Unknown</span></p>
+                                    <p class="personality">Personality: <span class="starter-personality-1">Unknown</span></p>
                                 </div>
                             </div>
                         </div>
@@ -95,9 +96,8 @@
                                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" 
                                     class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Charmander">
                                 <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                    <p>Level: 1</p>
                                     <p>Type: Fire</p>
-                                    <p>Personality: <span class="starter-personality-4">Unknown</span></p>
+                                    <p class="personality">Personality: <span class="starter-personality-4">Unknown</span></p>
                                 </div>
                             </div>
                         </div>
@@ -115,9 +115,8 @@
                                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" 
                                     class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Squirtle">
                                 <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                    <p>Level: 1</p>
                                     <p>Type: Water</p>
-                                    <p>Personality: <span class="starter-personality-7">Unknown</span></p>
+                                    <p class="personality">Personality: <span class="starter-personality-7">Unknown</span></p>
                                 </div>
                             </div>
                         </div>
@@ -151,15 +150,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="staticBackdropLabel">On your walk..</h3>
+                    <h2 class="modal-title" id="staticBackdropLabel">On your walk..</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    You and <span id="random-user-pokemon">your pokémon</span> found <span id="walk-results">a lovely stream to walk along</span>!
+                    <p>You and <span id="random-user-pokemon">your pokémon</span> found <span id="walk-results">a lovely stream to walk along</span>!</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Leave</button>
-                    <button id="add-walk-items" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add to Inventory</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Leave</h3></button>
+                    <button id="add-walk-items" type="button" class="btn btn-primary" data-bs-dismiss="modal"><h3>Collect</h3></button>
                 </div>
             </div>
         </div>
@@ -170,14 +169,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Oh!</h3>
+                    <h2 class="modal-title">Oh!</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             <div class="modal-body">
                 <!-- Message will be injected here -->
             </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="" data-bs-dismiss="modal"><h3>Okay</h3></button>
                 </div>
             </div>
         </div>
@@ -188,15 +187,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Release Pokémon</h3>
+                    <h2 class="modal-title">Release Pokémon</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to release your Pokémon into the wild?
+                    <p>Are you sure you want to release your Pokémon into the wild?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button id="confirm-release-button" type="button" class="btn btn-danger">Release</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Cancel</h3></button>
+                    <button id="confirm-release-button" type="button" class="btn btn-danger"><h3>Release</h3></button>
                 </div>
             </div>
         </div>
@@ -207,7 +206,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Rename Pokémon</h3>
+                    <h2 class="modal-title">Rename Pokémon</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -215,8 +214,8 @@
                     <input type="text" id="rename-pokemon-input">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button id="confirm-rename-button" type="button" class="btn btn-danger">Rename</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Cancel</h3></button>
+                    <button id="confirm-rename-button" type="button" class="btn btn-danger"><h3>Rename</h3></button>
                 </div>
             </div>
         </div>

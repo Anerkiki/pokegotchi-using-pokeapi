@@ -74,10 +74,11 @@ $(document).ready(function() {
                             <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the&nbsp;${capitalizeWords(pokemon.name)}</h2>
 
                             <div class = "row justify-content-center text-start">
-                                    <p>Level: ${pokemon.level}</p>
-                                    <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
-                                    <p>Personality: ${pokemon.personality}</p>
-                                    
+                                    <div class="details">
+                                        <p class="level">Level: ${pokemon.level}</p>
+                                        <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
+                                        <p class="personality">Personality: ${pokemon.personality}</p>
+                                    </div>
                                     <img src="${pokemon.image}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
 
                                 <div class="progress-bars col-11 col-sm-6">
@@ -98,7 +99,7 @@ $(document).ready(function() {
                             </div>
 
                             <div>
-                                <button type="button" class="btn-lg dropdown-toggle text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="interact-button btn-lg dropdown-toggle text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
                                         Interact with ${capitalizeWords(pokemon.nickname)}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -404,8 +405,8 @@ $(document).ready(function() {
                 // Math.max will always find the maximum value, so if the
                 // first value is set to 0 then no matter how low the health
                 // value gets from battling, it won't ever be less than 0
-                pokemon.health = Math.max(0, pokemon.health - 10);
-                pokemon.hunger = Math.max(0, pokemon.hunger - 20);
+                pokemon.health = Math.max(0, pokemon.health - 20);
+                pokemon.hunger = Math.max(0, pokemon.hunger - 5);
                 pokemon.level = pokemon.level + 0.5;
                 break;
             }

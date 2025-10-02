@@ -183,6 +183,8 @@ To be able to use each of these specific colours from ... throughout the website
 
 For future maintainability, I defined each colour as a CSS variable (e.g., `var(--colour-name)`). This approach made it easy to update the palette later if needed - changing a single variable would update the colour everywhere it was used. -->
 
+<!-- TO INCLUDE: last colour in palette is black - make sure to include -->
+
 ### Font Colouring
 
 <!-- ...
@@ -594,14 +596,15 @@ with the exception of modal ids which are in camelCase
 
 - Fix Issue - Level is still going up even when health is on 0
 
-- Rename errorModal to alertModal
-
 - Add onclick handler to add 'checked' to radio of starter parent element clicked
   - Maybe have selected pokemon background light up/change colour when radio is selected
 
 ### Then:
 After testing:
 - When I delete last pokemon and the form comes back up, the page needs to scroll back to the top of the page as still stays at the bottom currently
+- and also clear the input box and deselect the radio buttons
+
+- After a walk, the specific pokemon's hunger goes down
 
 - Change text inside add button while loading to “Adding…” or similar (and stop it adding another?) - Done
   - Done first bit, but check if can stop it logging multiple times if slow connection
@@ -610,7 +613,11 @@ After testing:
 - and also clear the input for the nickname
 
 - Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals so players know.
-
+  - Add to footer a note about how to get more pokemon
+  Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then try going for a walk with them.
+  - whether one shows up is linked to level of pokemon joining on the walk
+    - link this in via js - if [joining pokemon level > 10] then chance to encounter pokemon
+    - and then also make their hunger go down
 
 - Maybe add in nickname to modals for deleting and renaming pokemon
 
@@ -620,10 +627,16 @@ After testing:
 - Put a footer in (?) and make sure is always stuck to bottom
 
 #### Style To Dos:
-- FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
 
-- Modals & Dropdown menu:
-  - Decorate the in the same style as the rest of the site and make sure fonts are large enough to read/have enough contrast
+- Testing on my phone
+- Go for a walk smaller font size than inventory on my mobile size
+- Title is too big for screen
+
+- add more padding top to go for a walk button
+
+- Add split border to interact button and input for name
+
+- remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
 
 - When starter pokemon is selected, change the colour of the background to purple or something obvious
 - Maybe change border around starters to be not black and only black when selected! - <--- This!
@@ -639,6 +652,14 @@ document.addEventListener('change', function(event) {
   }
 });
 
+###### Less Imortant
+
+- Change colour of progress bars
+
+- When collect button has been clicked, there is a blue background that shows up - change this to a colour from palette
+
+- Remove the small border between sections in modals
+
 ### Ideas
 
 - in actionBerry function:
@@ -647,3 +668,13 @@ document.addEventListener('change', function(event) {
 - pokemon image fades if health is low
 
 - if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any of those bars are low.
+
+#### Done
+
+- Rename errorModal to alertModal
+- IMPORTANT: Add labels to radio buttons#
+- Change Adding... background on button from white to primary pale
+- FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
+- Modals & Dropdown menu:
+  - Decorate the in the same style as the rest of the site and make sure fonts/buttons are large enough to read/have enough contrast
+- Size of level needs amending so that it is never smaller than the type and personality
