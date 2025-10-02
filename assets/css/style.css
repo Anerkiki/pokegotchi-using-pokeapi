@@ -69,13 +69,14 @@ input[type='text'] {
     background-color: rgba(var(--bs-tertiary-bg-rgb));
     /* reduce size too? */
 }
-
+/* 
 button, .border {
     border-radius: 20px;
-}
+} */
 
 button {
     border: 4px solid var(--secondary-colour);
+    border-radius: 20px;
     text-transform: capitalize;
     padding: 7px 10px 3px 10px;
     color: var(--secondary-colour);
@@ -182,6 +183,7 @@ img {
 
 .starter .details {
     color: var(--quaternary-colour);
+    margin-bottom: 15px;
 }
 
 .small-details {
