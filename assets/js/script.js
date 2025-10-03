@@ -145,10 +145,6 @@ $(document).ready(function() {
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
 
-            // TO DO HERE:
-            // Add here an 'if' clause that loops through user pokemon and checks if any stats are below 0
-            // and if they are made relevant modal pop up if ANY pokemon stats are at 0
-
             checkForLowStats();
         } else {
             // Clears any old pokemon from the HTML
@@ -275,8 +271,10 @@ $(document).ready(function() {
     function releasePokemon() {
         if (userPokemon.length === 1) {
             userPokemon = [];
-            // Reset the text on the starter form button
-            $("#add-first-pokemon>h3").text("Add To Collection")
+            $("#add-first-pokemon>h3").text("Add To Collection")// Reset the text on the starter form button
+            $("#pokemon-nickname").val(""); // Clear the nickname input box
+            $('input[name="starter"]').prop('checked', false); // Deselect the radio button
+            $(".starter").removeClass("selected-starter"); // Remove visual highlight
         } else {
             let newPokemonArray = [];
             for (let i = 0; i < userPokemon.length; i++) {

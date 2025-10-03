@@ -582,52 +582,73 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 
 ---
 
-# To Dos (Delete from README after)
+# Delete below from README after
+
+---
 
 ## Add to README
 
-Consistant variable/id/class names - 
+Consistant variable/id/class names
+  - all ids and classes are all in kebab-case, with the exception of modal ids which are in camelCase
 
-ids and classes are all in kebab-case
+---
 
-with the exception of modal ids which are in camelCase
+# To Dos
 
-## Bugs to Fix:
-
-- stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
+---
 
 ## Next:
 
-- clear the input box and deselect the radio buttons when last pokemon deleted and form comes back, and scroll to top of the page
-bug discovered after testing:
-- When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
-
 - Organise style.css into page sections so it's neater and easier to understand
+
+---
+
+You should still be able to feed a berry to or pet your pokemon, even if the health is at 0, without the modal coming up.
+This should only come up when trying to battle.
+
+Add in an issue to readme fixed issues:
+
+**Issue:** The alert from checkForLowStats is coming up (for 0 health - "your pokemon need healing with potions") -
+even when just trying to pet or feed a berry to pokemon, which I don't want it doing
+
+This may also fix the issue with the wrong modal coming up when trying to battle with 0 health
+
+**How I fixed it:**
+
+- displayUserCollection calls lowStats function - does this want to be moved?
+
+And maybe add in the commit title/image from commit to show changes after
 
 ### Then:
 
+- Link up rename button and make functions to change name
+
 <!-- Walks -->
 
-- After a walk, make the specific pokemon's hunger goes down that joined you
+- After a walk, make the specific pokemon that joined you's hunger goes down
 
-- Put a footer in and make sure is always stuck to bottom - add tips to this
 - Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals/footer so players know.
-  - Add to footer a note about how to get more pokemon
-    - Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then try going for a walk with them.
-
   - whether one shows up is linked to level of pokemon joining on the walk
     - link this in via js - if [joining pokemon level > 10] then chance to encounter pokemon
+  - Put a footer in and make sure is always stuck to bottom
+    - Add to footer notes/tips about how to get more pokemon
+      - Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then go for a walk with them.
 
 <!-- Specificity -->
 - Maybe add in nickname (specificity) to modals for deleting and renaming pokemon
 
 - Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
 
-<!-- Other -->
-- If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
-  - Have a max-width though so it doesn't look weird
+## Bugs to Fix:
+
+- stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
+
+- Bug discovered after testing:
+  - When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
 
 #### Style To Dos:
+
+- Make go for a walk button text go black when hover, but not release button, or rename button
 
 - remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
 
@@ -635,6 +656,11 @@ bug discovered after testing:
   - Title spreads to edges of screen
 
 ###### Less Imortant/If Time
+
+- Merge all modals to one?
+
+- If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
+  - Have a max-width though so it doesn't look weird
 
 - add more padding top to go for a walk button, do the same with inventory
 
@@ -671,5 +697,6 @@ bug discovered after testing:
 - Add split border to interact button
 - Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
 - modals appear in different places on the screen - alerts are center, and walks are top - make all center
+- in releasePokemon - clear the input box and deselect the radio button selection when last pokemon deleted and form comes back
 
 ##### Check is done:
