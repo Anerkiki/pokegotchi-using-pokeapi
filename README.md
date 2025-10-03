@@ -592,57 +592,49 @@ ids and classes are all in kebab-case
 
 with the exception of modal ids which are in camelCase
 
+## Bugs to Fix:
+
+- stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
+
 ## Next:
 
-- Fix Issue - Level is still going up even when health is on 0
+- clear the input box and deselect the radio buttons when last pokemon deleted and form comes back, and scroll to top of the page
+bug discovered after testing:
+- When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
 
-- Add onclick handler to add 'checked' to radio of starter parent element clicked
-  - Maybe have selected pokemon background light up/change colour when radio is selected
-
-  
-- to fix - actionBattle - if health is on 0, level shouldn't go up and there should be an error/alert modal
+- Organise style.css into page sections so it's neater and easier to understand
 
 ### Then:
-After testing:
-- When I delete last pokemon and the form comes back up, the page needs to scroll back to the top of the page as still stays at the bottom currently
-- and also clear the input box and deselect the radio buttons
 
-- Change text inside add button while loading to “Adding…” or similar (and stop it adding another?) - Done
-  - Done first bit, but check if can stop it logging multiple times if slow connection
+<!-- Walks -->
 
-- Reset the selected radio button to none after deleting last pokemon,
-- and also clear the input for the nickname
+- After a walk, make the specific pokemon's hunger goes down that joined you
 
-- After a walk, the specific pokemon's hunger goes down
-
-- Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals so players know.
+- Put a footer in and make sure is always stuck to bottom - add tips to this
+- Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals/footer so players know.
   - Add to footer a note about how to get more pokemon
-  Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then try going for a walk with them.
+    - Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then try going for a walk with them.
+
   - whether one shows up is linked to level of pokemon joining on the walk
     - link this in via js - if [joining pokemon level > 10] then chance to encounter pokemon
-    - and then also make their hunger go down
 
-- Maybe add in nickname to modals for deleting and renaming pokemon
-
-- If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
-  - Have a max-width though so it doesn't look weird
+<!-- Specificity -->
+- Maybe add in nickname (specificity) to modals for deleting and renaming pokemon
 
 - Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
 
-- Put a footer in and make sure is always stuck to bottom - add tips to this
+<!-- Other -->
+- If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
+  - Have a max-width though so it doesn't look weird
 
 #### Style To Dos:
 
-- Testing on my phone:
-  - Title is too big for screen
-
-- modals appear in different places on the screen - alerts are center, and walks are top - make all center
-
-- Add split border to interact button and input for name
-
 - remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
 
-###### Less Imortant
+- Testing on my phone:
+  - Title spreads to edges of screen
+
+###### Less Imortant/If Time
 
 - add more padding top to go for a walk button, do the same with inventory
 
@@ -652,14 +644,16 @@ After testing:
 
 - Remove the small border between sections in modals
 
+- to fix - actionTrain - if health is on 0 - there should be an error/alert modal - checkForStats() one shown not actionTrain()
+
 ### Ideas
+
+- pokemon image fades if their health is low
 
 - When starter pokemon is selected, change the colour of the background to purple or something obvious
 
 - in actionBerry function:
   - maybe change image so pokemon turns around for a second or 2
-
-- pokemon image fades if health is low
 
 - if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any bars are low
 
@@ -672,3 +666,10 @@ After testing:
 - Modals & Dropdown menu:
   - Decorate the in the same style as the rest of the site and make sure fonts/buttons are large enough to read/have enough contrast
 - Size of level needs amending so that it is never smaller than the type and personality
+- Add onclick handler to add 'checked' to radio of starter parent element clicked
+  - Maybe have selected pokemon background light up/change colour when radio is selected
+- Add split border to interact button
+- Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
+- modals appear in different places on the screen - alerts are center, and walks are top - make all center
+
+##### Check is done:

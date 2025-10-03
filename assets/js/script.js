@@ -125,8 +125,8 @@ $(document).ready(function() {
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-battle dropdown-item"
-                                            aria-label="Battle with ${pokemon.nickname} to increase it's level">Battle in Arena</button>
+                                        <button class="action-train dropdown-item"
+                                            aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
                                     </li>
                                 </ul>
                             </div>
@@ -411,9 +411,9 @@ $(document).ready(function() {
         }
     }
 
-    $("#pokemon-collection").on("click", ".action-battle", actionBattle);
+    $("#pokemon-collection").on("click", ".action-train", actionTrain);
 
-    function actionBattle() {
+    function actionTrain() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
