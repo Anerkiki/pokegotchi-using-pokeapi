@@ -125,7 +125,7 @@
                 </div>
 
                 <h2 class="mt-3 mb-0"><label for="pokemon-nickname">Give your Pokémon a&nbsp;name:</label></h2>
-                <input id="pokemon-nickname" type="text" value="nickname" class="col-10">
+                <input id="pokemon-nickname" type="text" class="col-10">
                 <button id="add-first-pokemon" type="submit" class="col-10 col-sm-8 col-lg-6 mt-4 mt-sm-5">
                     <h3>Add to collection</h3>
                 </button>
@@ -151,30 +151,78 @@
                 <button type="button" data-bs-target="#tipCarousel" data-bs-slide-to="2" aria-label="Tip 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="3000">
+                <div class="carousel-item active" data-bs-interval="3500">
                     <p>Tip 1: Deserunt ullam alias nulla, quasi quod beatae tenetur saepe magni dicta, officiis officia cupiditate. Tenetur illum cum nulla vel.</p>
                 </div>
-                <div class="carousel-item" data-bs-interval="4000">
+                <div class="carousel-item" data-bs-interval="3500">
                     <p>Tip 2: Deserunt ullam alias nulla, quasi quod beatae tenetur saepe magni dicta, officiis officia cupiditate.</p>
                 </div>
-                <div class="carousel-item">
-                    <!-- default interval = 5000 - Match all -->
+                <div class="carousel-item" data-bs-interval="3500">
+                    <!-- Match all -->
                     <p>Tip 3: Deserunt ullam alias nulla, quasi quod beatae tenetur saepe magni dicta, officiis officia cupiditate. Tenetur illum cum nulla vel.</p>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#tipCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#tipCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-        <div id="footer-text"><p>P<span>o</span>k<span>é</span>g<span>o</span>tchi <i class="fa-regular fa-copyright"></i></p></div>
+        <div id="footer-text"><p>P<span>o</span>k<span>é</span>g<span>o</span>t<span>c</span>h<span>i</span> b<span>y</span> A<span>n</span>e<span>r</span>c<span>h</span>i <i class="fa-regular fa-copyright"></i></p></div>
     </footer>
 
     <!-- Modals -->
+
+    <!-- Alert Modal - Edited from Bootstrap Modal Example -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Oh!</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <div class="modal-body">
+                <!-- Message will be injected here -->
+            </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal"><h3>Okay</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Walk Surprise Modal - Edited from Bootstrap Modal Example -->
+    <div class="modal fade" id="walkSurpriseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Oh!</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <div class="modal-body">
+                <!-- Message will be injected here -->
+            </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal"><h3>Run Away</h3></button>
+                    <button type="button" data-bs-dismiss="modal"><h3>Investigate</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pokémon Encounter Modal - Edited from Bootstrap Modal Example -->
+    <div class="modal fade" id="wildEncounterModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">A wild pokémon has appeared!</h2>
+                    <button type="button" data-bs-dismiss="modal"><h3>Run Away</h3></button>
+                    <button type="button" data-bs-dismiss="modal"><h3>Adopt</h3></button>
+                </div>
+            <div class="modal-body">
+                <!-- Message will be injected here -->
+            </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal"><h3>Okay</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Walk Results Modal - Edited from Bootstrap Modal Example -->
     <div class="modal fade" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -195,27 +243,9 @@
         </div>
     </div>
 
-    <!-- Alert Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Oh!</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            <div class="modal-body">
-                <!-- Message will be injected here -->
-            </div>
-                <div class="modal-footer">
-                    <button type="button" class="" data-bs-dismiss="modal"><h3>Okay</h3></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Release Confirmation Modal -->
     <div class="modal fade" id="releaseModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Release Pokémon</h2>
@@ -234,7 +264,7 @@
 
     <!-- Rename Confirmation Modal -->
     <div class="modal fade" id="renameModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Rename Pokémon</h2>
