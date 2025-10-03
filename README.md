@@ -646,7 +646,12 @@ And maybe add in the commit title/image from commit to show changes after
 
 - Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
 
+- WORK OUT WHERE TO CALL checkForLowStats - I only want it when any bars go to 0 the first time.
+  - personalise with which pokemon needs healing/is hungry
+
 ## Bugs to Fix:
+
+- Stop the images being squashed and make height match if width shrinks
 
 - stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
 
@@ -656,6 +661,11 @@ And maybe add in the commit title/image from commit to show changes after
 - When scroll bar buttons are clicked, the interact button background changes colour
 
 - Issue with rename input box looking too wide under about 500px
+  - This hasn't fixed it:
+
+#renameModal #new-nickname {
+    max-width: 80%;
+}
 
 #### Style To Dos:
 
@@ -694,6 +704,8 @@ And maybe add in the commit title/image from commit to show changes after
 - pokemon image fades if their health is low
 
 - When starter pokemon is selected, change the colour of the background to purple or something obvious
+
+- Have chance of being able to adopt wild pokemon not at 100%
 
 - in actionBerry function:
   - maybe change image so pokemon turns around for a second or 2

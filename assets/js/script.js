@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Global Variables
 
@@ -145,8 +145,7 @@ $(document).ready(function() {
             }
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
-
-            checkForLowStats();
+            // removed checkForLowStats(); from here - REMOVE once right place has been found
         } else {
             // Clears any old pokemon from the HTML
             $("#pokemon-collection").html("");
@@ -156,10 +155,14 @@ $(document).ready(function() {
         }
     }
 
+    // WORK OUT WHERE TO CALL THIS - I only want it when any bars go to 0 the first time.
+    // personalise with which pokemon needs healing/is hungry
+    //
     function checkForLowStats() {
         for (const pokemon of userPokemon) {
             if (pokemon.health === 0) {
                 $("#alertModal .modal-body").text("Your pokémon need healing with potions!");
+                
                 $("#alertModal").modal("show");
             } else {
                 if (pokemon.hunger === 0) {
@@ -328,39 +331,6 @@ $(document).ready(function() {
         displayUserPokemon();
     }
 
-    // Walk button functions
-
-    $("#walk-button").on("click", goForAWalk);
-
-    function goForAWalk() {
-        // generate random pokemon name from user's pokemon collection
-        const randomPokemon = Math.floor(Math.random() * userPokemon.length);
-        // add the random pokemon nickname to the text in the modal
-        $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
-        // Set the walk results:
-        lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
-        lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
-        // results to display in modal:
-        let results = lastBerryWalkResult + " berries"
-        if (lastBerryWalkResult < 4) {
-            results += " and " + lastPotionWalkResult + " potions"
-        } else {
-            lastPotionWalkResult = 0;
-        }
-        // updating the inner text
-        $("#walk-results").text(results);
-        // displaying the modal
-        $("#walkResultsModal").modal("show");
-    }
-
-    $("#add-walk-items").on("click", addWalkResultsToInventory);
-
-    function addWalkResultsToInventory() {
-        inventory.berries = inventory.berries + lastBerryWalkResult;
-        inventory.potions = inventory.potions + lastPotionWalkResult;
-        updateInventory();
-    }
-
     // Action/Interaction functions
 
     $("#pokemon-collection").on("click", ".action-pet", actionPet);
@@ -437,7 +407,7 @@ $(document).ready(function() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
-                if (pokemon.health === 0) {
+                if (pokemon.health === 10) {
                     $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before battling anymore!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                     // this has worked to stop level going up, but modal is being overridden by checkForLowStats() modal message
@@ -456,29 +426,85 @@ $(document).ready(function() {
         displayUserPokemon();
     }
 
-    walkSurpriseModal
+    // Walk button functions
 
-    wildEncounterModal
-    
-    // To Add a new pokemon from walk encounter:
+    $("#walk-button").on("click", goForAWalk);
 
-    // modal changes to 'there is movement in the long grass'
-    // 2 buttons: investigate, run away - could use alert modal? But need to change buttons
+    function goForAWalk() {
+        // generate random pokemon name from user's pokemon collection
+        const randomPokemon = Math.floor(Math.random() * userPokemon.length);
+        // add the random pokemon nickname to the text in the modal
+        $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
+        // Generate random number
+        let randomNumber = Math.floor(Math.random() * 7);
+        if (userPokemon[randomPokemon].level > 2 && randomNumber === 3) {
+            walkDisturbance();
+        } else {
+            // Set the walk results:
+            lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
+            lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
+            // results to display in modal:
+            let results = lastBerryWalkResult + " berries"
+            if (lastBerryWalkResult < 4) {
+                results += " and " + lastPotionWalkResult + " potions"
+            } else {
+                lastPotionWalkResult = 0;
+            }
+            // updating the inner text
+            $("#walk-results").text(results);
+            // displaying the modal
+            $("#walkResultsModal").modal("show");
+        }
+    }
 
-    // if investigate - open new modal
-    // modal with new pokemon that is randomised
-    // only show pokemon image and name
-    // 2 buttons: adopt, run away
+    $("#add-walk-items").on("click", addWalkResultsToInventory);
+
+    function addWalkResultsToInventory() {
+        inventory.berries = inventory.berries + lastBerryWalkResult;
+        inventory.potions = inventory.potions + lastPotionWalkResult;
+        updateInventory();
+    }
+
     // if click adopt, then ask for a nickname (new modal?) add new pokemon to userCollection array (through species number) and close
+    walkDisturbance(); // for testing
 
-// Generate random species number
-// wildSpeciesNum = Math.floor(Math.random() * 152);
+    function walkDisturbance() {
+        $("#walkSurpriseModal .modal-body").text("You hear a rustling coming from the long grass. What do you do?");
+        $("#walkSurpriseModal").modal("show");
+    }
 
-// WORKING!
+    $("#investigate-button").on("click", surpriseEncounter);
+
+    function surpriseEncounter() {
+        // Generate random species number and save to global variable
+        wildSpeciesNum = Math.floor(Math.random() * 152);
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${wildSpeciesNum}/`)
+            .then(response => response.json())
+            .then(data => {
+                const pokemonName = data.name;
+                const imageUrl = data.sprites.front_default;
+                // Just the first type
+                const primaryType = data.types[0].type.name; // ADD LATER
+                // Adding the new details to the modal box
+                let results = `<img src="${imageUrl}" alt="${pokemonName}">`
+                results += `<p>A wild ${pokemonName} appears in front of you. What do you do?<p>`
+                $("#wildEncounterModal .modal-body").html(results);
+                // displaying the modal
+                $("#wildEncounterModal").modal("show");
+                // Update displays in HTML
+                updateInventory();
+                displayUserPokemon();
+            })
+            .catch(error => {
+                console.error("Error fetching Pokémon:", error);
+            });
+    }
+
+    $("#adopt-button").on("click", addWildPokemon);
+
     function addWildPokemon() {
-        
         const speciesNumber = wildSpeciesNum;
-
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let level = 1;
         let happiness = 80;
@@ -493,8 +519,7 @@ $(document).ready(function() {
                 const imageUrl = data.sprites.front_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
-                let nickname = pokemonName; // Add option to change this in next function
-
+                let nickname = pokemonName;
                 // Adding the new details as an object in the userPokemon array
                 userPokemon.push({
                     index: uniqueIndex,
@@ -512,9 +537,10 @@ $(document).ready(function() {
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
-                // Remove starter choice form and add walk button
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
+
+                // TO DO: Add ability to rename here
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
