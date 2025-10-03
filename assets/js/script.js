@@ -20,6 +20,7 @@ $(document).ready(function() {
     let lastBerryWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
     let lastPotionWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
     let pokemonToEditIndex = null; // Used in release & rename functions
+    let wildSpeciesNum = null; // Used when finding a wild pokemon to store species number
 
     // Functions called when page loads
     updateInventory();
@@ -68,7 +69,7 @@ $(document).ready(function() {
             // Loop through all Pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 currentUserPokemon += `
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-xl-6">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
                             <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the&nbsp;${capitalizeWords(pokemon.name)}</h2>
@@ -79,9 +80,9 @@ $(document).ready(function() {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image}" class="img-responsive col-4 col-md-5" alt="${pokemon.name}">
+                                    <img src="${pokemon.image}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
 
-                                <div class="progress-bars col-11 col-md-6">
+                                <div class="progress-bars col-11 col-md-5">
                                     <div>
                                         <p><label for="happiness">Happiness:</label></p>
                                         <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
@@ -453,6 +454,71 @@ $(document).ready(function() {
             }
         }
         displayUserPokemon();
+    }
+
+    walkSurpriseModal
+
+    wildEncounterModal
+    
+    // To Add a new pokemon from walk encounter:
+
+    // modal changes to 'there is movement in the long grass'
+    // 2 buttons: investigate, run away - could use alert modal? But need to change buttons
+
+    // if investigate - open new modal
+    // modal with new pokemon that is randomised
+    // only show pokemon image and name
+    // 2 buttons: adopt, run away
+    // if click adopt, then ask for a nickname (new modal?) add new pokemon to userCollection array (through species number) and close
+
+// Generate random species number
+// wildSpeciesNum = Math.floor(Math.random() * 152);
+
+// WORKING!
+    function addWildPokemon() {
+        
+        const speciesNumber = wildSpeciesNum;
+
+        let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
+        let level = 1;
+        let happiness = 80;
+        let health = 80;
+        let hunger = 80;
+        let uniqueIndex = Date.now();
+        // Fetch Pokémon data from PokéAPI
+        fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
+            .then(response => response.json())
+            .then(data => {
+                const pokemonName = data.name;
+                const imageUrl = data.sprites.front_default;
+                // Just the first type
+                const primaryType = data.types[0].type.name;
+                let nickname = pokemonName; // Add option to change this in next function
+
+                // Adding the new details as an object in the userPokemon array
+                userPokemon.push({
+                    index: uniqueIndex,
+                    species: speciesNumber,
+                    name: pokemonName,
+                    image: imageUrl,
+                    nickname: nickname,
+                    type: primaryType,
+                    personality: personality,
+                    level: level,
+                    happiness: happiness,
+                    health: health,
+                    hunger: hunger,
+                });
+                // Update displays in HTML
+                updateInventory();
+                displayUserPokemon();
+                // Remove starter choice form and add walk button
+                // To double check details of new pokémon added
+                console.log("New pokemon added:", userPokemon);
+            })
+            .catch(error => {
+                console.error("Error fetching Pokémon:", error);
+            });
     }
 
 });
