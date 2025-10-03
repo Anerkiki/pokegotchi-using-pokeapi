@@ -413,19 +413,24 @@ $(document).ready(function() {
 
     $("#pokemon-collection").on("click", ".action-battle", actionBattle);
 
-    // fix this - if health is on 0, level shouldn't go up and there should be an error/alert modal
-
     function actionBattle() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
+                if (pokemon.health === 0) {
+                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before battling anymore!</p><p>(Try giving them a potion)</p>");
+                    $("#alertModal").modal("show");
+                    // this has worked to stop level going up, but modal is being overridden by checkForLowStats() modal message
+                    // - not super important
+                } else {
                 // Math.max will always find the maximum value, so if the
                 // first value is set to 0 then no matter how low the health
                 // value gets from battling, it won't ever be less than 0
                 pokemon.health = Math.max(0, pokemon.health - 20);
                 pokemon.hunger = Math.max(0, pokemon.hunger - 5);
                 pokemon.level = pokemon.level + 0.5;
-                break;
+                break;}
+
             }
         }
         displayUserPokemon();
