@@ -165,6 +165,11 @@ For paragraph text, I wanted a simple, clear, and unfussy font that would comple
 
 ## Colour Scheme/Design
 
+bootstrap's preset colour (from navbar) which I liked and encorporated into my palette
+
+I used Colorzilla to find the rgb code and then translated that to rgba and tested which opacities looked good
+After I found the right one, I used colourzilla again to add that colour to my palette to use for buttons etc
+
 **Images and Colours**
 
 <!-- I wanted the website's colour scheme to 
@@ -591,6 +596,8 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 Consistant variable/id/class names
   - all ids and classes are all in kebab-case, with the exception of modal ids which are in camelCase
 
+
+
 ---
 
 # To Dos
@@ -646,7 +653,13 @@ And maybe add in the commit title/image from commit to show changes after
 - Bug discovered after testing:
   - When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
 
+- When scroll bar buttons are clicked, the interact button background changes colour
+
+- Issue with rename input box looking too wide under about 500px
+
 #### Style To Dos:
+
+- Choose a slide time and match all - 4000?
 
 - Make go for a walk button text go black when hover, but not release button, or rename button
 
@@ -656,6 +669,8 @@ And maybe add in the commit title/image from commit to show changes after
   - Title spreads to edges of screen
 
 ###### Less Imortant/If Time
+
+- Add in 2nd type if there is one in PokéAPI & join with " & "
 
 - Merge all modals to one?
 
@@ -667,6 +682,8 @@ And maybe add in the commit title/image from commit to show changes after
 - Change colour of progress bars
 
 - When collect button has been clicked, there is a blue background that shows up - change this to a colour from palette
+
+-  reduce size of input box
 
 - Remove the small border between sections in modals
 

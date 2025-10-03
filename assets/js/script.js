@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     let lastBerryWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
     let lastPotionWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
-    let pokemonToReleaseIndex = null; // Used in openReleaseModal & releasePokemon functions
+    let pokemonToEditIndex = null; // Used in release & rename functions
 
     // Functions called when page loads
     updateInventory();
@@ -79,9 +79,9 @@ $(document).ready(function() {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image}" class="img-responsive col-4 col-sm-5" alt="${pokemon.name}">
+                                    <img src="${pokemon.image}" class="img-responsive col-4 col-md-5" alt="${pokemon.name}">
 
-                                <div class="progress-bars col-11 col-sm-6">
+                                <div class="progress-bars col-11 col-md-6">
                                     <div>
                                         <p><label for="happiness">Happiness:</label></p>
                                         <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
@@ -176,7 +176,7 @@ $(document).ready(function() {
     // this function allows the initial selection to be made by clicking
     // anywhere inside the starter box, not only on the radio/name label
     // & also adds a class to style the selected starter pokemon box
-    function selectAndStyleStarter () {
+    function selectAndStyleStarter() {
         // This is necessary to remove style from previously checked starters,
         // so they don't all end up with the class that styles the selected pokemon
         $(".starter").removeClass("selected-starter");
@@ -261,7 +261,7 @@ $(document).ready(function() {
         // Find the index of the clicked Pokémon
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         // Store the index globally so releasePokemon can access it
-        pokemonToReleaseIndex = uniqueIndex;
+        pokemonToEditIndex = uniqueIndex;
         // Show the modal
         $("#releaseModal").modal("show");
     }
@@ -280,14 +280,14 @@ $(document).ready(function() {
             for (let i = 0; i < userPokemon.length; i++) {
                 let pokemon = userPokemon[i];
 
-                if (pokemon.index !== pokemonToReleaseIndex) {
+                if (pokemon.index !== pokemonToEditIndex) {
                     newPokemonArray.push(pokemon);
                 }
             }
             userPokemon = newPokemonArray;
         }
         $("#releaseModal").modal("hide");
-        pokemonToReleaseIndex = null;
+        pokemonToEditIndex = null;
         updateInventory();
         displayUserPokemon();
     }
@@ -297,13 +297,34 @@ $(document).ready(function() {
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
 
     function openRenameModal() {
-        // TO COMPLETE
+        // Find the index of the clicked Pokémon
+        const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+        // Find the Pokemon object to get its current nickname
+        // find() is like doing a for loop through all of the userPokemon array
+        const pokemonToRename = userPokemon.find(pokemon => pokemon.index === uniqueIndex);
+        // Store the index globally so releasePokemon can access it
+        pokemonToEditIndex = uniqueIndex;
+        // Pre-fill the modal input with original nickname
+        $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
+        // Show the modal
+        $("#renameModal").modal("show");
     }
 
     $("#confirm-rename-button").on("click", renamePokemon);
 
     function renamePokemon() {
-        // TO COMPLETE
+        let newNickname = $("#new-nickname").val().trim();
+        // Use find() to instantly locate the one object we need.
+        const pokemonToRename = userPokemon.find(p => p.index === pokemonToEditIndex);
+        if (!newNickname) {
+            // Use the original species name as the nickname
+            pokemonToRename.nickname = pokemonToRename.name;
+        } else {
+            pokemonToRename.nickname = newNickname;
+        }
+        $("#renameModal").modal("hide");
+        pokemonToEditIndex = null; // Clear the global index
+        displayUserPokemon();
     }
 
     // Walk button functions
@@ -421,14 +442,14 @@ $(document).ready(function() {
                     // this has worked to stop level going up, but modal is being overridden by checkForLowStats() modal message
                     // - not super important
                 } else {
-                // Math.max will always find the maximum value, so if the
-                // first value is set to 0 then no matter how low the health
-                // value gets from battling, it won't ever be less than 0
-                pokemon.health = Math.max(0, pokemon.health - 20);
-                pokemon.hunger = Math.max(0, pokemon.hunger - 5);
-                pokemon.level = pokemon.level + 0.5;
-                break;}
-
+                    // Math.max will always find the maximum value, so if the
+                    // first value is set to 0 then no matter how low the health
+                    // value gets from battling, it won't ever be less than 0
+                    pokemon.health = Math.max(0, pokemon.health - 20);
+                    pokemon.hunger = Math.max(0, pokemon.hunger - 5);
+                    pokemon.level = pokemon.level + 0.5;
+                    break;
+                }
             }
         }
         displayUserPokemon();
