@@ -175,6 +175,23 @@ $(document).ready(function() {
 
     // Functions with Handlers
 
+    $(".starter").on("click", selectAndStyleStarter);
+
+    // this function allows the initial selection to be made by clicking
+    // anywhere inside the starter box, not only on the radio/name label
+    // & also adds a class to style the selected starter pokemon box
+    function selectAndStyleStarter () {
+        // This is necessary to remove style from previously checked starters,
+        // so they don't all end up with the class that styles the selected pokemon
+        $(".starter").removeClass("selected-starter");
+        // finds a radio that is a child of the div clicked on
+        const radio = $(this).find('input[type="radio"]')
+        // turns that radio to checked
+        radio.prop("checked", true);
+        // adds the styling to selected starter div
+        $(this).addClass("selected-starter");
+    }
+
     $("#add-first-pokemon").on("click", addStarterPokemon);
 
     function addStarterPokemon(event) {
@@ -258,7 +275,7 @@ $(document).ready(function() {
     function releasePokemon() {
         if (userPokemon.length === 1) {
             userPokemon = [];
-            // Reset the text on the choose starter button back
+            // Reset the text on the starter form button
             $("#add-first-pokemon>h3").text("Add To Collection")
         } else {
             let newPokemonArray = [];

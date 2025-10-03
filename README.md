@@ -599,18 +599,21 @@ with the exception of modal ids which are in camelCase
 - Add onclick handler to add 'checked' to radio of starter parent element clicked
   - Maybe have selected pokemon background light up/change colour when radio is selected
 
+  
+- to fix - actionBattle - if health is on 0, level shouldn't go up and there should be an error/alert modal
+
 ### Then:
 After testing:
 - When I delete last pokemon and the form comes back up, the page needs to scroll back to the top of the page as still stays at the bottom currently
 - and also clear the input box and deselect the radio buttons
-
-- After a walk, the specific pokemon's hunger goes down
 
 - Change text inside add button while loading to “Adding…” or similar (and stop it adding another?) - Done
   - Done first bit, but check if can stop it logging multiple times if slow connection
 
 - Reset the selected radio button to none after deleting last pokemon,
 - and also clear the input for the nickname
+
+- After a walk, the specific pokemon's hunger goes down
 
 - Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals so players know.
   - Add to footer a note about how to get more pokemon
@@ -624,35 +627,24 @@ After testing:
 - If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
   - Have a max-width though so it doesn't look weird
 
-- Put a footer in (?) and make sure is always stuck to bottom
+- Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
+
+- Put a footer in and make sure is always stuck to bottom - add tips to this
 
 #### Style To Dos:
 
-- Testing on my phone
-- Go for a walk smaller font size than inventory on my mobile size
-- Title is too big for screen
+- Testing on my phone:
+  - Title is too big for screen
 
-- add more padding top to go for a walk button
+- modals appear in different places on the screen - alerts are center, and walks are top - make all center
 
 - Add split border to interact button and input for name
 
 - remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
 
-- When starter pokemon is selected, change the colour of the background to purple or something obvious
-- Maybe change border around starters to be not black and only black when selected! - <--- This!
-
-document.addEventListener('change', function(event) {
-  const target = event.target;
-  if (target.type === 'radio') {
-    const parentDiv = target.closest('div.options'); // Find the closest ancestor 'div' with class 'options'
-    if (parentDiv) {
-      // Manipulate parentDiv here
-      parentDiv.style.borderColor = 'green';
-    }
-  }
-});
-
 ###### Less Imortant
+
+- add more padding top to go for a walk button, do the same with inventory
 
 - Change colour of progress bars
 
@@ -662,12 +654,14 @@ document.addEventListener('change', function(event) {
 
 ### Ideas
 
+- When starter pokemon is selected, change the colour of the background to purple or something obvious
+
 - in actionBerry function:
   - maybe change image so pokemon turns around for a second or 2
 
 - pokemon image fades if health is low
 
-- if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any of those bars are low.
+- if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any bars are low
 
 #### Done
 
