@@ -11,10 +11,10 @@ $(document).ready(function () {
     };
 
     const pokemonPersonality = [
-        "Adamant", "Bashful", "Bold", "Brave", "Calm", "Careful",
-        "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
-        "Loud", "Mild", "Modest", "Naive", "Naughty", "Quiet",
-        "Quirky", "Rash", "Relaxed", "Sassy", "Serious", "Timid"
+        "Bashful", "Boisterous", "Bold", "Brave", "Calm",
+        "Determined", "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
+        "Loud", "Mischievous", "Mild", "Modest", "Naive", "Naughty", "Quiet",
+        "Quirky", "Relaxed", "Sassy", "Serious", "Timid",
     ];
 
     let lastBerryWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
@@ -61,6 +61,8 @@ $(document).ready(function () {
         $(".starter-personality-4").text(personality4);
         $(".starter-personality-7").text(personality7);
     }
+
+    $("#refresh-starter-personalities").on("click", addPersonalitiesToStarterChoices);
 
     // Triggered every time user pokémon collection is updated
     function displayUserPokemon() {
@@ -157,7 +159,7 @@ $(document).ready(function () {
 
     // WORK OUT WHERE TO CALL THIS - I only want it when any bars go to 0 the first time.
     // personalise with which pokemon needs healing/is hungry
-    //
+    
     function checkForLowStats() {
         for (const pokemon of userPokemon) {
             if (pokemon.health === 0) {
@@ -249,6 +251,7 @@ $(document).ready(function () {
                 // Remove starter choice form and add walk button
                 $("#starter-options-form").addClass("hidden");
                 $("#walk-button").removeClass("hidden");
+                $("#refresh-starter-personalities").addClass("hidden");
                 // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
             })
@@ -365,7 +368,7 @@ $(document).ready(function () {
                         $("#alertModal .modal-body").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
                     } else {
-                        pokemon.hunger = Math.min(100, pokemon.hunger + 5);
+                        pokemon.hunger = Math.min(100, pokemon.hunger + 10);
                         inventory.berries = inventory.berries - 1;
                         break;
                     }
@@ -390,7 +393,7 @@ $(document).ready(function () {
                         $("#alertModal .modal-body").text("Your pokémon is now at full health.");
                         $("#alertModal").modal("show");
                     } else {
-                        pokemon.health = Math.min(100, pokemon.health + 5);
+                        pokemon.health = Math.min(100, pokemon.health + 10);
                         inventory.potions = inventory.potions - 1;
                         break;
                     }
@@ -407,7 +410,7 @@ $(document).ready(function () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
-                if (pokemon.health === 10) {
+                if (pokemon.health < 10) {
                     $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before battling anymore!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                     // this has worked to stop level going up, but modal is being overridden by checkForLowStats() modal message
@@ -416,14 +419,16 @@ $(document).ready(function () {
                     // Math.max will always find the maximum value, so if the
                     // first value is set to 0 then no matter how low the health
                     // value gets from battling, it won't ever be less than 0
-                    pokemon.health = Math.max(0, pokemon.health - 20);
-                    pokemon.hunger = Math.max(0, pokemon.hunger - 5);
+                    pokemon.health = Math.max(0, pokemon.health - 5);
+                    pokemon.hunger = Math.max(0, pokemon.hunger - 20);
                     pokemon.level = pokemon.level + 0.5;
                     break;
                 }
             }
         }
         displayUserPokemon();
+        // need to change this to specific pokemon - TO ADD TO LATER
+        checkForLowStats();
     }
 
     // Walk button functions
@@ -437,7 +442,7 @@ $(document).ready(function () {
         $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
         // Generate random number
         let randomNumber = Math.floor(Math.random() * 7);
-        if (userPokemon[randomPokemon].level > 2 && randomNumber === 3) {
+        if (userPokemon[randomPokemon].level > 5 && randomNumber === 3 && userPokemon.length > 6) {
             walkDisturbance();
         } else {
             // Set the walk results:
@@ -445,7 +450,7 @@ $(document).ready(function () {
             lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
             // results to display in modal:
             let results = lastBerryWalkResult + " berries"
-            if (lastBerryWalkResult < 4) {
+            if (lastBerryWalkResult < 6) {
                 results += " and " + lastPotionWalkResult + " potions"
             } else {
                 lastPotionWalkResult = 0;
@@ -464,9 +469,6 @@ $(document).ready(function () {
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
     }
-
-    // if click adopt, then ask for a nickname (new modal?) add new pokemon to userCollection array (through species number) and close
-    walkDisturbance(); // for testing
 
     function walkDisturbance() {
         $("#walkSurpriseModal .modal-body").text("You hear a rustling coming from the long grass. What do you do?");
@@ -546,5 +548,9 @@ $(document).ready(function () {
                 console.error("Error fetching Pokémon:", error);
             });
     }
+
+    // add a new function and modal (reuse rename modal) here to give pokemon a name
+    // "Would you like to give your adopted ... a name? input"
+    // if click adopt, then ask for a nickname (new modal?) add new pokemon to userCollection array (through species number) and close
 
 });
