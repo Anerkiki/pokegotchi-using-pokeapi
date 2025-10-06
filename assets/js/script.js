@@ -319,7 +319,7 @@ $(document).ready(function () {
                 // Math.min will always find the minimum value, so if the
                 // first value is set to 100 then no matter how high the new
                 // happiness value gets after petting, it won't ever exceed 100
-                pokemon.happiness = Math.min(100, pokemon.happiness + 5);
+                pokemon.happiness = Math.min(100, pokemon.happiness + 10);
                 // this stops it cycling through the rest of the
                 // pokemon once the correct one has been found
                 break;
@@ -386,7 +386,7 @@ $(document).ready(function () {
             if (pokemon.index === uniqueIndex) {
                 if (pokemon.health < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
-                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before training anymore!</p><p>(Try giving them a potion)</p>");
+                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                 } else if (pokemon.hunger < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
