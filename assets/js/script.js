@@ -82,7 +82,7 @@ $(document).ready(function () {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
+                                    <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
 
                                 <div class="progress-bars col-11 col-md-5">
                                     <div>
@@ -203,7 +203,8 @@ $(document).ready(function () {
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
-                const imageUrl = data.sprites.front_default;
+                const imageFront = data.sprites.front_default;
+                const imageBack = data.sprites.back_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
                 let nickname;
@@ -218,7 +219,8 @@ $(document).ready(function () {
                     index: uniqueIndex,
                     species: species,
                     name: pokemonName,
-                    image: imageUrl,
+                    image_front: imageFront,
+                    image_back: imageBack,
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,
@@ -440,7 +442,7 @@ $(document).ready(function () {
             // add the random pokemon nickname to the text in the modal
             $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
             // add image to modal
-            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].image}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
+            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].image_back}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
             // updating the inner text
             $("#walk-results").text(results);
             // displaying the modal
@@ -471,11 +473,11 @@ $(document).ready(function () {
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
-                const imageUrl = data.sprites.front_default;
+                const imageFront = data.sprites.front_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name; // ADD LATER
                 // Adding the new details to the modal box
-                let results = `<img src="${imageUrl}" alt="${pokemonName}">`
+                let results = `<img src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${pokemonName} appears in front of you. What do you do?<p>`
                 $("#wildEncounterModal .modal-body").html(results);
                 // displaying the modal
@@ -494,17 +496,18 @@ $(document).ready(function () {
     function addWildPokemon() {
         const speciesNumber = wildSpeciesNum;
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
-        let level = 1;
-        let happiness = 80;
+        let level = Math.floor(Math.random() * 5) + 1; // random between 1 and 5
+        let happiness = 10;
         let health = 80;
-        let hunger = 80;
+        let hunger = 40;
         let uniqueIndex = Date.now();
         // Fetch Pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
-                const imageUrl = data.sprites.front_default;
+                const imageFront = data.sprites.front_default;
+                const imageBack = data.sprites.back_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
                 let nickname = pokemonName;
@@ -513,7 +516,8 @@ $(document).ready(function () {
                     index: uniqueIndex,
                     species: speciesNumber,
                     name: pokemonName,
-                    image: imageUrl,
+                    image_front: imageFront,
+                    image_back: imageBack,
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,
