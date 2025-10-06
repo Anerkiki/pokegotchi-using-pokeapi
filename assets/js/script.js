@@ -62,7 +62,8 @@ $(document).ready(function () {
         $(".starter-personality-7").text(personality7);
     }
 
-    $("#refresh-starter-personalities").on("click", addPersonalitiesToStarterChoices);
+    $("#refresh-personalities-nav").on("click", addPersonalitiesToStarterChoices);
+    $("#refresh-personalities-main").on("click", addPersonalitiesToStarterChoices);
 
     // Triggered every time user pokémon collection is updated
     function displayUserPokemon() {
@@ -225,7 +226,8 @@ $(document).ready(function () {
                 // Remove starter choice form and add walk button
                 $("#starter-options-form").addClass("hidden");
                 $("#walk-button").removeClass("hidden");
-                $("#refresh-starter-personalities").addClass("hidden");
+                $("#refresh-personalities-nav").addClass("hidden");
+                $("#refresh-personalities-main").addClass("hidden");
                 // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
             })
@@ -531,7 +533,6 @@ $(document).ready(function () {
             });
     }
 
-
     function openNewRenameModal() {
         $("wild-new-nickname").text(""); // clear the old nickname - not working atm
         // Show the modal
@@ -554,9 +555,5 @@ $(document).ready(function () {
         pokemonToEditIndex = null; // Clear the global index
         displayUserPokemon();
     }
-
-    // add a new function and modal (reuse rename modal) here to give pokemon a name
-    // "Would you like to give your adopted ... a name? input"
-    // if click adopt, then ask for a nickname (new modal?) add new pokemon to userCollection array (through species number) and close
 
 });
