@@ -111,27 +111,17 @@ $(document).ready(function () {
                                             aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
                                     </li>
                                     <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
                                         <button class="action-berry dropdown-item"
                                             aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-potion dropdown-item"
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
                                         <button class="action-pet dropdown-item"
                                             aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
                                     </li>
-
                                 </ul>
                             </div>
                             <div>
