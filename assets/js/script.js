@@ -107,8 +107,8 @@ $(document).ready(function () {
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <button class="action-pet dropdown-item"
-                                            aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
+                                        <button class="action-train dropdown-item"
+                                            aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -128,9 +128,10 @@ $(document).ready(function () {
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <button class="action-train dropdown-item"
-                                            aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
+                                        <button class="action-pet dropdown-item"
+                                            aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
                                     </li>
+
                                 </ul>
                             </div>
                             <div>
@@ -147,31 +148,12 @@ $(document).ready(function () {
             }
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
-            // removed checkForLowStats(); from here - REMOVE once right place has been found
         } else {
             // Clears any old pokemon from the HTML
             $("#pokemon-collection").html("");
 
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
-        }
-    }
-
-    // WORK OUT WHERE TO CALL THIS - I only want it when any bars go to 0 the first time.
-    // personalise with which pokemon needs healing/is hungry
-    
-    function checkForLowStats() {
-        for (const pokemon of userPokemon) {
-            if (pokemon.health === 0) {
-                $("#alertModal .modal-body").text("Your pokémon need healing with potions!");
-                
-                $("#alertModal").modal("show");
-            } else {
-                if (pokemon.hunger === 0) {
-                    $("#alertModal .modal-body").html("<p>Your pokémon is hungry!<p></p>Try feeding them some berries!</p>");
-                    $("#alertModal").modal("show");
-                }
-            }
         }
     }
 
@@ -317,7 +299,7 @@ $(document).ready(function () {
         $("#renameModal").modal("show");
     }
 
-    $("#confirm-rename-button").on("click", renamePokemon);
+    $("#rename-button").on("click", renamePokemon);
 
     function renamePokemon() {
         let newNickname = $("#new-nickname").val().trim();
@@ -410,16 +392,19 @@ $(document).ready(function () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
-                if (pokemon.health < 10) {
-                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before battling anymore!</p><p>(Try giving them a potion)</p>");
+                if (pokemon.health < 20) {
+                    pokemon.happiness = Math.max(0, pokemon.happiness - 5);
+                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before training anymore!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
-                    // this has worked to stop level going up, but modal is being overridden by checkForLowStats() modal message
-                    // - not super important
+                } else if (pokemon.hunger < 20) {
+                    pokemon.happiness = Math.max(0, pokemon.happiness - 5);
+                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
+                    $("#alertModal").modal("show");
                 } else {
                     // Math.max will always find the maximum value, so if the
                     // first value is set to 0 then no matter how low the health
                     // value gets from battling, it won't ever be less than 0
-                    pokemon.health = Math.max(0, pokemon.health - 5);
+                    pokemon.health = Math.max(0, pokemon.health - 10);
                     pokemon.hunger = Math.max(0, pokemon.hunger - 20);
                     pokemon.level = pokemon.level + 0.5;
                     break;
@@ -427,8 +412,6 @@ $(document).ready(function () {
             }
         }
         displayUserPokemon();
-        // need to change this to specific pokemon - TO ADD TO LATER
-        checkForLowStats();
     }
 
     // Walk button functions
@@ -436,13 +419,11 @@ $(document).ready(function () {
     $("#walk-button").on("click", goForAWalk);
 
     function goForAWalk() {
-        // generate random pokemon name from user's pokemon collection
+        // generate random pokemon from user's pokemon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
-        // add the random pokemon nickname to the text in the modal
-        $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
         // Generate random number
-        let randomNumber = Math.floor(Math.random() * 7);
-        if (userPokemon[randomPokemon].level > 5 && randomNumber === 3 && userPokemon.length > 6) {
+        let randomNumber = Math.floor(Math.random() * 5);
+        if (userPokemon[randomPokemon].level > 5 && randomNumber === 3) {
             walkDisturbance();
         } else {
             // Set the walk results:
@@ -450,11 +431,16 @@ $(document).ready(function () {
             lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
             // results to display in modal:
             let results = lastBerryWalkResult + " berries"
-            if (lastBerryWalkResult < 6) {
+            if (lastBerryWalkResult < 5) {
                 results += " and " + lastPotionWalkResult + " potions"
             } else {
                 lastPotionWalkResult = 0;
             }
+            // Updating the modal
+            // add the random pokemon nickname to the text in the modal
+            $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
+            // add image to modal
+            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].image}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
             // updating the inner text
             $("#walk-results").text(results);
             // displaying the modal
@@ -536,17 +522,43 @@ $(document).ready(function () {
                     health: health,
                     hunger: hunger,
                 });
+                // update pokémon to edit index to new pokemon for renaming
+                pokemonToEditIndex = uniqueIndex;
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
-
                 // TO DO: Add ability to rename here
+                openNewRenameModal();
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
             });
+    }
+
+
+    function openNewRenameModal() {
+        $("wild-new-nickname").text(""); // clear the old nickname - not working atm
+        // Show the modal
+        $("#wildRenameModal").modal("show");
+    }
+
+    $("#wild-rename-button").on("click", renameNewPokemon)
+
+    function renameNewPokemon() {
+        let newNickname = $("#wild-new-nickname").val().trim();
+        // Use find() to instantly locate the one object we need.
+        const pokemonToRename = userPokemon.find(p => p.index === pokemonToEditIndex);
+        if (!newNickname) {
+            // Use the original species name as the nickname
+            pokemonToRename.nickname = pokemonToRename.name;
+        } else {
+            pokemonToRename.nickname = newNickname;
+        }
+        $("#wildRenameModal").modal("hide");
+        pokemonToEditIndex = null; // Clear the global index
+        displayUserPokemon();
     }
 
     // add a new function and modal (reuse rename modal) here to give pokemon a name
