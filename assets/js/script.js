@@ -226,8 +226,11 @@ $(document).ready(function () {
                 // Remove starter choice form and add walk button
                 $("#starter-options-form").addClass("hidden");
                 $("#walk-button").removeClass("hidden");
+
+                // Ensures both refresh starter personality buttons are hidden after the starter is chosen
                 $("#refresh-personalities-nav").addClass("hidden");
                 $("#refresh-personalities-main").addClass("hidden");
+
                 // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
             })

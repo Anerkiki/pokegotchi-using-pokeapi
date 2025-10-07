@@ -150,6 +150,10 @@ button#add-first-pokemon:hover {
     margin: 0;
 }
 
+#refresh-personalities-main {
+    display: none;
+}
+
 /* Header and Navbar */
 
 #page-title span {
@@ -346,6 +350,15 @@ footer span {
     color: var(--secondary-colour);
     font-size: 2.2rem;
     }
+
+    /* Responsive visibility for 'Refresh Personalities' buttons  */
+    #refresh-personalities-nav {
+        display: none;
+    }
+
+    #refresh-personalities-main {
+        display: inline-block;
+    }
 }
 
 @media (max-width: 768px) {
@@ -411,7 +424,7 @@ footer span {
      padding: 0;
     }
 
-    button.btn {
+    button.btn, #inventory-button {
         font-size: 1.8rem;
     }
     /* Add in inventory button too as this doesn't affect that */
