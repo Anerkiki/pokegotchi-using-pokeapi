@@ -120,8 +120,8 @@ $(document).ready(function () {
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
                                     </li>
                                     <li>
-                                        <button class="action-pet dropdown-item"
-                                            aria-label="Pet ${pokemon.nickname} to increase it's happiness bar">Pet</button>
+                                        <button class="action-play dropdown-item"
+                                            aria-label="Play with ${pokemon.nickname} to increase it's happiness bar">Play With</button>
                                     </li>
                                 </ul>
                             </div>
@@ -150,8 +150,27 @@ $(document).ready(function () {
 
     // Functions with Handlers
 
-    $(".starter").on("click", selectAndStyleStarter);
+    // This means users can use enter/esc keys to interact with modals
+    document.addEventListener('keydown', handleModalKeyActions);
+    function handleModalKeyActions(event) {
+        // Bootstrap adds the 'show' class to a modal when it is visible
+        // so this checks to see if there is a modal with both the 
+        // .show and .modal classes, which means it is open
+        const openModal = document.querySelector('.modal.show');
+        if (openModal) {
+            const cancelButton = openModal.querySelector('.cancel-modal-button');
+            const confirmButton = openModal.querySelector('.confirm-modal-button');
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelButton.click();
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                confirmButton.click();
+            }
+        }
+    }
 
+    $(".starter").on("click", selectAndStyleStarter);
     // this function allows the initial selection to be made by clicking
     // anywhere inside the starter box, not only on the radio/name label
     // & also adds a class to style the selected starter pokemon box
@@ -315,15 +334,15 @@ $(document).ready(function () {
 
     // Action/Interaction functions
 
-    $("#pokemon-collection").on("click", ".action-pet", actionPet);
+    $("#pokemon-collection").on("click", ".action-play", actionPlay);
 
-    function actionPet() {
+    function actionPlay() {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
                 // Math.min will always find the minimum value, so if the
                 // first value is set to 100 then no matter how high the new
-                // happiness value gets after petting, it won't ever exceed 100
+                // happiness value gets after playing, it won't ever exceed 100
                 pokemon.happiness = Math.min(100, pokemon.happiness + 10);
                 // this stops it cycling through the rest of the
                 // pokemon once the correct one has been found

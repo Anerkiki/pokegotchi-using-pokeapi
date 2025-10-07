@@ -149,7 +149,7 @@
     </main>
 
     <footer>
-        <div id="tipCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div id="tipCarousel" class="carousel carousel-dark slide px-2" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#tipCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Tip 1"></button>
                 <button type="button" data-bs-target="#tipCarousel" data-bs-slide-to="1" aria-label="Tip 2"></button>
@@ -192,7 +192,7 @@
                 <!-- Message will be injected here -->
             </div>
                 <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal"><h3>Okay</h3></button>
+                    <button class="cancel-modal-button confirm-modal-button" data-bs-dismiss="modal" type="button"><h3>Okay</h3></button>
                 </div>
             </div>
         </div>
@@ -210,8 +210,8 @@
                 <!-- Message will be injected here -->
             </div>
                 <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal"><h3>Run Away</h3></button>
-                    <button id="investigate-button" type="button" data-bs-dismiss="modal"><h3>Investigate</h3></button>
+                    <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
+                    <button id="investigate-button" class="confirm-modal-button" data-bs-dismiss="modal" type="button"><h3>Investigate</h3></button>
                 </div>
             </div>
         </div>
@@ -228,28 +228,29 @@
                 <!-- Message will be injected here -->
             </div>
                 <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal"><h3>Run Away</h3></button>
-                    <button id="adopt-button" type="button" data-bs-dismiss="modal"><h3>Adopt</h3></button>
+                    <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
+                    <button id="adopt-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal"><h3>Adopt</h3></button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Walk Results Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="walkResultsLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="staticBackdropLabel">On your walk..</h2>
+                    <h2 class="modal-title" id="walkResultsLabel">On your walk..</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <span id="walk-image"></span>
                     <p>You and <span id="random-user-pokemon">your pokémon</span> found <span id="walk-results">a lovely stream to walk along</span>!</p>
+                    <!-- The backup text doesn't make sense with buttons - remove if not needed -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Leave</h3></button>
-                    <button id="add-walk-items" type="button" class="btn btn-primary" data-bs-dismiss="modal"><h3>Collect</h3></button>
+                    <button class="cancel-modal-button btn btn-secondary" data-bs-dismiss="modal" type="button"><h3>Leave</h3></button>
+                    <button id="add-walk-items" class="confirm-modal-button btn btn-primary" data-bs-dismiss="modal" type="button"><h3>Collect</h3></button>
                 </div>
             </div>
         </div>
@@ -267,8 +268,8 @@
                     <p>Are you sure you want to release your Pokémon into the wild?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Cancel</h3></button>
-                    <button id="confirm-release-button" type="button" class="btn btn-danger"><h3>Release</h3></button>
+                    <button class="cancel-modal-button btn btn-secondary" data-bs-dismiss="modal" type="button"><h3>Cancel</h3></button>
+                    <button id="confirm-release-button" class="confirm-modal-button btn" type="button"><h3>Release</h3></button>
                 </div>
             </div>
         </div>
@@ -287,8 +288,8 @@
                     <input id="new-nickname" type="text" value="new-nickname">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>Cancel</h3></button>
-                    <button id="rename-button" type="button" class="btn btn-danger"><h3>Rename</h3></button>
+                    <button class="cancel-modal-button btn btn-secondary" data-bs-dismiss="modal" type="button"><h3>Cancel</h3></button>
+                    <button id="rename-button" class="confirm-modal-button btn" type="button"><h3>Rename</h3></button>
                 </div>
             </div>
         </div>
@@ -307,8 +308,8 @@
                     <input id="wild-new-nickname" type="text">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><h3>No Thanks</h3></button>
-                    <button id="wild-rename-button" type="button" class="btn btn-danger"><h3>Great</h3></button>
+                    <button class="cancel-modal-button btn btn-secondary" data-bs-dismiss="modal" type="button"><h3>No Thanks</h3></button>
+                    <button id="wild-rename-button" class="confirm-modal-button btn" type="button"><h3>Great</h3></button>
                 </div>
             </div>
         </div>
