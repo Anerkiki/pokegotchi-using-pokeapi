@@ -31,6 +31,8 @@ body {
     min-height: 100vh;    
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    /* check this works */
 }
 
 h1 {
@@ -96,7 +98,7 @@ button {
     background-color: var(--primary-colour-pale);
     border: 4px solid var(--secondary-colour);
     border-radius: 20px;
-    margin-top: 10px;
+    margin: 6px 0;
     padding: 7px 10px 3px 10px;
 }
 
@@ -174,7 +176,7 @@ button#add-first-pokemon:hover {
     border-left: 5px solid var(--secondary-colour);
     border-radius: 20px;
     margin: 2px 0;
-    padding-top: 10px;
+    padding: 10px 2px 0 2px;
 }
 
 .starter.selected-starter {
@@ -232,6 +234,9 @@ button#add-first-pokemon:hover {
 
 .details .personality {
     color: var(--secondary-colour);
+    min-height: 3.2rem;
+    /* this is the minimum height needed to ensure the 
+    height matches even if personalities change to 2 lines */
 }
 
 p.small-details {
@@ -300,6 +305,11 @@ footer span {
     background-color: var(--primary-colour-pale);
     border-bottom: 11px solid var(--primary-colour);
     padding: 30px 0 50px 0;
+}
+
+.carousel-item p {
+    min-height: 8rem; /* adjusted so height doesn't change when more rows of text  */
+    text-wrap: balance; /* makes blocks of text balanced */
 }
 
 /* Modals */
@@ -401,13 +411,11 @@ footer span {
         min-width: 270px;
     }
 
-    /* h2 {
-        font-size: 2.6rem;
-    } */
-    
-    /* .starter .details {
-        display: none;
-    } */
+    .carousel-item p {
+        font-size: 1.8rem;
+        min-height: 5.5rem; /* adjusted so height won't change with 3 rows of text */
+    }
+
 }
 
 @media (max-width: 395px) {
@@ -427,7 +435,7 @@ footer span {
     button.btn, #inventory-button {
         font-size: 1.8rem;
     }
-    /* Add in inventory button too as this doesn't affect that */
+
 }
 
 @media (max-width: 300px) {

@@ -53,6 +53,8 @@ $(document).ready(function () {
         });
     }
 
+    $("#refresh-personalities-nav, #refresh-personalities-main").on("click", addPersonalitiesToStarterChoices);
+    
     function addPersonalitiesToStarterChoices() {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
@@ -61,9 +63,6 @@ $(document).ready(function () {
         $(".starter-personality-4").text(personality4);
         $(".starter-personality-7").text(personality7);
     }
-
-    $("#refresh-personalities-nav").on("click", addPersonalitiesToStarterChoices);
-    $("#refresh-personalities-main").on("click", addPersonalitiesToStarterChoices);
 
     // Triggered every time user pokémon collection is updated
     function displayUserPokemon() {
