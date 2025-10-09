@@ -198,50 +198,13 @@
         </div>
     </div>
 
-    <!-- Walk Surprise Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="walkSurpriseModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Oh!</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            <div class="modal-body">
-                <!-- Message will be injected here -->
-            </div>
-                <div class="modal-footer">
-                    <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
-                    <button id="investigate-button" class="confirm-modal-button" data-bs-dismiss="modal" type="button"><h3>Investigate</h3></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pokémon Encounter Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal fade" id="wildEncounterModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Well hello there!</h2>
-                </div>
-            <div class="modal-body">
-                <!-- Message will be injected here -->
-            </div>
-                <div class="modal-footer">
-                    <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
-                    <button id="adopt-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal"><h3>Adopt</h3></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Walk Results Modal - Edited from Bootstrap Modal Example -->
+    <!-- Walk Results Modal (Static) - Edited from Bootstrap Modal Example -->
     <div class="modal" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="walkResultsLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="walkResultsLabel">On your walk..</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="modal-title d-none d-md-block" id="walkResultsLabel">On your walk..</h2>
+                    <button type="button" class="d-none d-md-block btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <span id="walk-image"></span>
@@ -251,6 +214,43 @@
                 <div class="modal-footer">
                     <button class="cancel-modal-button btn btn-secondary" data-bs-dismiss="modal" type="button"><h3>Leave</h3></button>
                     <button id="add-walk-items" class="confirm-modal-button btn btn-primary" data-bs-dismiss="modal" type="button"><h3>Collect</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Walk Surprise Modal (Static) - Edited from Bootstrap Modal Example -->
+    <div class="modal" id="walkSurpriseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="walkSurpriseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="walkSurpriseModalLabel">Oh!</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Message will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
+                <button id="investigate-button" class="confirm-modal-button" data-bs-dismiss="modal" type="button"><h3>Investigate</h3></button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pokémon Encounter Modal (Static) - Edited from Bootstrap Modal Example -->
+    <div class="modal" id="wildEncounterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="wildEncounterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="wildEncounterModalLabel">Well hello there!</h2>
+                </div>
+                <div class="modal-body">
+                    <!-- Message will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel-modal-button" data-bs-dismiss="modal" type="button"><h3>Run Away</h3></button>
+                    <button id="adopt-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal"><h3>Adopt</h3></button>
                 </div>
             </div>
         </div>

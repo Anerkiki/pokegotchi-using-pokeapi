@@ -480,7 +480,7 @@ $(document).ready(function () {
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
-        $("#walkSurpriseModal").modal("hide"); // Check is working correctly
+        $("#walkSurpriseModal").modal("hide");
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 152);
 
@@ -488,16 +488,24 @@ $(document).ready(function () {
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
+                if (pokemonName === "nidoran-f") {
+                    pokemonName = "Nidoran <i class='fa-solid fa-venus'></i>"
+                } else if (pokemonName === "nidoran-m") {
+                    pokemonName = "Nidoran <i class='fa-solid fa-mars'></i>"
+                } else if (pokemonName === "mr-mime") {
+                    pokemonName = "Mr Mime"
+                }
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal box
                 let results = `<img src="${imageFront}" alt="${pokemonName}">`
-                results += `<p>A wild ${pokemonName} appears in front of you. What do you do?<p>`
+                results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
                 $("#wildEncounterModal .modal-body").html(results);
                 // displaying the modal
                 $("#wildEncounterModal").modal("show");
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
+
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
@@ -507,6 +515,7 @@ $(document).ready(function () {
     $("#adopt-button").on("click", addWildPokemon);
 
     function addWildPokemon() {
+        $("#walkSurpriseModal").modal("hide");
         const speciesNumber = wildSpeciesNum;
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let level = Math.floor(Math.random() * 5) + 1; // random between 1 and 5
@@ -518,7 +527,14 @@ $(document).ready(function () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
             .then(response => response.json())
             .then(data => {
-                const pokemonName = capitalizeWords(data.name); // not working
+                const pokemonName = data.name;
+                if (pokemonName === "nidoran-f") {
+                    pokemonName = "Nidoran <i class='fa-solid fa-venus'></i>"
+                } else if (pokemonName === "nidoran-m") {
+                    pokemonName = "Nidoran <i class='fa-solid fa-mars'></i>"
+                } else if (pokemonName === "mr-mime") {
+                    pokemonName = "Mr Mime"
+                }
                 const imageFront = data.sprites.front_default;
                 const imageBack = data.sprites.back_default;
                 // Just the first type
@@ -528,7 +544,7 @@ $(document).ready(function () {
                 userPokemon.push({
                     index: uniqueIndex,
                     species: speciesNumber,
-                    name: pokemonName,
+                    name: capitalizeWords(pokemonName),
                     image_front: imageFront,
                     image_back: imageBack,
                     nickname: nickname,
