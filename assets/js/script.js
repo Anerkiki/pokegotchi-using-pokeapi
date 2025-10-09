@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     // Functions called when page loads
     updateInventory();
-    addPersonalitiesToStarterChoices();
+    addNewPersonalitiesToStarters();
 
     // Basic Text-conversion Functions
     function capitalizeFirstLetter(string) {
@@ -53,9 +53,9 @@ $(document).ready(function () {
         });
     }
 
-    $("#refresh-personalities-nav, #refresh-personalities-main").on("click", addPersonalitiesToStarterChoices);
-    
-    function addPersonalitiesToStarterChoices() {
+    $("#refresh-personalities-nav, #refresh-personalities-main").on("click", addNewPersonalitiesToStarters);
+
+    function addNewPersonalitiesToStarters() {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality4 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let personality7 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
@@ -86,16 +86,16 @@ $(document).ready(function () {
 
                                 <div class="progress-bars col-11 col-md-5">
                                     <div>
-                                        <p><label for="happiness">Happiness:</label></p>
-                                        <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
+                                        <p><label for="hunger">Hunger:</label></p>
+                                        <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
                                     </div>
                                     <div>
                                         <p><label for="health">Health:</label></p>
                                         <progress id="health" max="100" value="${pokemon.health}"></progress>
                                     </div>
                                     <div>
-                                        <p><label for="hunger">Hunger:</label></p>
-                                        <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
+                                        <p><label for="happiness">Happiness:</label></p>
+                                        <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
                                     </div>
                                 </div>
 
@@ -279,6 +279,7 @@ $(document).ready(function () {
             $("#pokemon-nickname").val(""); // Clear the nickname input box
             $('input[name="starter"]').prop('checked', false); // Deselect the radio button
             $(".starter").removeClass("selected-starter"); // Remove visual highlight
+            addNewPersonalitiesToStarters(); // Refresh starter choices in form
         } else {
             let newPokemonArray = [];
             for (let i = 0; i < userPokemon.length; i++) {
@@ -479,6 +480,7 @@ $(document).ready(function () {
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
+        $("#walkSurpriseModal").modal("hide"); // Check is working correctly
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 152);
 
@@ -487,8 +489,6 @@ $(document).ready(function () {
             .then(data => {
                 const pokemonName = data.name;
                 const imageFront = data.sprites.front_default;
-                // Just the first type
-                const primaryType = data.types[0].type.name; // ADD LATER
                 // Adding the new details to the modal box
                 let results = `<img src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${pokemonName} appears in front of you. What do you do?<p>`
@@ -518,7 +518,7 @@ $(document).ready(function () {
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
             .then(response => response.json())
             .then(data => {
-                const pokemonName = data.name;
+                const pokemonName = capitalizeWords(data.name); // not working
                 const imageFront = data.sprites.front_default;
                 const imageBack = data.sprites.back_default;
                 // Just the first type
@@ -546,7 +546,6 @@ $(document).ready(function () {
                 displayUserPokemon();
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
-                // TO DO: Add ability to rename here
                 openNewRenameModal();
             })
             .catch(error => {
