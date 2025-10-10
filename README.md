@@ -7,7 +7,7 @@
 
 
 
-View live website [here](https://anerkiki.github.io/.../) (Hosted on GitHub pages)
+View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (Hosted on GitHub pages)
 
 ---
 
@@ -596,64 +596,33 @@ I would like to thank the team at Code Institute, the members of the Slack commu
 Consistant variable/id/class names
   - all ids and classes are all in kebab-case, with the exception of modal ids which are in camelCase
 
-
-
 ---
 
 # To Dos
 
----
+- Change name for nidoran and mr mime to remove -s and add gender icons to nidoran on wild encounter function
+  - This line in wild encounter function isn't working
+  - const pokemonName = capitalizeWords(data.name); // not working?
 
 ## Next:
-
-- Organise style.css into page sections so it's neater and easier to understand
-
----
-
-You should still be able to feed a berry to or pet your pokemon, even if the health is at 0, without the modal coming up.
-This should only come up when trying to battle.
-
-Add in an issue to readme fixed issues:
-
-**Issue:** The alert from checkForLowStats is coming up (for 0 health - "your pokemon need healing with potions") -
-even when just trying to pet or feed a berry to pokemon, which I don't want it doing
-
-This may also fix the issue with the wrong modal coming up when trying to battle with 0 health
-
-**How I fixed it:**
-
-- displayUserCollection calls lowStats function - does this want to be moved?
-
-And maybe add in the commit title/image from commit to show changes after
-
+- Remove radios now that can click on the pokemon box anywhere
+- Remove the walk modal title and x on mobiles so that the full modal is visible with image and buttons are more accessible
 ### Then:
-
-- Link up rename button and make functions to change name
-
-<!-- Walks -->
-
-- After a walk, make the specific pokemon that joined you's hunger goes down
-
-- Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals/footer so players know.
-  - whether one shows up is linked to level of pokemon joining on the walk
-    - link this in via js - if [joining pokemon level > 10] then chance to encounter pokemon
-  - Put a footer in and make sure is always stuck to bottom
-    - Add to footer notes/tips about how to get more pokemon
-      - Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then go for a walk with them.
-
 <!-- Specificity -->
 - Maybe add in nickname (specificity) to modals for deleting and renaming pokemon
 
 - Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
 
-- WORK OUT WHERE TO CALL checkForLowStats - I only want it when any bars go to 0 the first time.
-  - personalise with which pokemon needs healing/is hungry
+- Reduce line height of modal titles to same as other titles
+
+- Add in enter and esc to work instead of okay/cancel, and maybe add in pressing the letter w will take you on a walk
 
 ## Bugs to Fix:
-
+- Issue with multiple pokemon appearing when enter button is clicked, the surprise encounter/disturbance modal with investigate button isn't closing the modal, or will make 2 pokemon appear sometimes. Selected second one by accident and first was gone.
 - Stop the images being squashed and make height match if width shrinks
 
 - stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
+  - maybe add a modal that is static and remove .fade so nothing else can be clicked once open?
 
 - Bug discovered after testing:
   - When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
@@ -668,54 +637,34 @@ And maybe add in the commit title/image from commit to show changes after
 }
 
 #### Style To Dos:
-
-- Choose a slide time and match all - 4000?
-
-- Make go for a walk button text go black when hover, but not release button, or rename button
-
 - remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
-
-- Testing on my phone:
-  - Title spreads to edges of screen
-
-###### Less Imortant/If Time
-
+- Change location of dropdown to be to the right of the button, instead of in line with it
+- Remove the small border between sections in modals
+###### Less Important/If Time
+- Sometimes if I accidentally highlight the text in a modal, when that modal re-opens the text is stil highlighted - fix this so it isn't.
+- When testing on my phone, Title spreads to edges of screen - add padding to sides
+- Have clicking off one of the starter boxes deselect the selected starter
+- Add listener to make go for walk button be clicked when w is pressed
+  - But make sure it only works if walk button does not have the class hidden
 - Add in 2nd type if there is one in PokéAPI & join with " & "
-
 - Merge all modals to one?
-
 - If there is only 1 pokemon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen
   - Have a max-width though so it doesn't look weird
-
-- add more padding top to go for a walk button, do the same with inventory
-
 - Change colour of progress bars
-
-- When collect button has been clicked, there is a blue background that shows up - change this to a colour from palette
-
--  reduce size of input box
-
-- Remove the small border between sections in modals
-
-- to fix - actionTrain - if health is on 0 - there should be an error/alert modal - checkForStats() one shown not actionTrain()
-
+- When collect button has been clicked, there is a blue background on the button that shows up - change this to a colour from palette
+- Reduce size of input box
+- make interactions/stat changes slightly different for different personalities
+- Add evolving - once you get pokemon leveled up enough
+- Add type to wild encounter function
 ### Ideas
-
 - pokemon image fades if their health is low
-
-- When starter pokemon is selected, change the colour of the background to purple or something obvious
-
+- if pokemon is unhappy maybe change image so pokemon is facing away
+  - Could be done by adding backwards image/sideways imagen to userCollection objects
 - Have chance of being able to adopt wild pokemon not at 100%
-
-- in actionBerry function:
-  - maybe change image so pokemon turns around for a second or 2
-
 - if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any bars are low
-
 #### Done
-
 - Rename errorModal to alertModal
-- IMPORTANT: Add labels to radio buttons#
+- IMPORTANT: Add labels to radio buttons
 - Change Adding... background on button from white to primary pale
 - FIX: Issue with progress bars not filling full width next to image and interact button/progress bars being too long/short sometimes
 - Modals & Dropdown menu:
@@ -727,5 +676,43 @@ And maybe add in the commit title/image from commit to show changes after
 - Change text inside add button while loading to “Adding…” or similar (and stop it adding another?)
 - modals appear in different places on the screen - alerts are center, and walks are top - make all center
 - in releasePokemon - clear the input box and deselect the radio button selection when last pokemon deleted and form comes back
-
+- Removed fade from walkResultsModal, as it is a static modal so can't be missed, and then can have more immediate rewards
+- Change 'pet' to 'play with' as looks nicer and is the same amount of words as other actions so looks neater
+- add backwards image to walks
+- Make sure add enter key to be able to adopt/interact/say okay on modals
+- Add finding pokemon feature on walks for pokemon that are above a certain level and add that into walk pop up modals/footer so players know.
+  - whether one shows up is linked to level of pokemon joining on the walk
+    - link this in via js - if [joining pokemon level > 10] then chance to encounter pokemon
+  - Put a footer in and make sure is always stuck to bottom
+    - Add to footer notes/tips about how to get more pokemon
+      - Tip: to have a chance to find pokemon on a walk, train with your pokemon until over level 10 and then go for a walk with them.  
+- Stick footer to the bottom of the page
+- Link up rename button and make functions to change name
+- When starter pokemon is selected, change the colour of the background/border to something obvious
+- to fix - actionTrain - if health is on 0 - there should be an error/alert modal - checkForStats() one shown not actionTrain()
+- fix heights of starter boxes so that even if personalities goes over 2 lines the boxes still line up at the bottom
+- When delete last pokemon, refresh the starter choices too - make delete button also click refresh personalities button
+  - Did this by calling the addNewPersonalitiesToStarters function in the releasePokemon function if it is the last one in collection
+- Check why button in navbar is working seamlessly to refresh pokemon yet one in main section reloads the whole page - not linked to function
+  - Fix: the button didn't have type="button", so pressing the button was acting as if it was submitting the form, refreshing the whole page, adding this fixed the issue
+- If health is at 0, level should not go up
+**Add to readme**
+- Choose a slide time and match all - 4000
+  - I adjusted the times dependant on how long the text in the tip was and asked friends and family to check if it seemed long enough
+- set the walk results as a static backdrop modal, and it is the only one, as I noticed the title was an id, so if I replicated this elsewhere I would have to change this, which could be a Potential future problem, So I changed the id.
+---
+- You should still be able to feed a berry to or pet your pokemon, even if the health is at 0, without the modal coming up.
+This should only come up when trying to battle.
+**Issue:** The alert from checkForLowStats is coming up (for 0 health - "your pokemon need healing with potions") -
+even when just trying to pet or feed a berry to pokemon, which I don't want it doing
+This may also fix the issue with the wrong modal coming up when trying to battle with 0 health
+**How I fixed it:**
+- displayUserCollection calls lowStats function - I changed this to get rid of the function checkForLowStats and instead included the checks and error pop ups to the trainWith function instead
 ##### Check is done:
+- check if text-wrap: balance; negates the need for nbsp - LOOK INTO LATER */
+
+function surpriseEncounter()
+    $("#walkSurpriseModal").modal("hide"); // Check is working correctly!!!
+
+When press enter and new nickname pops up, the investigate modal is still up sometimes.
+- When pressing enter to adpot a pokemon and clicking fast, sometimes there are 2 options and even if the first is selected by clicking adopt and the second one too, only the second one logs
