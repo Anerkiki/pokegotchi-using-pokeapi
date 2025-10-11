@@ -96,8 +96,10 @@ button {
     background-color: var(--primary-colour-pale);
     border: 4px solid var(--secondary-colour);
     border-radius: 20px;
-    margin: 6px 0;
+    margin: 3px 0;
     padding: 7px 10px 3px 10px;
+    line-height: 0.8;
+    font-size: 3rem;
 }
 
 button:hover {
@@ -112,6 +114,11 @@ button:hover {
 
 .interact-button, #inventory-button {
     background-color: var(--tertiary-colour);
+}
+
+.interact-button {
+    margin-bottom: 10px;
+    padding: 12px 10px 8px 10px;
 }
 
 .interact-button:hover {
@@ -221,8 +228,8 @@ button#add-first-pokemon:hover {
     padding: 10px;
 }
 
-.pokemon-card>h3 {
-    line-height: 0.7;
+.pokemon-card>h2 {
+    line-height: 0.8;
 }
 
 .details>.level {
@@ -247,6 +254,7 @@ progress {
     width: 100%;
     max-width: 100%;
     /* This fixes the issues with progress bars not filling full space at some screen sizes */
+    margin: 0;
 }
 
 img {
@@ -258,7 +266,8 @@ img {
 ul.dropdown-menu {
     background-color: var(--tertiary-colour-opaque);
     border: 4px solid var(--secondary-colour);
-    border-radius: 20px;
+    border-radius: 18px;
+    padding: 10px 0;
 }
 
 ul.dropdown-menu button {
@@ -271,7 +280,12 @@ ul.dropdown-menu button:hover {
 }
 
 .dropdown-item {
+    margin-top: 6px;
     font-size: 2rem;
+}
+
+.dropdown-divider {
+    margin: 2px 0;
 }
 
 /* Footer */

@@ -74,7 +74,7 @@ $(document).ready(function () {
                     <div class="col-12 col-xl-6">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
-                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)} the&nbsp;${capitalizeWords(pokemon.name)}</h2>
+                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)}<br>the ${capitalizeWords(pokemon.name)}</h2>
 
                             <div class = "row justify-content-center text-start">
                                     <div class="details">
@@ -102,7 +102,7 @@ $(document).ready(function () {
                             </div>
 
                             <div>
-                                <button type="button" class="interact-button btn-lg dropdown-toggle text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="interact-button btn-lg text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
                                         Interact with ${capitalizeWords(pokemon.nickname)}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -111,12 +111,21 @@ $(document).ready(function () {
                                             aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
                                     </li>
                                     <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
                                         <button class="action-berry dropdown-item"
                                             aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
                                     </li>
                                     <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
                                         <button class="action-potion dropdown-item"
                                             aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-play dropdown-item"
@@ -128,6 +137,8 @@ $(document).ready(function () {
                                 <button class="release-pokemon secondary-button" type="button">
                                     Release ${capitalizeWords(pokemon.nickname)}
                                 </button>
+                            </div>
+                            <div>
                                 <button class="rename-pokemon" type="button">
                                     Rename ${capitalizeWords(pokemon.nickname)}
                                 </button>
@@ -422,7 +433,7 @@ $(document).ready(function () {
                     // value gets from battling, it won't ever be less than 0
                     pokemon.health = Math.max(0, pokemon.health - 10);
                     pokemon.hunger = Math.max(0, pokemon.hunger - 20);
-                    pokemon.level = pokemon.level + 0.5;
+                    pokemon.level = pokemon.level + 1;
                     break;
                 }
             }
@@ -439,7 +450,7 @@ $(document).ready(function () {
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // Generate random number
         let randomNumber = Math.floor(Math.random() * 5);
-        if (userPokemon[randomPokemon].level > 5 && randomNumber === 3) {
+        if (userPokemon[randomPokemon].level > 4 && randomNumber === 3) {
             walkDisturbance();
         } else {
             // Set the walk results:
@@ -482,16 +493,16 @@ $(document).ready(function () {
     function surpriseEncounter() {
         $("#walkSurpriseModal").modal("hide");
         // Generate random species number and save to global variable
-        wildSpeciesNum = Math.floor(Math.random() * 152);
-
+        wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
+        // Fetch details of random pokémon from PokeAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${wildSpeciesNum}/`)
             .then(response => response.json())
             .then(data => {
-                const pokemonName = data.name;
+                let pokemonName = data.name;
                 if (pokemonName === "nidoran-f") {
-                    pokemonName = "Nidoran <i class='fa-solid fa-venus'></i>"
+                    pokemonName = "Nidoran♀"
                 } else if (pokemonName === "nidoran-m") {
-                    pokemonName = "Nidoran <i class='fa-solid fa-mars'></i>"
+                    pokemonName = "Nidoran♂"
                 } else if (pokemonName === "mr-mime") {
                     pokemonName = "Mr Mime"
                 }
@@ -505,7 +516,6 @@ $(document).ready(function () {
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
-
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
@@ -523,15 +533,15 @@ $(document).ready(function () {
         let health = 80;
         let hunger = 40;
         let uniqueIndex = Date.now();
-        // Fetch Pokémon data from PokéAPI
+        // Fetch details of new pokémon from PokeAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
             .then(response => response.json())
             .then(data => {
-                const pokemonName = data.name;
+                let pokemonName = data.name;
                 if (pokemonName === "nidoran-f") {
-                    pokemonName = "Nidoran <i class='fa-solid fa-venus'></i>"
+                    pokemonName = "Nidoran♀;"
                 } else if (pokemonName === "nidoran-m") {
-                    pokemonName = "Nidoran <i class='fa-solid fa-mars'></i>"
+                    pokemonName = "Nidoran♂"
                 } else if (pokemonName === "mr-mime") {
                     pokemonName = "Mr Mime"
                 }
