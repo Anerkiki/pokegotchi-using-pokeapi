@@ -209,7 +209,7 @@ $(document).ready(function () {
             return;
         }
         // In case new pokemon is slow to load, so the user knows the click has worked
-        $("#add-first-pokemon>h3").text("Adding...");
+        $("#add-first-pokemon").text("Adding...");
         // Get nickname or default to species string
         let nicknameInput = $("#pokemon-nickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
@@ -286,7 +286,7 @@ $(document).ready(function () {
     function releasePokemon() {
         if (userPokemon.length === 1) {
             userPokemon = [];
-            $("#add-first-pokemon>h3").text("Add To Collection")// Reset the text on the starter form button
+            $("#add-first-pokemon").text("Add To Collection")// Reset the text on the starter form button
             $("#pokemon-nickname").val(""); // Clear the nickname input box
             $('input[name="starter"]').prop('checked', false); // Deselect the radio button
             $(".starter").removeClass("selected-starter"); // Remove visual highlight

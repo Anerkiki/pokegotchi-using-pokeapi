@@ -2,22 +2,23 @@
 
 :root {
     /* Fonts */
-        --font-heading: "Monofett", monospace;
-        --font-paragraph: "Dongle", sans-serif;
+    --font-heading: "Monofett", monospace;
+    --font-paragraph: "Dongle", sans-serif;
 
     /* Colour Palette Colours */
-        --primary-colour: #57ffcd;
-        --primary-colour-pale: #c8fbec;
-        /* lighter? more like aq-mar? */
-        --other-background: #3dd3b9;
-        --aquamarine: aquamarine;
-        --secondary-colour: blueviolet;
-        --other-purple: #8853d3;
-        --tertiary-colour: rgba(var(--bs-tertiary-bg-rgb)); /* off-white - matches navbar */
-        --tertiary-colour-opaque: rgba(248, 249, 250, 0.9);
-        --quaternary-colour: #ec008b;
-        --other-pink: #f045a8;
-        /* Make pink colour slightly less bright, but with enough contrast against white(/aqua?) to read */
+    --primary-colour: #57ffcd;
+    --primary-colour-pale: #c8fbec;
+    /* lighter? more like aq-mar? */
+    --other-background: #3dd3b9;
+    --aquamarine: aquamarine;
+    --secondary-colour: blueviolet;
+    --other-purple: #8853d3;
+    --tertiary-colour: rgba(var(--bs-tertiary-bg-rgb));
+    /* off-white - matches navbar */
+    --tertiary-colour-opaque: rgba(248, 249, 250, 0.9);
+    --quaternary-colour: #ec008b;
+    --other-pink: #f045a8;
+    /* Make pink colour slightly less bright, but with enough contrast against white(/aqua?) to read */
 }
 
 /* Global Styles */
@@ -28,7 +29,7 @@ body {
     font-size: 2.5rem;
     background-color: var(--primary-colour);
     /* these are added so the footer sticks to the bottom even on larger screens  */
-    min-height: 100vh;    
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -57,17 +58,18 @@ p {
     line-height: 1;
 }
 
-nav p, nav .nav-link {
+nav p,
+nav .nav-link {
     padding: 0 20px;
     color: var(--quaternary-colour);
 }
 
-input[type='radio'] { 
+input[type='radio'] {
     transform: scale(2.5);
     accent-color: var(--secondary-colour);
 }
 
-input[type='text'] { 
+input[type='text'] {
     padding: 10px;
     color: var(--secondary-colour);
     border: 4px solid var(--secondary-colour);
@@ -105,22 +107,24 @@ button:hover {
     color: black;
 }
 
-.secondary-button, .cancel-modal-button {
+.secondary-button,
+.cancel-modal-button {
     color: var(--quaternary-colour);
     background-color: var(--primary-colour-pale);
     border: 4px solid var(--quaternary-colour);
 }
 
-.interact-button, #inventory-button {
+.interact-button,
+#inventory-button {
     background-color: var(--tertiary-colour);
 }
 
-.interact-button {
-    margin-bottom: 10px;
+.interact-button, #walk-button {
     padding: 12px 10px 8px 10px;
 }
 
-.interact-button, #walk-button {
+.interact-button,
+#walk-button {
     border: 5px solid var(--quaternary-colour);
     border-bottom: 6px solid var(--secondary-colour);
     border-left: 6px solid var(--secondary-colour);
@@ -319,8 +323,10 @@ footer span {
 }
 
 .carousel-item p {
-    min-height: 8rem; /* adjusted so height doesn't change when more rows of text  */
-    text-wrap: balance; /* makes blocks of text balanced */
+    min-height: 8rem;
+    /* adjusted so height doesn't change when more rows of text  */
+    text-wrap: balance;
+    /* makes blocks of text balanced */
 }
 
 /* Modals */
@@ -338,6 +344,7 @@ footer span {
     border-radius: 50px;
     padding: 20px 10px;
     font-size: 2.2rem;
+    /* make this bigger on larger screens? */
 }
 
 .main-modal-content {
@@ -368,11 +375,14 @@ footer span {
 }
 
 .modal-buttons {
-    margin-top: 15px;
+    margin-top: 15px 10px 0 10px;
+    /* display: flex;
+    justify-content: space-evenly; */
 }
 
 .modal-buttons button {
     padding: 7px 10px 3px 10px;
+    margin: 10px 20px 0 20px;
 }
 
 .modal-buttons .confirm-modal-button {
@@ -397,8 +407,8 @@ footer span {
     }
 
     .details>.level {
-    color: var(--secondary-colour);
-    font-size: 2.2rem;
+        color: var(--secondary-colour);
+        font-size: 2.2rem;
     }
 
     /* Responsive visibility for 'Refresh Personalities' buttons  */
@@ -417,17 +427,9 @@ footer span {
         font-size: 3rem;
     }
 
-    /* .pokemon-card h2 {
-        font-weight: 700;
-    } */
-
     label>h3 {
         font-size: 3rem;
     }
-    
-    /* .pokemon-card h3 {
-        font-weight: 700;
-    } */
 
     .starter .details>p {
         font-size: 2.5rem;
@@ -453,9 +455,9 @@ footer span {
 
     .carousel-item p {
         font-size: 1.8rem;
-        min-height: 5.5rem; /* adjusted so height won't change with 3 rows of text */
+        min-height: 6rem;
+        /* adjusted so height won't change with 3 rows of text */
     }
-
 }
 
 @media (max-width: 395px) {
@@ -465,17 +467,21 @@ footer span {
     }
 
     h3 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
-    input[type='text'] { 
-     padding: 0;
+    input[type='text'] {
+        padding: 0;
     }
 
-    button.btn, #inventory-button {
+    button.btn,
+    #inventory-button {
         font-size: 1.8rem;
     }
 
+    .modal-buttons button {
+        margin: 0;
+    }
 }
 
 @media (max-width: 300px) {
@@ -483,5 +489,4 @@ footer span {
     h1 {
         font-size: 2.5rem;
     }
-
 }
