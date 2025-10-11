@@ -204,7 +204,7 @@ $(document).ready(function () {
         const species = $("input[name='starter']:checked").val();
         // If no starter selected, show modal and stop
         if (!species) {
-            $("#alertModal .modal-body").text("You need to pick a Pokémon!");
+            $("#alertModal .main-modal-content").text("You need to pick a Pokémon!");
             $("#alertModal").modal("show");
             return;
         }
@@ -367,14 +367,14 @@ $(document).ready(function () {
 
     function actionBerry() {
         if (inventory.berries < 1) {
-            $("#alertModal .modal-body").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
+            $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
             $("#alertModal").modal("show");
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
                 if (pokemon.index === uniqueIndex) {
                     if (pokemon.hunger === 100) {
-                        $("#alertModal .modal-body").text("Your pokémon is now full!");
+                        $("#alertModal .main-modal-content").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
                     } else {
                         pokemon.hunger = Math.min(100, pokemon.hunger + 10);
@@ -392,14 +392,14 @@ $(document).ready(function () {
 
     function actionPotion() {
         if (inventory.potions < 1) {
-            $("#alertModal .modal-body").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
+            $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
             $("#alertModal").modal("show");
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
                 if (pokemon.index === uniqueIndex) {
                     if (pokemon.health === 100) {
-                        $("#alertModal .modal-body").text("Your pokémon is now at full health.");
+                        $("#alertModal .main-modal-content").text("Your pokémon is now at full health.");
                         $("#alertModal").modal("show");
                     } else {
                         pokemon.health = Math.min(100, pokemon.health + 10);
@@ -421,11 +421,11 @@ $(document).ready(function () {
             if (pokemon.index === uniqueIndex) {
                 if (pokemon.health < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
-                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
+                    $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                 } else if (pokemon.hunger < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
-                    $("#alertModal .modal-body").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
+                    $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
                     $("#alertModal").modal("show");
                 } else {
                     // Math.max will always find the maximum value, so if the
@@ -484,7 +484,7 @@ $(document).ready(function () {
     }
 
     function walkDisturbance() {
-        $("#walkSurpriseModal .modal-body").text("You hear a rustling coming from the long grass. What do you do?");
+        $("#walkSurpriseModal .main-modal-content").text("You hear a rustling coming from the long grass. What do you do?");
         $("#walkSurpriseModal").modal("show");
     }
 
@@ -510,7 +510,7 @@ $(document).ready(function () {
                 // Adding the new details to the modal box
                 let results = `<img src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
-                $("#wildEncounterModal .modal-body").html(results);
+                $("#wildEncounterModal .main-modal-content").html(results);
                 // displaying the modal
                 $("#wildEncounterModal").modal("show");
                 // Update displays in HTML
