@@ -139,7 +139,7 @@ $(document).ready(function () {
                                 </button>
                             </div>
                             <div>
-                                <button class="rename-pokemon" type="button">
+                                <button class="rename-pokemon secondary-button" type="button">
                                     Rename ${capitalizeWords(pokemon.nickname)}
                                 </button>
                             </div>
