@@ -599,45 +599,46 @@ Consistant variable/id/class names
 ---
 
 # To Dos
-
-- Change name for nidoran and mr mime to remove -s and add gender icons to nidoran on wild encounter function
-  - This line in wild encounter function isn't working
-  - const pokemonName = capitalizeWords(data.name); // not working?
-
+- remove h3 from label tags
 ## Next:
 - Remove radios now that can click on the pokemon box anywhere
 - Remove the walk modal title and x on mobiles so that the full modal is visible with image and buttons are more accessible
 ### Then:
 <!-- Specificity -->
 - Maybe add in nickname (specificity) to modals for deleting and renaming pokemon
-
 - Add specicifity to pokemon that needs healing/feeding - "Your Pokémon {nickname of one with 0 stat} needs feeding"
-
 - Reduce line height of modal titles to same as other titles
-
 - Add in enter and esc to work instead of okay/cancel, and maybe add in pressing the letter w will take you on a walk
-
 ## Bugs to Fix:
 - Issue with multiple pokemon appearing when enter button is clicked, the surprise encounter/disturbance modal with investigate button isn't closing the modal, or will make 2 pokemon appear sometimes. Selected second one by accident and first was gone.
 - Stop the images being squashed and make height match if width shrinks
-
-- stop it logging multiple times when clicking add starter to collection if slow connection - ends up with duplicates sometimes
+- If add to collection starter button is clicked while still adding (says Adding...), then another duplicate is added.
   - maybe add a modal that is static and remove .fade so nothing else can be clicked once open?
-
 - Bug discovered after testing:
   - When I delete last pokemon and the form comes back up, it stays at the bottom and I have to scroll up
-
 - When scroll bar buttons are clicked, the interact button background changes colour
-
 - Issue with rename input box looking too wide under about 500px
-  - This hasn't fixed it:
-
+  - This hadn't fixed it:
 #renameModal #new-nickname {
     max-width: 80%;
 }
 
+.modal-footer button {
+    border: 4px solid var(--secondary-colour);
+    border-radius: 15px;
+    text-transform: capitalize;
+    color: var(--secondary-colour);
+    background-color: var(--tertiary-colour);
+    margin-top: 0px;
+    padding: 3px 10px 0px 10px;
+
+
+    font-size: 3rem;
+    /* makes it larger but makes height of button too large */
+    
+}
+
 #### Style To Dos:
-- remove arrow in dropdown menu button for interacting with pokemon and replace with font awesome icon
 - Change location of dropdown to be to the right of the button, instead of in line with it
 - Remove the small border between sections in modals
 ###### Less Important/If Time
@@ -662,6 +663,7 @@ Consistant variable/id/class names
   - Could be done by adding backwards image/sideways imagen to userCollection objects
 - Have chance of being able to adopt wild pokemon not at 100%
 - if pokémon image is clicked on, a speech bubble will appear and give hints. or say that it’s hungry/needs healing etc if any bars are low
+- Add an arrow next to interact button from font awesome
 #### Done
 - Rename errorModal to alertModal
 - IMPORTANT: Add labels to radio buttons
@@ -696,6 +698,7 @@ Consistant variable/id/class names
 - Check why button in navbar is working seamlessly to refresh pokemon yet one in main section reloads the whole page - not linked to function
   - Fix: the button didn't have type="button", so pressing the button was acting as if it was submitting the form, refreshing the whole page, adding this fixed the issue
 - If health is at 0, level should not go up
+- remove arrow in dropdown menu button for interacting with pokemon (I did this by removing the class dropdown-toggle from the button)
 **Add to readme**
 - Choose a slide time and match all - 4000
   - I adjusted the times dependant on how long the text in the tip was and asked friends and family to check if it seemed long enough
@@ -708,7 +711,26 @@ even when just trying to pet or feed a berry to pokemon, which I don't want it d
 This may also fix the issue with the wrong modal coming up when trying to battle with 0 health
 **How I fixed it:**
 - displayUserCollection calls lowStats function - I changed this to get rid of the function checkForLowStats and instead included the checks and error pop ups to the trainWith function instead
+
+--- 
+
+Issue: Adding the nidoran symbols to the HTML
+I had to change const to let so that the name could be reassigned:
+Before
+```js
+                let pokemonName = data.name;
+                if (pokemonName === "nidoran-f") {
+                    pokemonName = "Nidoran&#9792;"
+                } else if (pokemonName === "nidoran-m") {
+                    pokemonName = "Nidoran&#9794;"
+                } else if (pokemonName === "mr-mime") {
+                    pokemonName = "Mr Mime"
+                }
+```
+
 ##### Check is done:
+- Increase padding in go for a walk to match inventory
+- Remove h3 from buttons - done - check the size of the text isn't too small
 - check if text-wrap: balance; negates the need for nbsp - LOOK INTO LATER */
 
 function surpriseEncounter()
