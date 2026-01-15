@@ -82,8 +82,9 @@ $(document).ready(function () {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
-
+                                    <div class="image-container">
+                                        <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
+                                    </div>
                                 <div class="progress-bars col-11 col-md-5">
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
@@ -103,7 +104,7 @@ $(document).ready(function () {
 
                             <div>
                                 <button type="button" class="interact-button btn-lg text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Interact with ${capitalizeWords(pokemon.nickname)}
+                                        Interact with ${capitalizeWords(pokemon.nickname)}&nbsp;<i class="fa-solid fa-chevron-down"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
@@ -199,6 +200,7 @@ $(document).ready(function () {
     $("#add-first-pokemon").on("click", addStarterPokemon);
 
     function addStarterPokemon(event) {
+        // console.log(userPokemon.length); // for testing //
         event.preventDefault();
         // Get the selected starter radio value
         const species = $("input[name='starter']:checked").val();
@@ -211,7 +213,7 @@ $(document).ready(function () {
         // In case new pokemon is slow to load, so the user knows the click has worked
         $("#add-first-pokemon").text("Adding...");
         // Get nickname or default to species string
-        let nicknameInput = $("#pokemon-nickname").val().trim();
+        let nicknameInput = $("#starter-nickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
         let level = 1;
         let happiness = 80;
@@ -287,7 +289,7 @@ $(document).ready(function () {
         if (userPokemon.length === 1) {
             userPokemon = [];
             $("#add-first-pokemon").text("Add To Collection")// Reset the text on the starter form button
-            $("#pokemon-nickname").val(""); // Clear the nickname input box
+            $("#starter-nickname").val(""); // Clear the nickname input box
             $('input[name="starter"]').prop('checked', false); // Deselect the radio button
             $(".starter").removeClass("selected-starter"); // Remove visual highlight
             addNewPersonalitiesToStarters(); // Refresh starter choices in form
@@ -580,7 +582,7 @@ $(document).ready(function () {
     }
 
     function openNewRenameModal() {
-        $("wild-new-nickname").text(""); // clear the old nickname - not working atm
+        $("#wild-new-nickname").text(""); // clear the old nickname - not working atm
         // Show the modal
         $("#wildRenameModal").modal("show");
     }

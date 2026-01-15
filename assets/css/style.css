@@ -131,6 +131,11 @@ button:hover {
     margin-bottom: 10px;
 }
 
+.fa-chevron-down {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 #walk-button {
     font-size: 2.2rem;
 }
@@ -404,6 +409,17 @@ footer span {
     border: 4px solid var(--quaternary-colour);
 }
 
+/* Modal Inputs */
+
+#new-nickname, #wild-new-nickname {
+    max-width: 100%;
+}
+
+#wild-new-nickname {
+    padding-bottom: 1px;
+    /* maybe add more if needed? ----------------------- */
+}
+
 @media (max-width: 992px) {
 
     h3 {
@@ -444,7 +460,7 @@ footer span {
         line-height: 1;
     }
 
-    /* img.sprite class needs removing here */
+    /* img.sprite class needs removing here ---------------------------- */
 }
 
 @media (max-width: 560px) {
@@ -455,10 +471,6 @@ footer span {
 
     h1 {
         font-size: 4rem;
-    }
-
-    #new-nickname {
-        min-width: 270px;
     }
 
     .carousel-item p {
@@ -479,7 +491,7 @@ footer span {
     }
 
     input[type='text'] {
-        padding: 0;
+        padding: 0 10px;
     }
 
     button.btn,
