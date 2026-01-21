@@ -102,7 +102,7 @@ $(document).ready(function () {
 
                             <div>
                                 <button type="button" class="interact-button btn-lg text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Interact with ${capitalizeWords(pokemon.nickname)}&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                        Interact with ${capitalizeWords(pokemon.nickname)} <i class="fa-solid fa-chevron-down"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
@@ -156,6 +156,7 @@ $(document).ready(function () {
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
             $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
+            $("#refresh-personalities-nav").removeClass("hidden");
         }
     }
 

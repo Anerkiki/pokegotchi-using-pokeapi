@@ -25,16 +25,10 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container">
-
-                <button id="walk-button" class="hidden">
-                    Go for a Walk
-                </button>
-                <button id="refresh-personalities-nav" class="secondary-button">
-                    <!-- need overwrite d-lg-block with hidden -->
-                    <!-- fix: change d-lg-block to be controlled with css instead maybe? -->
-                    Refresh Personalities
-                </button>
-
+                <!-- This button only shows once there are 0 pokemon in the collection -->
+                <button id="refresh-personalities-nav" class="secondary-button">Refresh Personalities</button>
+                <!-- This button only shows once there are 1+ pokemon in the collection -->
+                <button id="walk-button" class="hidden">Go for a Walk</button>
                 <button id="inventory-button" class="navbar-toggler secondary-button" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,9 +70,7 @@
                 <!-- Starter Option 1 - Bulbasaur -->
                 <div class="col-12 col-md-4 px-1">
                     <div class="starter border-edge">
-                        <i class="fa-solid fa-arrow-right radio-arrow"></i>&nbsp;
-                        <input type="radio" id="bulbasaur" name="starter" value="1">
-                        &nbsp;<i class="fa-solid fa-arrow-left radio-arrow"></i><br>
+                        <input type="radio" id="bulbasaur" name="starter" value="1">&nbsp;&nbsp;<br class="d-none d-md-block">
                         <label for="bulbasaur">
                             <h3>Bulbasaur</h3>
                         </label>
@@ -100,9 +92,7 @@
                 <!-- Starter Option 2 - Charmander -->
                 <div class="col-12 col-md-4 px-1">
                     <div class="starter border-edge">
-                        <i class="fa-solid fa-arrow-right radio-arrow"></i>&nbsp;
-                        <input type="radio" id="charmander" name="starter" value="4">
-                        &nbsp;<i class="fa-solid fa-arrow-left radio-arrow"></i><br>
+                        <input type="radio" id="charmander" name="starter" value="4">&nbsp;&nbsp;<br class="d-none d-md-block">
                         <label for="charmander">
                             <h3>Charmander</h3>
                         </label>
@@ -123,9 +113,7 @@
                 <!-- Starter Option 3 - Squirtle -->
                 <div class="col-12 col-md-4 px-1">
                     <div class="starter border-edge">
-                        <i class="fa-solid fa-arrow-right radio-arrow"></i>&nbsp;
-                        <input type="radio" id="squirtle" name="starter" value="7">
-                        &nbsp;<i class="fa-solid fa-arrow-left radio-arrow"></i><br>
+                        <input type="radio" id="squirtle" name="starter" value="7">&nbsp;&nbsp;<br class="d-none d-md-block">
                         <label for="squirtle">
                             <h3>Squirtle</h3>
                         </label>
@@ -177,20 +165,20 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3500">
-                    <p><br class="d-none d-md-block d-lg-none">To get berries and potions for your pokémon, go for a walk to find some!</p>
+                    <p><br class="d-none d-lg-block">To get berries and potions for your pokémon, go for a walk to find some!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <p><br class="d-lg-none">Train with your pokémon to increase their level!</p>
+                    <p><br class="d-none d-sm-block">Train with your pokémon to increase their level!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3500">
-                    <p>If your pokémon is over level 5, there is a chance of encountering wild pokémon on walks with
+                    <p><br class="d-none d-xl-block">If your pokémon is over level 5, there is a chance of encountering wild pokémon on walks with
                         them!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
-                    <p><br class="d-lg-none">You can adopt wild pokémon encountered on walks!</p>
+                    <p><br class="d-none d-sm-block">You can adopt wild pokémon encountered on walks!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3500">
-                    <p>Your pokémon's happiness will go down if you try to train while it is hungry or at low health!
+                    <p><br class="d-none d-xl-block">Your pokémon's happiness will go down if you try to train while it is hungry or at low health!
                     </p>
                 </div>
             </div>
