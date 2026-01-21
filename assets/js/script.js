@@ -11,9 +11,9 @@ $(document).ready(function () {
     };
 
     const pokemonPersonality = [
-        "Bashful", "Boisterous", "Bold", "Brave", "Calm",
-        "Determined", "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly",
-        "Loud", "Mischievous", "Mild", "Modest", "Naive", "Naughty", "Quiet",
+        "Bashful", "Boisterous", "Bold", "Brave", "Calm", "Determined",
+        "Docile", "Gentle", "Hardy", "Hasty", "Impish", "Jolly", "Loud",
+        "Mischievous", "Mild", "Modest", "Naive", "Naughty", "Quiet",
         "Quirky", "Relaxed", "Sassy", "Serious", "Timid",
     ];
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
     updateInventory();
     addNewPersonalitiesToStarters();
 
-    // Basic Text-conversion Functions
+    // Basic Text-Conversion Functions
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -157,6 +157,7 @@ $(document).ready(function () {
             $("#walk-button").addClass("hidden");
             $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
             $("#refresh-personalities-nav").removeClass("hidden");
+            $("#starter-nickname").focus();
         }
     }
 
@@ -585,10 +586,15 @@ $(document).ready(function () {
     }
 
     function openNewRenameModal() {
-        $("#wild-new-nickname").text(""); // clear the old nickname - not working atm
         // Show the modal
         $("#wildRenameModal").modal("show");
     }
+
+    // Anonymous function to clear old wild pokémon nickname from bootstrap modal and add focus to input box
+    // - only fires once modal and input are fully loaded and visible
+    $('#wildRenameModal').on('shown.bs.modal', function () {
+        $('#wild-new-nickname').val('').trigger('focus');
+    });
 
     $("#wild-rename-button").on("click", renameNewPokemon)
 
