@@ -270,7 +270,7 @@ p.small-details {
 
 progress {
     width: 100%;
-    max-width: 100%;
+    min-width: 100%;
     /* This fixes the issues with progress bars not filling full space at some screen sizes */
     margin: 0;
 }

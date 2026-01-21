@@ -82,9 +82,7 @@ $(document).ready(function () {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <div class="image-container">
-                                        <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
-                                    </div>
+                                    <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
                                 <div class="progress-bars col-11 col-md-5">
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
@@ -151,11 +149,13 @@ $(document).ready(function () {
             // Replace #pokemon-collection content with the current list
             $("#pokemon-collection").html(currentUserPokemon);
         } else {
+            // If there are 0 pokemon in collection (the last pokémon has been deleted):
             // Clears any old pokemon from the HTML
             $("#pokemon-collection").html("");
-
+            // Reset the starter form page to how it was
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
+            $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
         }
     }
 
@@ -210,8 +210,9 @@ $(document).ready(function () {
             $("#alertModal").modal("show");
             return;
         }
-        // In case new pokemon is slow to load, so the user knows the click has worked
-        $("#add-first-pokemon").text("Adding...");
+        // In case new pokemon is slow to load, the button is disabled so double clicks don't add more pokémon
+        // and text is changed so the user knows the click has worked
+        $("#add-first-pokemon").prop("disabled", true).text("Adding...");
         // Get nickname or default to species string
         let nicknameInput = $("#starter-nickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
@@ -267,6 +268,8 @@ $(document).ready(function () {
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
+                // If there is an error with the fetch, the button won't stay disabled
+                $("#add-first-pokemon").prop("disabled", false).text("Error - Try Again!");
             });
     }
 
@@ -288,7 +291,6 @@ $(document).ready(function () {
     function releasePokemon() {
         if (userPokemon.length === 1) {
             userPokemon = [];
-            $("#add-first-pokemon").text("Add To Collection")// Reset the text on the starter form button
             $("#starter-nickname").val(""); // Clear the nickname input box
             $('input[name="starter"]').prop('checked', false); // Deselect the radio button
             $(".starter").removeClass("selected-starter"); // Remove visual highlight
