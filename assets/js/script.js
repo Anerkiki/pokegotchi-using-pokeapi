@@ -357,13 +357,13 @@ $(document).ready(function () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
+                pokemon.happiness = Math.min(100, pokemon.happiness + 15);
                 // Math.min will always find the minimum value, so if the
                 // first value is set to 100 then no matter how high the new
                 // happiness value gets after playing, it won't ever exceed 100
-                pokemon.happiness = Math.min(100, pokemon.happiness + 10);
+                break;
                 // this stops it cycling through the rest of the
                 // pokemon once the correct one has been found
-                break;
             }
         }
         displayUserPokemon();
@@ -383,7 +383,7 @@ $(document).ready(function () {
                         $("#alertModal .main-modal-content").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
                     } else {
-                        pokemon.hunger = Math.min(100, pokemon.hunger + 10);
+                        pokemon.hunger = Math.min(100, pokemon.hunger + 15);
                         inventory.berries = inventory.berries - 1;
                         break;
                     }
@@ -408,7 +408,7 @@ $(document).ready(function () {
                         $("#alertModal .main-modal-content").text("Your pokémon is now at full health.");
                         $("#alertModal").modal("show");
                     } else {
-                        pokemon.health = Math.min(100, pokemon.health + 10);
+                        pokemon.health = Math.min(100, pokemon.health + 15);
                         inventory.potions = inventory.potions - 1;
                         break;
                     }
@@ -490,7 +490,7 @@ $(document).ready(function () {
     }
 
     function walkDisturbance() {
-        $("#walkSurpriseModal .main-modal-content").text("You hear a rustling coming from the long grass. What do you do?");
+        $("#walkSurpriseModal .main-modal-content").text("You hear a rustling coming from the long grass.");
         $("#walkSurpriseModal").modal("show");
     }
 

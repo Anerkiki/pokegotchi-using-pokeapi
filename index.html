@@ -55,12 +55,6 @@
 
     <main class="container">
 
-        <!-- Form Section -->
-        <div class="row justify-content-evenly">
-            <!-- Decide on layout of this - either remove this, or move form below to here -->
-        </div>
-        <!-- End of Form Section -->
-
         <!-- Choose First Pokemon Form (Hidden after first selection) -->
         <form id="starter-options-form" class="container page-section pt-2 px-3">
 
@@ -192,13 +186,14 @@
     <!-- Modals -->
 
     <!-- Alert Modal - Edited from Bootstrap Modal Example -->
+    <!-- this modal doesn't have a modal-header or X in corner -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <h2 class="modal-title">Oh!</h2>
                     <div class="main-modal-content"><!-- Message will be injected here --></div>
-                    <div class="modal-buttons">
+                    <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button confirm-modal-button" data-bs-dismiss="modal"
                             type="button">Okay</button>
                     </div>
@@ -213,16 +208,18 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title">On your walk...</h3>
+                    <div class="modal-header">
+                        <h3 class="modal-title">On your walk...</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <span id="walk-image"></span>
                     <p class="main-modal-content">You and <span id="random-user-pokemon">your pokémon</span> found <span
                             id="walk-results">a lovely stream to walk along</span>!</p>
                     <!-- The backup text doesn't make sense with buttons - remove if not needed -->
-                    <div class="modal-buttons">
-                        <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
-                            type="button">Leave</button>
+                    <div class="modal-footer justify-content-center">
                         <button id="add-walk-items" class="confirm-modal-button btn-primary" data-bs-dismiss="modal"
                             type="button">Collect</button>
+                            <!-- Fix aria label issue from Wave test -->
                     </div>
                 </div>
             </div>
@@ -235,11 +232,12 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title" id="walkSurpriseModalLabel">Oh!</h3>
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="walkSurpriseModalLabel">Oh!</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <div class="main-modal-content"><!-- Message will be injected here --></div>
-                    <div class="modal-buttons">
-                        <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal" type="button">Run
-                            Away</button>
+                    <div class="modal-footer justify-content-center">
                         <button id="investigate-button" class="confirm-modal-button" data-bs-dismiss="modal"
                             type="button">Investigate</button>
                     </div>
@@ -254,12 +252,15 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title" id="wildEncounterModalLabel">Well hello there!</h3>
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="wildEncounterModalLabel">Well hello there!</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <div class="main-modal-content"><!-- Message will be injected here --></div>
-                    <div class="modal-buttons">
+                    <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal" type="button">Run
                             Away</button>
-                        <!-------- TO DO: Remove this button and change to an X in corner ---------------------->
+                            <!-- TO DO: check aria labels -->
                         <button id="adopt-button" class="confirm-modal-button" type="button"
                             data-bs-dismiss="modal">Adopt</button>
                     </div>
@@ -273,9 +274,12 @@
         <div class="modal-dialog modal-xl modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title">Release Pokémon</h3>
+                    <div class="modal-header">
+                        <h3 class="modal-title">Release Pokémon</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <p class="main-modal-content">Are you sure you want to release your Pokémon into the wild?</p>
-                    <div class="modal-buttons">
+                    <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
                             type="button">Cancel</button>
                         <button id="confirm-release-button" class="confirm-modal-button" type="button">Release</button>
@@ -290,12 +294,16 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title">Rename Pokémon</h3>
-                    <p class="main-modal-content">Choose a new nickname for your pokémon:</p>
+                    <div class="modal-header">
+                        <h3 class="modal-title">Rename Pokémon</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <label for="new-nickname" class="main-modal-content">Choose a new nickname for your pokémon:</label>
                     <input id="new-nickname" type="text" value="new-nickname">
-                    <div class="modal-buttons">
+                    <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
                             type="button">Cancel</button>
+                            <!-- maybe remove this button? -->
                         <button id="rename-button" class="confirm-modal-button" type="button">Rename</button>
                     </div>
                 </div>
@@ -308,13 +316,13 @@
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title">Would you like to name them?</h3>
-                    <p class="main-modal-content">Choose a nickname:</p>
+                    <div class="modal-header">
+                        <h3 class="modal-title">What would you like to name them?</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <label for="wild-new-nickname" class="main-modal-content">Choose a nickname for your new pokémon:</label>
                     <input id="wild-new-nickname" type="text">
-                    <!-- not working -->
-                    <div class="modal-buttons">
-                        <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal" type="button">No
-                            Thanks</button>
+                    <div class="modal-footer justify-content-center">
                         <button id="wild-rename-button" class="confirm-modal-button" type="button">Great</button>
                     </div>
                 </div>
