@@ -21,6 +21,7 @@ $(document).ready(function () {
     let lastPotionWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
     let pokemonToEditIndex = null; // Used in release & rename functions
     let wildSpeciesNum = null; // Used when finding a wild pokemon to store species number
+    let modalIsOpen = false; // Used to ensure multiple modals can't be opened at the same time
 
     // Functions called when page loads
     updateInventory();
@@ -163,6 +164,8 @@ $(document).ready(function () {
 
     // Functions with Handlers
 
+    // ----------- TO DO - Change this so that it works with new modalIsOpen global variable - TO DO ------------------------ //
+
     // This means users can use enter/esc keys to interact with modals
     document.addEventListener('keydown', handleModalKeyActions);
     function handleModalKeyActions(event) {
@@ -210,6 +213,7 @@ $(document).ready(function () {
         if (!species) {
             $("#alertModal .main-modal-content").text("You need to pick a Pokémon!");
             $("#alertModal").modal("show");
+            modalIsOpen = true;
             return;
         }
         // In case new pokemon is slow to load, the button is disabled so double clicks don't add more pokémon
@@ -286,6 +290,7 @@ $(document).ready(function () {
         pokemonToEditIndex = uniqueIndex;
         // Show the modal
         $("#releaseModal").modal("show");
+        modalIsOpen = true;
     }
 
     $("#confirm-release-button").on("click", releasePokemon);
@@ -309,6 +314,7 @@ $(document).ready(function () {
             userPokemon = newPokemonArray;
         }
         $("#releaseModal").modal("hide");
+        modalIsOpen = false;
         pokemonToEditIndex = null;
         updateInventory();
         displayUserPokemon();
@@ -330,6 +336,7 @@ $(document).ready(function () {
         $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
         // Show the modal
         $("#renameModal").modal("show");
+        modalIsOpen = true;
     }
 
     $("#rename-button").on("click", renamePokemon);
@@ -345,6 +352,7 @@ $(document).ready(function () {
             pokemonToRename.nickname = newNickname;
         }
         $("#renameModal").modal("hide");
+        modalIsOpen = false;
         pokemonToEditIndex = null; // Clear the global index
         displayUserPokemon();
     }
@@ -375,6 +383,7 @@ $(document).ready(function () {
         if (inventory.berries < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
             $("#alertModal").modal("show");
+            modalIsOpen = true;
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
@@ -382,6 +391,7 @@ $(document).ready(function () {
                     if (pokemon.hunger === 100) {
                         $("#alertModal .main-modal-content").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
+                        modalIsOpen = true;
                     } else {
                         pokemon.hunger = Math.min(100, pokemon.hunger + 15);
                         inventory.berries = inventory.berries - 1;
@@ -400,6 +410,7 @@ $(document).ready(function () {
         if (inventory.potions < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
             $("#alertModal").modal("show");
+            modalIsOpen = true;
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
@@ -407,6 +418,7 @@ $(document).ready(function () {
                     if (pokemon.health === 100) {
                         $("#alertModal .main-modal-content").text("Your pokémon is now at full health.");
                         $("#alertModal").modal("show");
+                        modalIsOpen = true;
                     } else {
                         pokemon.health = Math.min(100, pokemon.health + 15);
                         inventory.potions = inventory.potions - 1;
@@ -429,10 +441,12 @@ $(document).ready(function () {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
+                    modalIsOpen = true;
                 } else if (pokemon.hunger < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
                     $("#alertModal").modal("show");
+                    modalIsOpen = true;
                 } else {
                     // Math.max will always find the maximum value, so if the
                     // first value is set to 0 then no matter how low the health
@@ -478,6 +492,7 @@ $(document).ready(function () {
             $("#walk-results").text(results);
             // displaying the modal
             $("#walkResultsModal").modal("show");
+            modalIsOpen = true;
         }
     }
 
@@ -492,12 +507,14 @@ $(document).ready(function () {
     function walkDisturbance() {
         $("#walkSurpriseModal .main-modal-content").text("You hear a rustling coming from the long grass.");
         $("#walkSurpriseModal").modal("show");
+        modalIsOpen = true;
     }
 
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
         $("#walkSurpriseModal").modal("hide");
+        modalIsOpen = false;
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
         // Fetch details of random pokémon from PokeAPI
@@ -519,6 +536,7 @@ $(document).ready(function () {
                 $("#wildEncounterModal .main-modal-content").html(results);
                 // displaying the modal
                 $("#wildEncounterModal").modal("show");
+                modalIsOpen = true;
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
@@ -532,6 +550,7 @@ $(document).ready(function () {
 
     function addWildPokemon() {
         $("#walkSurpriseModal").modal("hide");
+        modalIsOpen = false;
         const speciesNumber = wildSpeciesNum;
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let level = Math.floor(Math.random() * 5) + 1; // random between 1 and 5
@@ -588,6 +607,7 @@ $(document).ready(function () {
     function openNewRenameModal() {
         // Show the modal
         $("#wildRenameModal").modal("show");
+        modalIsOpen = true;
     }
 
     // Anonymous function to clear old wild pokémon nickname from bootstrap modal and add focus to input box
@@ -609,6 +629,7 @@ $(document).ready(function () {
             pokemonToRename.nickname = newNickname;
         }
         $("#wildRenameModal").modal("hide");
+        modalIsOpen = false;
         pokemonToEditIndex = null; // Clear the global index
         displayUserPokemon();
     }
