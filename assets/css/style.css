@@ -338,7 +338,7 @@ footer span {
 
 .carousel-item p {
     min-height: 8rem;
-    /* adjusted so height doesn't change when more rows of text  */
+    /* adjusted so height doesn't change on different screen sizes when more rows of text  */
     text-wrap: balance;
 }
 
@@ -352,9 +352,25 @@ footer span {
     padding: 20px;
 }
 
+.modal-inner {
+    background-color: var(--tertiary-colour);
+    border-radius: 50px;
+    padding: 20px 10px;
+}
+
+#walkResultsModal .modal-inner, #alertModal .modal-inner {
+    padding: 0;
+}
+
 .modal-content .btn-close {
     border: none;
     font-size: 1.5rem;
+}
+
+.main-modal-content {
+    color: black;
+    font-size: 2.5rem;
+    /* make this smaller on smaller screens? */
 }
 
 .modal-header {
@@ -371,18 +387,6 @@ footer span {
 }
 
 .modal-body {
-    background-color: var(--tertiary-colour);
-    border-radius: 50px;
-    padding: 20px 10px;
-    font-size: 2.2rem;
-    /* make this bigger on larger screens? */
-}
-
-.main-modal-content {
-    color: black;
-}
-
-#walkResultsModal .modal-body {
     padding: 0;
 }
 
@@ -393,7 +397,7 @@ footer span {
     /* might not need all of above - look at later */
     color: var(--secondary-colour);
     background-color: var(--tertiary-colour);
-    margin-left: 30px;
+    margin: 0 15px;
     font-size: 2.5rem;
     /* makes it larger but makes height of button too large */
 }
@@ -419,17 +423,17 @@ footer span {
 
 #new-nickname, #wild-new-nickname {
     max-width: 100%;
-}
-
-#wild-new-nickname {
-    padding-bottom: 1px;
-    /* maybe add more if needed? ----------------------- */
+    margin-bottom: 5px;
 }
 
 @media (max-width: 992px) {
 
     h3 {
         font-size: 2.5rem;
+    }
+
+    .modal-title {
+        font-size: 3rem;
     }
 
     .modal-content .btn-close {
