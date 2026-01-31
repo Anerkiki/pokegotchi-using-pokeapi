@@ -169,6 +169,8 @@ $(document).ready(function () {
     // This means users can use enter/esc keys to interact with modals
     document.addEventListener('keydown', handleModalKeyActions);
     function handleModalKeyActions(event) {
+        // testing - remove later ---------------------------------------------------------------------------- remove
+        console.log(modalIsOpen);
         // Bootstrap adds the 'show' class to a modal when it is visible
         // so this checks to see if there is a modal with both the 
         // .show and .modal classes, which means it is open
@@ -505,15 +507,15 @@ $(document).ready(function () {
     }
 
     function walkDisturbance() {
-        $("#walkSurpriseModal .main-modal-content").text("You hear a rustling coming from the long grass.");
-        $("#walkSurpriseModal").modal("show");
+        $("#walkDisturbanceModal .main-modal-content").text("You hear a rustling coming from the long grass.");
+        $("#walkDisturbanceModal").modal("show");
         modalIsOpen = true;
     }
 
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
-        $("#walkSurpriseModal").modal("hide");
+        $("#walkDisturbanceModal").modal("hide");
         modalIsOpen = false;
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
@@ -549,8 +551,7 @@ $(document).ready(function () {
     $("#adopt-button").on("click", addWildPokemon);
 
     function addWildPokemon() {
-        $("#walkSurpriseModal").modal("hide");
-        modalIsOpen = false;
+        // removed hiding the walkDisturbanceModal from here as already done in previous function above
         const speciesNumber = wildSpeciesNum;
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
         let level = Math.floor(Math.random() * 5) + 1; // random between 1 and 5
@@ -597,17 +598,12 @@ $(document).ready(function () {
                 displayUserPokemon();
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
-                openNewRenameModal();
+                $("#wildRenameModal").modal("show");
+                modalIsOpen = true;
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
             });
-    }
-
-    function openNewRenameModal() {
-        // Show the modal
-        $("#wildRenameModal").modal("show");
-        modalIsOpen = true;
     }
 
     // Anonymous function to clear old wild pokémon nickname from bootstrap modal and add focus to input box
