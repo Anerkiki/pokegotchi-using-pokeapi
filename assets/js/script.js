@@ -26,16 +26,11 @@ $(document).ready(function () {
     // Event Listener to change state of modalIsOpen when any modal is closed using a 'cancel modal' button
     $(".cancel-modal-button").on("click", updateModalStateToClosed);
 
-    // Function to close modalIsOpenState
-    function updateModalStateToClosed () {
-        modalIsOpen = false;
-    }
-
     // Functions called when page loads
     updateInventory();
     addNewPersonalitiesToStarters();
 
-    // Basic Text-Conversion Functions
+    // Basic Functions
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -45,6 +40,14 @@ $(document).ready(function () {
             .split(" ")
             .map(word => capitalizeFirstLetter(word))
             .join(" ");
+    }
+
+    function updateModalStateToClosed () {
+        modalIsOpen = false;
+    }
+
+    function updateModalStateToOpen () {
+        modalIsOpen = true;
     }
 
     // Functions that fire on startup
@@ -223,7 +226,7 @@ $(document).ready(function () {
         if (!species) {
             $("#alertModal .main-modal-content").text("You need to pick a Pokémon!");
             $("#alertModal").modal("show");
-            modalIsOpen = true;
+            updateModalStateToOpen();
             return;
         }
         // In case new pokemon is slow to load, the button is disabled so double clicks don't add more pokémon
@@ -300,7 +303,7 @@ $(document).ready(function () {
         pokemonToEditIndex = uniqueIndex;
         // Show the modal
         $("#releaseModal").modal("show");
-        modalIsOpen = true;
+        updateModalStateToOpen();
     }
 
     $("#confirm-release-button").on("click", releasePokemon);
@@ -324,7 +327,7 @@ $(document).ready(function () {
             userPokemon = newPokemonArray;
         }
         $("#releaseModal").modal("hide");
-        modalIsOpen = false;
+        updateModalStateToClosed();
         pokemonToEditIndex = null;
         updateInventory();
         displayUserPokemon();
@@ -346,7 +349,7 @@ $(document).ready(function () {
         $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
         // Show the modal
         $("#renameModal").modal("show");
-        modalIsOpen = true;
+        updateModalStateToOpen();
     }
 
     $("#rename-button").on("click", renamePokemon);
@@ -362,7 +365,7 @@ $(document).ready(function () {
             pokemonToRename.nickname = newNickname;
         }
         $("#renameModal").modal("hide");
-        modalIsOpen = false;
+        updateModalStateToClosed();
         pokemonToEditIndex = null; // Clear the global index
         displayUserPokemon();
     }
@@ -393,7 +396,7 @@ $(document).ready(function () {
         if (inventory.berries < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
             $("#alertModal").modal("show");
-            modalIsOpen = true;
+            updateModalStateToOpen();
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
@@ -401,7 +404,7 @@ $(document).ready(function () {
                     if (pokemon.hunger === 100) {
                         $("#alertModal .main-modal-content").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
-                        modalIsOpen = true;
+                        updateModalStateToOpen();
                     } else {
                         pokemon.hunger = Math.min(100, pokemon.hunger + 15);
                         inventory.berries = inventory.berries - 1;
@@ -420,7 +423,7 @@ $(document).ready(function () {
         if (inventory.potions < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
             $("#alertModal").modal("show");
-            modalIsOpen = true;
+            updateModalStateToOpen();
         } else {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
@@ -428,7 +431,7 @@ $(document).ready(function () {
                     if (pokemon.health === 100) {
                         $("#alertModal .main-modal-content").text("Your pokémon is now at full health.");
                         $("#alertModal").modal("show");
-                        modalIsOpen = true;
+                        updateModalStateToOpen();
                     } else {
                         pokemon.health = Math.min(100, pokemon.health + 15);
                         inventory.potions = inventory.potions - 1;
@@ -451,12 +454,12 @@ $(document).ready(function () {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
-                    modalIsOpen = true;
+                    updateModalStateToOpen();
                 } else if (pokemon.hunger < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
                     $("#alertModal").modal("show");
-                    modalIsOpen = true;
+                    updateModalStateToOpen();
                 } else {
                     // Math.max will always find the maximum value, so if the
                     // first value is set to 0 then no matter how low the health
@@ -502,7 +505,7 @@ $(document).ready(function () {
             $("#walk-results").text(results);
             // displaying the modal
             $("#walkResultsModal").modal("show");
-            modalIsOpen = true;
+            updateModalStateToOpen();
         }
     }
 
@@ -517,14 +520,14 @@ $(document).ready(function () {
     function walkDisturbance() {
         $("#walkDisturbanceModal .main-modal-content").text("You hear a rustling coming from the long grass.");
         $("#walkDisturbanceModal").modal("show");
-        modalIsOpen = true;
+        updateModalStateToOpen();
     }
 
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
         $("#walkDisturbanceModal").modal("hide");
-        modalIsOpen = false;
+        updateModalStateToClosed();
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
         // Fetch details of random pokémon from PokeAPI
@@ -546,7 +549,7 @@ $(document).ready(function () {
                 $("#wildEncounterModal .main-modal-content").html(results);
                 // displaying the modal
                 $("#wildEncounterModal").modal("show");
-                modalIsOpen = true;
+                updateModalStateToOpen();
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
@@ -607,7 +610,7 @@ $(document).ready(function () {
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
                 $("#wildRenameModal").modal("show");
-                modalIsOpen = true;
+                updateModalStateToOpen();
             })
             .catch(error => {
                 console.error("Error fetching Pokémon:", error);
@@ -633,7 +636,7 @@ $(document).ready(function () {
             pokemonToRename.nickname = newNickname;
         }
         $("#wildRenameModal").modal("hide");
-        modalIsOpen = false;
+        updateModalStateToClosed();
         pokemonToEditIndex = null; // Clear the global index
         displayUserPokemon();
     }
