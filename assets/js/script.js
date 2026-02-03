@@ -389,6 +389,10 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-berry", actionBerry);
 
     function actionBerry() {
+        // a safeguard to prevent the multiple open modals issue
+        if (modalIsOpen) {
+            return; 
+        }
         if (inventory.berries < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
             $("#alertModal").modal("show");
@@ -416,6 +420,10 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-potion", actionPotion);
 
     function actionPotion() {
+        // a safeguard to prevent the multiple open modals issue
+        if (modalIsOpen) {
+            return; 
+        }
         if (inventory.potions < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
             $("#alertModal").modal("show");
@@ -443,6 +451,10 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-train", actionTrain);
 
     function actionTrain() {
+        // a safeguard to prevent the multiple open modals issue
+        if (modalIsOpen) {
+            return; 
+        }
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
@@ -475,6 +487,10 @@ $(document).ready(function () {
     $("#walk-button").on("click", goForAWalk);
 
     function goForAWalk() {
+        // a safeguard to prevent the multiple open modals issue
+        if (modalIsOpen) {
+            return; 
+        }
         // generate random pokemon from user's pokemon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // Generate random number
