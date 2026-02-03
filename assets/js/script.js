@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     // Event Listener to change state of modalIsOpen when any modal is closed using a 'cancel modal' button
     $(".cancel-modal-button").on("click", updateModalStateToClosed);
-
+    
     // Functions called when page loads
     updateInventory();
     addNewPersonalitiesToStarters();
@@ -175,26 +175,22 @@ $(document).ready(function () {
 
     // Functions with Handlers
 
-    // ----------- TO DO - Change this so that it works with new modalIsOpen global variable - TO DO ------------------------ //
-
-    // This means users can use enter/esc keys to interact with modals
+    // This means users can use ESC/ENTER keys to interact with modals
     document.addEventListener('keydown', handleModalKeyActions);
     function handleModalKeyActions(event) {
-        // testing - remove later ---------------------------------------------------------------------------- remove
+        // testing ------------------------------------------------------------------------------------- REMOVE LATER
         console.log(modalIsOpen);
-        // Bootstrap adds the 'show' class to a modal when it is visible
-        // so this checks to see if there is a modal with both the 
-        // .show and .modal classes, which means it is open
-        const openModal = document.querySelector('.modal.show');
-        if (openModal) {
-            const cancelButton = openModal.querySelector('.cancel-modal-button');
-            const confirmButton = openModal.querySelector('.confirm-modal-button');
+        const currentlyOpenModal = document.querySelector('.modal.show');
+    
+        // Bootstrap adds the 'show' class to a modal when it is visible so
+        // this checks to see if it can find the modal that is currently open
+        if (modalIsOpen && currentlyOpenModal) {
             if (event.key === 'Escape') {
                 event.preventDefault();
-                cancelButton.click();
+                currentlyOpenModal.querySelector('.cancel-modal-button').click();
             } else if (event.key === 'Enter') {
                 event.preventDefault();
-                confirmButton.click();
+                currentlyOpenModal.querySelector('.confirm-modal-button').click();
             }
         }
     }
