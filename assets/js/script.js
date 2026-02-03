@@ -23,6 +23,14 @@ $(document).ready(function () {
     let wildSpeciesNum = null; // Used when finding a wild pokemon to store species number
     let modalIsOpen = false; // Used to ensure multiple modals can't be opened at the same time
 
+    // Event Listener to change state of modalIsOpen when any modal is closed using a 'cancel modal' button
+    $(".cancel-modal-button").on("click", updateModalStateToClosed);
+
+    // Function to close modalIsOpenState
+    function updateModalStateToClosed () {
+        modalIsOpen = false;
+    }
+
     // Functions called when page loads
     updateInventory();
     addNewPersonalitiesToStarters();
