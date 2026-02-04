@@ -207,6 +207,12 @@ button#add-first-pokemon:hover {
     background-color: var(--tertiary-colour);
 }
 
+.starter-name {
+    font-size: 3.5rem;
+    margin: 0;
+    line-height: 1;
+}
+
 .details>p {
     color: var(--quaternary-colour);
     line-height: 0.8;
@@ -466,7 +472,7 @@ footer span {
         font-size: 3rem;
     }
 
-    label>h3 {
+    .starter-name {
         font-size: 3rem;
     }
 
