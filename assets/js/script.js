@@ -2,7 +2,8 @@ $(document).ready(function () {
 
     // Global Variables
 
-    let userPokemon = []; // This is where collected pokemon are stored/removed from
+    // Where collected pokémon are stored/removed from
+    let userPokemon = []; 
 
     const inventory = {
         pokemon: userPokemon.length,
@@ -17,14 +18,18 @@ $(document).ready(function () {
         "Quirky", "Relaxed", "Sassy", "Serious", "Timid",
     ];
 
-    let lastBerryWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
-    let lastPotionWalkResult = 0; // Used in goForAWalk & addWalkResultsToInventory functions
-    let pokemonToEditIndex = null; // Used in release & rename functions
-    let wildSpeciesNum = null; // Used when finding a wild pokemon to store species number
-    let modalIsOpen = false; // Used to ensure multiple modals can't be opened at the same time
+    // Used in goForAWalk and addWalkResultsToInventory functions
+    let lastBerryWalkResult = 0;
+    let lastPotionWalkResult = 0;
+    // Used in release and rename functions:
+    let pokemonToEditIndex = null;
+    // Used when finding a wild pokémon to store species number
+    let wildSpeciesNum = null;
+    // To ensure multiple modals can't be opened at the same time
+    let modalIsOpen = false;
 
-    // Event Listener to change state of modalIsOpen when any modal is closed using a 'cancel modal' button
-    $(".cancel-modal-button").on("click", updateModalStateToClosed);
+    // Event listener to change state of modalIsOpen when a modal is closed with a cancel/confirm button
+    $(".cancel-modal-button, .confirm-modal-button").on("click", updateModalStateToClosed);
     
     // Functions called when page loads
     updateInventory();
@@ -52,11 +57,10 @@ $(document).ready(function () {
 
     // Functions that fire on startup
     function updateInventory() {
+        // These need a forEach to loop through as they are displayed in more than 1 place
         document.querySelectorAll(".pokemon-count").forEach(count => {
             count.textContent = userPokemon.length;
         });
-        // these need a foreach to loop through every display 
-        // of each count as there are more than 1 of each
         document.querySelectorAll(".berries-count").forEach(count => {
             count.textContent = inventory.berries;
         });
@@ -80,7 +84,7 @@ $(document).ready(function () {
     function displayUserPokemon() {
         if (userPokemon.length > 0) {
             let currentUserPokemon = "";
-            // Loop through all Pokémon in the userPokemon array
+            // Loop through all pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 currentUserPokemon += `
                     <div class="col-12 col-xl-6">
@@ -158,13 +162,12 @@ $(document).ready(function () {
                     </div>
                 `;
             }
-            // Replace #pokemon-collection content with the current list
+            // Replace #pokemon-collection content with updated list
             $("#pokemon-collection").html(currentUserPokemon);
         } else {
-            // If there are 0 pokemon in collection (the last pokémon has been deleted):
-            // Clears any old pokemon from the HTML
+            // If the last pokémon has been deleted, this ensures the userCollection shows as empty/0
             $("#pokemon-collection").html("");
-            // Reset the starter form page to how it was
+            // Reset the starter form page
             $("#starter-options-form").removeClass("hidden");
             $("#walk-button").addClass("hidden");
             $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
@@ -178,12 +181,9 @@ $(document).ready(function () {
     // This means users can use ESC/ENTER keys to interact with modals
     document.addEventListener('keydown', handleModalKeyActions);
     function handleModalKeyActions(event) {
-        // testing ------------------------------------------------------------------------------------- REMOVE LATER
-        console.log(modalIsOpen);
         const currentlyOpenModal = document.querySelector('.modal.show');
-    
-        // Bootstrap adds the 'show' class to a modal when it is visible so
-        // this checks to see if it can find the modal that is currently open
+        // Bootstrap adds the 'show' class to a modal when it is visible
+        // so this checks to find the modal that is currently open
         if (modalIsOpen && currentlyOpenModal) {
             if (event.key === 'Escape') {
                 event.preventDefault();
@@ -193,42 +193,40 @@ $(document).ready(function () {
                 currentlyOpenModal.querySelector('.confirm-modal-button').click();
             }
         }
+        // testing ------------------------------------------------------------------------------------- REMOVE LATER
+        console.log(modalIsOpen);
+        // testing ------------------------------------------------------------------------------------- REMOVE LATER
     }
 
     $(".starter").on("click", selectAndStyleStarter);
-    // this function allows the initial selection to be made by clicking
-    // anywhere inside the starter box, not only on the radio/name label
-    // & also adds a class to style the selected starter pokemon box
+    // This function allows the initial selection to be made by clicking anywhere inside the starter box,
+    // not only on the radio/name label and also adds a class to highlight the selected starter pokémon box
     function selectAndStyleStarter() {
-        // This is necessary to remove style from previously checked starters,
-        // so they don't all end up with the class that styles the selected pokemon
+        // This is necessary to remove highlight from previously checked starters
+        // so they don't all end up highlighted if more are clicked
         $(".starter").removeClass("selected-starter");
-        // finds a radio that is a child of the div clicked on
+        // Find and select the radio that is a child of the div clicked on
         const radio = $(this).find('input[type="radio"]')
-        // turns that radio to checked
         radio.prop("checked", true);
-        // adds the styling to selected starter div
+        // Adds the highlight to selected starter div
         $(this).addClass("selected-starter");
     }
 
     $("#add-first-pokemon").on("click", addStarterPokemon);
 
     function addStarterPokemon(event) {
-        // console.log(userPokemon.length); // for testing //
         event.preventDefault();
-        // Get the selected starter radio value
+        // Get the selected starter value
         const species = $("input[name='starter']:checked").val();
         // If no starter selected, show modal and stop
         if (!species) {
-            $("#alertModal .main-modal-content").text("You need to pick a Pokémon!");
+            $("#alertModal .main-modal-content").text("You need to pick a pokémon!");
             $("#alertModal").modal("show");
             updateModalStateToOpen();
             return;
         }
-        // In case new pokemon is slow to load, the button is disabled so double clicks don't add more pokémon
-        // and text is changed so the user knows the click has worked
+        // Disables button so double clicks don't work and changes text so the user knows click has worked
         $("#add-first-pokemon").prop("disabled", true).text("Adding...");
-        // Get nickname or default to species string
         let nicknameInput = $("#starter-nickname").val().trim();
         let personality = $(`.starter-personality-${species}`).first().text();
         let level = 1;
@@ -236,7 +234,7 @@ $(document).ready(function () {
         let health = 80;
         let hunger = 80;
         let uniqueIndex = Date.now();
-        // Fetch Pokémon data from PokéAPI
+        // Fetch pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
             .then(response => response.json())
             .then(data => {
@@ -245,6 +243,7 @@ $(document).ready(function () {
                 const imageBack = data.sprites.back_default;
                 // Just the first type
                 const primaryType = data.types[0].type.name;
+                // Get nickname or default to species string
                 let nickname;
                 if (nicknameInput.length > 0) {
                     nickname = nicknameInput;
@@ -270,19 +269,19 @@ $(document).ready(function () {
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
-                // Remove starter choice form and add walk button
+                // Remove starter choice form and 'Refresh Personality' buttons
                 $("#starter-options-form").addClass("hidden");
-                $("#walk-button").removeClass("hidden");
-
-                // Ensures both refresh starter personality buttons are hidden after the starter is chosen
                 $("#refresh-personalities-nav").addClass("hidden");
                 $("#refresh-personalities-main").addClass("hidden");
-
+                // Add 'Go For A Walk' button
+                $("#walk-button").removeClass("hidden");
+                // testing ------------------------------------------------------------------------------------- REMOVE LATER
                 // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
+                // testing ------------------------------------------------------------------------------------- REMOVE LATER
             })
             .catch(error => {
-                console.error("Error fetching Pokémon:", error);
+                console.error("Error fetching pokémon:", error);
                 // If there is an error with the fetch, the button won't stay disabled
                 $("#add-first-pokemon").prop("disabled", false).text("Error - Try Again!");
             });
@@ -293,11 +292,10 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".release-pokemon", openReleaseModal);
 
     function openReleaseModal() {
-        // Find the index of the clicked Pokémon
+        // Find the index of the clicked pokémon
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         // Store the index globally so releasePokemon can access it
         pokemonToEditIndex = uniqueIndex;
-        // Show the modal
         $("#releaseModal").modal("show");
         updateModalStateToOpen();
     }
@@ -307,10 +305,13 @@ $(document).ready(function () {
     function releasePokemon() {
         if (userPokemon.length === 1) {
             userPokemon = [];
-            $("#starter-nickname").val(""); // Clear the nickname input box
-            $('input[name="starter"]').prop('checked', false); // Deselect the radio button
-            $(".starter").removeClass("selected-starter"); // Remove visual highlight
-            addNewPersonalitiesToStarters(); // Refresh starter choices in form
+            // Clear the nickname input box
+            $("#starter-nickname").val("");
+            // Deselect the radio
+            $('input[name="starter"]').prop('checked', false);
+            // Remove visual highlight
+            $(".starter").removeClass("selected-starter");
+            addNewPersonalitiesToStarters();
         } else {
             let newPokemonArray = [];
             for (let i = 0; i < userPokemon.length; i++) {
@@ -334,16 +335,15 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".rename-pokemon", openRenameModal);
 
     function openRenameModal() {
-        // Find the index of the clicked Pokémon
+        // Find the index of the clicked pokémon
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
-        // Find the Pokemon object to get its current nickname
+        // Find the pokémon object to get its current nickname
         // find() is like doing a for loop through all of the userPokemon array
         const pokemonToRename = userPokemon.find(pokemon => pokemon.index === uniqueIndex);
         // Store the index globally so releasePokemon can access it
         pokemonToEditIndex = uniqueIndex;
         // Pre-fill the modal input with original nickname
         $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
-        // Show the modal
         $("#renameModal").modal("show");
         updateModalStateToOpen();
     }
@@ -352,7 +352,7 @@ $(document).ready(function () {
 
     function renamePokemon() {
         let newNickname = $("#new-nickname").val().trim();
-        // Use find() to instantly locate the one object we need.
+        // Use find() to instantly locate the one object we need
         const pokemonToRename = userPokemon.find(p => p.index === pokemonToEditIndex);
         if (!newNickname) {
             // Use the original species name as the nickname
@@ -362,7 +362,8 @@ $(document).ready(function () {
         }
         $("#renameModal").modal("hide");
         updateModalStateToClosed();
-        pokemonToEditIndex = null; // Clear the global index
+        // Clear the global index
+        pokemonToEditIndex = null;
         displayUserPokemon();
     }
 
@@ -374,13 +375,11 @@ $(document).ready(function () {
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
+                // Math.min will always find the minimum value, so if the first value is set to 100 then no
+                // matter how high the new happiness value gets after playing, it won't ever exceed 100
                 pokemon.happiness = Math.min(100, pokemon.happiness + 15);
-                // Math.min will always find the minimum value, so if the
-                // first value is set to 100 then no matter how high the new
-                // happiness value gets after playing, it won't ever exceed 100
+                // This will stop cycling through the list of pokémon once the correct one has been found
                 break;
-                // this stops it cycling through the rest of the
-                // pokemon once the correct one has been found
             }
         }
         displayUserPokemon();
@@ -389,7 +388,7 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-berry", actionBerry);
 
     function actionBerry() {
-        // a safeguard to prevent the multiple open modals issue
+        // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
             return; 
         }
@@ -420,7 +419,7 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-potion", actionPotion);
 
     function actionPotion() {
-        // a safeguard to prevent the multiple open modals issue
+        // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
             return; 
         }
@@ -451,7 +450,7 @@ $(document).ready(function () {
     $("#pokemon-collection").on("click", ".action-train", actionTrain);
 
     function actionTrain() {
-        // a safeguard to prevent the multiple open modals issue
+        // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
             return; 
         }
@@ -464,14 +463,13 @@ $(document).ready(function () {
                     $("#alertModal").modal("show");
                     updateModalStateToOpen();
                 } else if (pokemon.hunger < 20) {
-                    pokemon.happiness = Math.max(0, pokemon.happiness - 5);
+                    pokemon.happiness = Math.max(0, pokemon.happiness - 10);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
                     $("#alertModal").modal("show");
                     updateModalStateToOpen();
                 } else {
-                    // Math.max will always find the maximum value, so if the
-                    // first value is set to 0 then no matter how low the health
-                    // value gets from battling, it won't ever be less than 0
+                    // Math.max will always find the maximum value, so if the first value is set to 0 then no
+                    // matter how low the health value gets from battling, it won't ever be less than 0
                     pokemon.health = Math.max(0, pokemon.health - 10);
                     pokemon.hunger = Math.max(0, pokemon.hunger - 20);
                     pokemon.level = pokemon.level + 1;
@@ -482,40 +480,39 @@ $(document).ready(function () {
         displayUserPokemon();
     }
 
-    // Walk button functions
+    // 'Go For A Walk' button functions
 
     $("#walk-button").on("click", goForAWalk);
 
     function goForAWalk() {
-        // a safeguard to prevent the multiple open modals issue
+        // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
             return; 
         }
-        // generate random pokemon from user's pokemon collection
+        // Generate random pokémon from user's pokémon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
         // Generate random number
         let randomNumber = Math.floor(Math.random() * 5);
         if (userPokemon[randomPokemon].level > 4 && randomNumber === 3) {
             walkDisturbance();
         } else {
-            // Set the walk results:
+            // Set the walk results
             lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
             lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
-            // results to display in modal:
+            // Results to display in modal
             let results = lastBerryWalkResult + " berries"
             if (lastBerryWalkResult < 5) {
                 results += " and " + lastPotionWalkResult + " potions"
             } else {
                 lastPotionWalkResult = 0;
             }
-            // Updating the modal
-            // add the random pokemon nickname to the text in the modal
+            // Updating the modal:
+            // Add the random pokémon nickname to the text in the modal
             $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
-            // add image to modal
+            // Add image to modal (reversed to look like user is walking behind pokémon)
             $("#walk-image").html(`<img src="${userPokemon[randomPokemon].image_back}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
-            // updating the inner text
+            // Update the inner text of walk results modal
             $("#walk-results").text(results);
-            // displaying the modal
             $("#walkResultsModal").modal("show");
             updateModalStateToOpen();
         }
@@ -527,6 +524,7 @@ $(document).ready(function () {
         inventory.berries = inventory.berries + lastBerryWalkResult;
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
+        updateModalStateToClosed;
     }
 
     function walkDisturbance() {
@@ -538,8 +536,8 @@ $(document).ready(function () {
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
+        // Don't need to update modalIsOpen state here as this function closes and opens a modal
         $("#walkDisturbanceModal").modal("hide");
-        updateModalStateToClosed();
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
         // Fetch details of random pokémon from PokeAPI
@@ -555,29 +553,28 @@ $(document).ready(function () {
                     pokemonName = "Mr Mime"
                 }
                 const imageFront = data.sprites.front_default;
-                // Adding the new details to the modal box
+                // Adding the new details to the modal
                 let results = `<img src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
                 $("#wildEncounterModal .main-modal-content").html(results);
-                // displaying the modal
+                // Don't need to update modalIsOpen state here as this function closes and opens a modal
                 $("#wildEncounterModal").modal("show");
-                updateModalStateToOpen();
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
             })
             .catch(error => {
-                console.error("Error fetching Pokémon:", error);
+                console.error("Error fetching pokémon:", error);
             });
     }
 
     $("#adopt-button").on("click", addWildPokemon);
 
     function addWildPokemon() {
-        // removed hiding the walkDisturbanceModal from here as already done in previous function above
         const speciesNumber = wildSpeciesNum;
         let personality = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
-        let level = Math.floor(Math.random() * 5) + 1; // random between 1 and 5
+        // Generate random level between 1 and 5
+        let level = Math.floor(Math.random() * 5) + 1;
         let happiness = 10;
         let health = 80;
         let hunger = 40;
@@ -596,7 +593,7 @@ $(document).ready(function () {
                 }
                 const imageFront = data.sprites.front_default;
                 const imageBack = data.sprites.back_default;
-                // Just the first type
+                // Finds only the first type
                 const primaryType = data.types[0].type.name;
                 let nickname = pokemonName;
                 // Adding the new details as an object in the userPokemon array
@@ -614,23 +611,25 @@ $(document).ready(function () {
                     health: health,
                     hunger: hunger,
                 });
-                // update pokémon to edit index to new pokemon for renaming
+                // Update pokémon to edit index to new pokémon for renaming
                 pokemonToEditIndex = uniqueIndex;
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
+                // testing ------------------------------------------------------------------------------------- REMOVE LATER
                 // To double check details of new pokémon added
                 console.log("New pokemon added:", userPokemon);
+                // testing ------------------------------------------------------------------------------------- REMOVE LATER
                 $("#wildRenameModal").modal("show");
                 updateModalStateToOpen();
             })
             .catch(error => {
-                console.error("Error fetching Pokémon:", error);
+                console.error("Error fetching pokémon:", error);
             });
     }
 
     // Anonymous function to clear old wild pokémon nickname from bootstrap modal and add focus to input box
-    // - only fires once modal and input are fully loaded and visible
+    // - only triggered once modal and input are fully loaded and visible
     $('#wildRenameModal').on('shown.bs.modal', function () {
         $('#wild-new-nickname').val('').trigger('focus');
     });
@@ -649,7 +648,8 @@ $(document).ready(function () {
         }
         $("#wildRenameModal").modal("hide");
         updateModalStateToClosed();
-        pokemonToEditIndex = null; // Clear the global index
+        // Clear the global index
+        pokemonToEditIndex = null;
         displayUserPokemon();
     }
 
