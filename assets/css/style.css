@@ -422,6 +422,7 @@ footer span {
 /* Modal Inputs */
 
 #new-nickname, #wild-new-nickname {
+    min-width: 60%;
     max-width: 100%;
     margin-bottom: 5px;
 }

@@ -74,7 +74,7 @@
                             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
                                 class="sprite col-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
                             <div
-                                class="details col-5 col-md-12 order--1 order-md-2 align-self-center d-none d-sm-block">
+                                class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
                                 <p>Type: Grass</p>
                                 <p class="personality">Personality: <span class="starter-personality-1">Unknown</span>
                                 </p>
@@ -240,7 +240,7 @@
                     </div>
                     <div class="modal-body">
                         <label for="new-nickname" class="main-modal-content">Choose a new nickname for your pokémon:</label>
-                        <input id="new-nickname" type="text" value="new-nickname">
+                        <input id="new-nickname" type="text" maxlength="12" value="new-nickname">
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
@@ -335,7 +335,7 @@
                     </div>
                     <div class="modal-body">
                         <label for="wild-new-nickname" class="main-modal-content">Choose a nickname for your new pokémon:</label>
-                        <input id="wild-new-nickname" type="text">
+                        <input id="wild-new-nickname" type="text" maxlength="12">
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button id="wild-rename-button" class="confirm-modal-button" type="button">Great</button>
