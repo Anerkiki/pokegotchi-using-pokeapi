@@ -190,8 +190,9 @@ $(document).ready(function () {
                 currentlyOpenModal.querySelector('.cancel-modal-button').click();
             } else if (event.key === 'Enter') {
                 event.preventDefault();
-                currentlyOpenModal.querySelector('.confirm-modal-button').click();
+                currentlyOpenModal.querySelector('.confirm-modal-button, .continue-modal-button').click();
             }
+
         }
         // testing ------------------------------------------------------------------------------------- REMOVE LATER
         console.log(modalIsOpen);
@@ -487,7 +488,7 @@ $(document).ready(function () {
     function goForAWalk() {
         // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
-            return; 
+            return;
         }
         // Generate random pokémon from user's pokémon collection
         const randomPokemon = Math.floor(Math.random() * userPokemon.length);
