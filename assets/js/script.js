@@ -28,14 +28,22 @@ $(document).ready(function () {
     // To ensure multiple modals can't be opened at the same time
     let modalIsOpen = false;
 
-    // Event listener to change state of modalIsOpen when a modal is closed with a cancel/confirm button
+    // Event listener to change state of modalIsOpen when a modal is closed with a cancel/confirm button, but not a continue button
     $(".cancel-modal-button, .confirm-modal-button").on("click", updateModalStateToClosed);
-    
+
     // Functions called when page loads
     updateInventory();
     addNewPersonalitiesToStarters();
 
     // Basic Functions
+    function updateModalStateToClosed () {
+        modalIsOpen = false;
+    }
+
+    function updateModalStateToOpen () {
+        modalIsOpen = true;
+    }
+
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -45,14 +53,6 @@ $(document).ready(function () {
             .split(" ")
             .map(word => capitalizeFirstLetter(word))
             .join(" ");
-    }
-
-    function updateModalStateToClosed () {
-        modalIsOpen = false;
-    }
-
-    function updateModalStateToOpen () {
-        modalIsOpen = true;
     }
 
     // Functions that fire on startup
@@ -192,7 +192,6 @@ $(document).ready(function () {
                 event.preventDefault();
                 currentlyOpenModal.querySelector('.confirm-modal-button, .continue-modal-button').click();
             }
-
         }
         // testing ------------------------------------------------------------------------------------- REMOVE LATER
         console.log(modalIsOpen);

@@ -18,10 +18,10 @@
     --quaternary-colour-pale: #f045a8; /* Make pink colour slightly less bright, but with enough contrast against off white to read */
 
     /* Not Used Colours - REMOVE once final colour pallette has been decided -------------- REMOVE LATER */
-    --other-background: #3dd3b9; /* not used */
-    --aquamarine: aquamarine; /* not used */
-    --other-purple: #8853d3; /* not used */
-    --tertiary-colour-opaque: rgba(248, 249, 250, 0.9); /* not used */
+    --other-background: #3dd3b9;
+    --aquamarine: aquamarine;
+    --other-purple: #8853d3;
+    --tertiary-colour-opaque: rgba(248, 249, 250, 0.9);
     /* ------------------------------------------------------------------------------------ REMOVE LATER */
 }
 
