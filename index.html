@@ -53,95 +53,101 @@
         </nav>
     </header>
 
-    <main class="container">
+    <main>
 
-        <!-- Choose First Pokemon Form (Hidden after first selection) -->
-        <form id="starter-options-form" class="container page-section pt-2 px-3">
+        <div id="starter-options-form" class="container">
+            <!-- Choose First Pokemon Form (Hidden after first selection) -->
+            <form class="page-section pt-2 px-3">
 
-            <h2>Select your first Pokémon:</h2>
-            <div class="starter-container row justify-content-between">
+                <h2>Select your first Pokémon:</h2>
+                <div class="starter-container row justify-content-between">
 
-                <!-- Starter Option 1 - Bulbasaur -->
-                <div class="col-12 col-md-4 px-1">
-                    <div class="starter border-edge">
-                        <input type="radio" id="bulbasaur" name="starter" value="1">&nbsp;&nbsp;<br class="d-none d-md-block">
-                        <label for="bulbasaur">
-                            <span class="starter-name">Bulbasaur</span>
-                        </label>
-                        <p class="d-sm-none small-details">Personality: <span
-                                class="starter-personality-1">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-                                class="sprite col-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
-                            <div
-                                class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Type: Grass</p>
-                                <p class="personality">Personality: <span class="starter-personality-1">Unknown</span>
-                                </p>
+                    <!-- Starter Option 1 - Bulbasaur -->
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter border-edge">
+                            <input type="radio" id="bulbasaur" name="starter" value="1">
+                            <label for="bulbasaur">
+                                <span class="starter-name">&nbsp;Bulbasaur</span>
+                            </label>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                                    class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
+                                <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                    <p class="small-details d-sm-none">Personality: <span
+                                    class="starter-personality-1">Unknown</span></p>
+                                    <div class="details">
+                                        <p class="d-none d-sm-block">Type: Grass</p>
+                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-1">Unknown</span></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Starter Option 2 - Charmander -->
-                <div class="col-12 col-md-4 px-1">
-                    <div class="starter border-edge">
-                        <input type="radio" id="charmander" name="starter" value="4">&nbsp;&nbsp;<br class="d-none d-md-block">
-                        <label for="charmander">
-                            <span class="starter-name">Charmander</span>
-                        </label>
-                        <p class="d-sm-none small-details">Personality: <span
-                                class="starter-personality-4">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
-                                class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Charmander">
-                            <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Type: Fire</p>
-                                <p class="personality">Personality: <span class="starter-personality-4">Unknown</span>
-                                </p>
+                    <!-- Starter Option 2 - Charmander -->
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter border-edge">
+                            <input type="radio" id="charmander" name="starter" value="4">
+                            <label for="charmander">
+                                <span class="starter-name">&nbsp;Charmander</span>
+                            </label>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+                                    class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Charmander">
+                                <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                    <p class="small-details d-sm-none">Personality: <span
+                                    class="starter-personality-4">Unknown</span></p>
+                                    <div class="details">
+                                        <p class="d-none d-sm-block">Type: Fire</p>
+                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-4">Unknown</span></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Starter Option 3 - Squirtle -->
-                <div class="col-12 col-md-4 px-1">
-                    <div class="starter border-edge">
-                        <input type="radio" id="squirtle" name="starter" value="7">&nbsp;&nbsp;<br class="d-none d-md-block">
-                        <label for="squirtle">
-                            <span class="starter-name">Squirtle</span>
-                        </label>
-                        <p class="d-sm-none small-details">Personality: <span
-                                class="starter-personality-7">Unknown</span></p>
-                        <div class="row justify-content-center">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
-                                class="sprite img-fluid col-7 col-md-12 order-2 order-md-1" alt="Squirtle">
-                            <div class="details col-5 col-md-12 order-1 order-md-2 align-self-center d-none d-sm-block">
-                                <p>Type: Water</p>
-                                <p class="personality">Personality: <span class="starter-personality-7">Unknown</span>
-                                </p>
+                    <!-- Starter Option 3 - Squirtle -->
+                    <div class="col-12 col-md-4 px-1">
+                        <div class="starter border-edge">
+                            <input type="radio" id="squirtle" name="starter" value="7">
+                            <label for="squirtle">
+                                <span class="starter-name">&nbsp;Squirtle</span>
+                            </label>
+                            <div class="row justify-content-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+                                    class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Squirtle">
+                                <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
+                                    <p class="small-details d-sm-none">Personality: <span
+                                    class="starter-personality-7">Unknown</span></p>
+                                    <div class="details">
+                                        <p class="d-none d-sm-block">Type: Water</p>
+                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-7">Unknown</span></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <h2 class="mt-3 mb-0"><label for="starter-nickname">Give your Pokémon a&nbsp;name:</label></h2>
-            <input id="starter-nickname" type="text" class="col-10" autofocus>
-            <button id="add-first-pokemon" type="submit" class="col-10 col-sm-8 col-lg-6 mt-4">
-                Add to collection
-            </button>
-            <button id="refresh-personalities-main" class="secondary-button col-10 col-sm-8 col-lg-6 mt-3 mt-md-2"
-                type="button">
-                Refresh Personalities
-            </button>
-        </form>
+                <h2 class="mt-3 mb-0"><label for="starter-nickname">Give your Pokémon a&nbsp;name:</label></h2>
+                <input id="starter-nickname" type="text" class="col-10" autofocus>
+                <button id="add-first-pokemon" type="submit" class="col-10 col-sm-8 col-lg-6 mt-4">
+                    Add to collection
+                </button>
+                <button id="refresh-personalities-main" class="secondary-button col-10 col-sm-8 col-lg-6 mt-3 mt-md-2"
+                    type="button">
+                    Refresh Personalities
+                </button>
+            </form>
+        </div>
         <!-- End of Starter Options Form -->
 
         <!-- User Pokemon Collection -->
-        <div id="pokemon-collection" class="row justify-content-evenly">
+        <div class="container-lg-fluid">
+            <div id="pokemon-collection" class="row justify-content-center">
             <!-- EMPTY UNTIL FILLED WITH JAVASCRIPT -->
+            </div>
         </div>
         <!-- End of User Pokemon Collection -->
 

@@ -87,7 +87,7 @@ $(document).ready(function () {
             // Loop through all pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 currentUserPokemon += `
-                    <div class="col-12 col-xl-6">
+                    <div class="col-12 col-lg-6 col-xxl-4">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
                             <h2 class="mb-1">${capitalizeWords(pokemon.nickname)}<br>the ${capitalizeWords(pokemon.name)}</h2>
@@ -98,7 +98,7 @@ $(document).ready(function () {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image_front}" class="img-responsive col-4 col-md-6" alt="${pokemon.name}">
+                                    <img src="${pokemon.image_front}" class="col-12 col-md-6" alt="${pokemon.name}">
                                 <div class="progress-bars col-11 col-md-5">
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>

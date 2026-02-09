@@ -62,6 +62,13 @@ p {
     line-height: 1;
 }
 
+img {
+    object-fit: cover;
+    object-position: center;
+    height: 300px;
+    width: 100%;
+}
+
 nav p,
 nav .nav-link {
     padding: 0 20px;
@@ -212,6 +219,10 @@ button#add-first-pokemon:hover {
     background-color: var(--tertiary-colour);
 }
 
+.starter label {
+    font-size: 3.5rem;
+}
+
 .details>p {
     color: var(--quaternary-colour);
     line-height: 0.8;
@@ -233,7 +244,7 @@ button#add-first-pokemon:hover {
 }
 
 #pokemon-collection {
-    margin: 20px 0;
+    margin: 20px 300px;
 }
 
 .pokemon-card {
@@ -265,19 +276,19 @@ button#add-first-pokemon:hover {
 
 p.small-details {
     color: var(--quaternary-colour);
-    font-size: 1.8rem;
     line-height: 0.8;
+    padding-left: 10px;
+}
+
+.small-details span {
+    color: var(--secondary-colour);
+    font-size: 1.8rem;
 }
 
 progress {
     width: 100%;
     /* This fixes the issues with progress bars not filling full space at some screen sizes */
     margin: 0;
-}
-
-img {
-    min-height: 250px;
-    min-width: 250px;
 }
 
 /* Interact Menu */
@@ -425,9 +436,58 @@ footer span {
     margin-bottom: 5px;
 }
 
+
+@media (max-width: 2600px) {
+
+    #pokemon-collection {
+        margin: 20px 200px;
+    }
+
+}
+
+@media (max-width: 2200px) {
+
+    #pokemon-collection {
+        margin: 20px 100px;
+    }
+
+}
+
+@media (max-width: 2000px) {
+
+    #pokemon-collection {
+        margin: 20px 50px;
+    }
+
+}
+
+@media (max-width: 1800px) {
+
+    #pokemon-collection {
+        margin: 20px;
+    }
+
+}
+
+@media (max-width: 1400px) {
+
+    .starter img {
+    height: 200px;
+    }
+
+}
+
 @media (max-width: 991px) {
 
     h3 {
+        font-size: 2.5rem;
+    }
+
+    .starter img {
+    height: 150px;
+    }
+
+    .starter label {
         font-size: 2.5rem;
     }
 
@@ -487,6 +547,10 @@ footer span {
 
     h1 {
         font-size: 4rem;
+    }
+    
+    #pokemon-collection {
+        margin: 0;
     }
 
     .carousel-item p {
