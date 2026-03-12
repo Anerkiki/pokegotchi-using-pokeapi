@@ -62,19 +62,6 @@ p {
     line-height: 1;
 }
 
-img {
-    object-fit: cover;
-    object-position: center;
-    height: 300px;
-    width: 100%;
-}
-
-nav p,
-nav .nav-link {
-    padding: 0 20px;
-    color: var(--quaternary-colour);
-}
-
 input[type='radio'] {
     transform: scale(2.5);
     accent-color: var(--secondary-colour);
@@ -99,6 +86,34 @@ input[type='text'] {
 
 .larger-font {
     font-size: 2.8rem;
+}
+
+/* Images */
+
+img {
+    object-fit: cover;
+    object-position: center;
+    height: 318px;
+    width: 100%;
+}
+
+#pokemon-collection img {
+    /* can't be larger than this at 991 + because of width of ekans and cloyster */
+    height: 290px;
+}
+
+.starter img {
+    height: 250px;
+}
+
+/* Go for a walk modal image */    
+#walk-image > img {
+    height: 460px;
+}
+
+/* Wild encounter modal image */
+.wild-pokemon-image {
+    height: 540px;
 }
 
 /* Buttons */
@@ -135,11 +150,22 @@ button:hover {
     border: 5px solid var(--quaternary-colour);
     border-bottom: 6px solid var(--secondary-colour);
     border-left: 6px solid var(--secondary-colour);
-    padding: 12px 10px 8px 10px;
 }
 
 .interact-button {
     margin-bottom: 10px;
+    padding: 12px 10px 7px 10px;
+}
+
+#walk-button {
+    padding: 12px 10px 6px 10px;
+}
+
+#inventory-button.secondary-button {
+    padding: 9px 10px 5px 10px;
+    font-size: 2.2rem;
+    color: var(--quaternary-colour-pale);
+    border: 4px solid var(--quaternary-colour-pale);
 }
 
 /* Arrow icon inside 'Interact' button */
@@ -167,13 +193,6 @@ button#add-first-pokemon:hover {
     background-color: var(--tertiary-colour);
 }
 
-#inventory-button.secondary-button {
-    padding: 10px 10px 6px 10px;
-    font-size: 2.2rem;
-    color: var(--quaternary-colour-pale);
-    border: 4px solid var(--quaternary-colour-pale);
-}
-
 .secondary-button {
     border-radius: 20px;
 }
@@ -197,7 +216,10 @@ button#add-first-pokemon:hover {
     color: var(--quaternary-colour);
 }
 
-.navbar p {
+nav p,
+nav .nav-link {
+    padding: 0 20px;
+    color: var(--quaternary-colour-pale);
     margin-top: 7px;
 }
 
@@ -269,6 +291,9 @@ button#add-first-pokemon:hover {
 
 .details .personality {
     color: var(--secondary-colour);
+}
+
+.starter .personality {
     min-height: 3.2rem;
     /* this is the minimum height needed to ensure the 
     height matches even if personalities change to 2 lines */
@@ -472,7 +497,11 @@ footer span {
 @media (max-width: 1400px) {
 
     .starter img {
-    height: 200px;
+        height: 200px;
+    }
+
+    #pokemon-collection img {
+        height: 290px;
     }
 
 }
@@ -483,8 +512,22 @@ footer span {
         font-size: 2.5rem;
     }
 
+    #pokemon-collection img {
+    height: 370px;
+    }
+
     .starter img {
-    height: 150px;
+        height: 170px;
+    }
+
+    /* Go for a walk modal image */
+    #walk-image > img {
+        height: 310px;
+    }
+
+    /* Wild encounter modal image */
+    .wild-pokemon-image {
+        height: 340px;
     }
 
     .starter label {
@@ -526,6 +569,7 @@ footer span {
 
     .starter-name {
         font-size: 3rem;
+        line-height: 0.5;
     }
 
     .starter .details>p {
@@ -553,10 +597,35 @@ footer span {
         margin: 0;
     }
 
+    #pokemon-collection img {
+        height: 350px;
+    }
+
     .carousel-item p {
         font-size: 1.8rem;
         /* min-height adjusted so height won't change with 3 rows of text */
         min-height: 6rem;
+    }
+}
+
+@media (max-width: 450px) {
+
+    #pokemon-collection img {
+        height: 280px;
+    }
+
+    /* Go for a walk modal image */
+    #walk-image > img {
+        height: 230px;
+    }
+
+    /* Wild encounter modal image */
+    .wild-pokemon-image {
+        height: 280px;
+    }
+
+    .starter img {
+        height: 130px;
     }
 }
 
@@ -584,9 +653,15 @@ footer span {
     }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 370px) {
 
-    h1 {
-        font-size: 2.5rem;
+    /* Go for a walk modal image */
+    #walk-image > img {
+        height: 100px;
+    }
+
+    /* Wild encounter modal image */
+    .wild-pokemon-image {
+        height: 210px;
     }
 }

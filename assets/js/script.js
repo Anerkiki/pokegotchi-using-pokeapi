@@ -98,8 +98,8 @@ $(document).ready(function () {
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image_front}" class="col-12 col-md-6" alt="${pokemon.name}">
-                                <div class="progress-bars col-11 col-md-5">
+                                    <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
+                                <div class="progress-bars col-11 col-sm-5">
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
                                         <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
@@ -554,7 +554,7 @@ $(document).ready(function () {
                 }
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal
-                let results = `<img src="${imageFront}" alt="${pokemonName}">`
+                let results = `<img class="wild-pokemon-image" src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
                 $("#wildEncounterModal .main-modal-content").html(results);
                 // Don't need to update modalIsOpen state here as this function closes and opens a modal
