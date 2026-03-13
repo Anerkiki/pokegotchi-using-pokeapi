@@ -242,6 +242,11 @@ nav .nav-link {
 }
 
 .starter label {
+    display: block;
+    line-height: 0.6;
+}
+
+.starter-name {
     font-size: 3.5rem;
 }
 
@@ -567,9 +572,13 @@ footer span {
         font-size: 3rem;
     }
 
+    .starter label {
+        display: inline;
+    }
+
     .starter-name {
         font-size: 3rem;
-        line-height: 0.5;
+        margin-left: 10px;
     }
 
     .starter .details>p {
