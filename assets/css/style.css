@@ -49,6 +49,7 @@ h1 {
 
 h2 {
     font-size: 4rem;
+    margin: 0;
 }
 
 h3 {
@@ -63,7 +64,7 @@ p {
 }
 
 input[type='radio'] {
-    transform: scale(2.5);
+    transform: scale(2.2);
     accent-color: var(--secondary-colour);
 }
 
@@ -90,30 +91,31 @@ input[type='text'] {
 
 /* Images */
 
-img {
+.starter img {
     object-fit: cover;
     object-position: center;
-    height: 318px;
-    width: 100%;
+    height: 250px;
 }
 
 #pokemon-collection img {
-    /* can't be larger than this at 991 + because of width of ekans and cloyster */
-    height: 290px;
-}
-
-.starter img {
-    height: 250px;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Go for a walk modal image */    
 #walk-image > img {
-    height: 460px;
+    object-fit: cover;
+    object-position: center;
+    height: 570px;
 }
 
 /* Wild encounter modal image */
 .wild-pokemon-image {
-    height: 540px;
+    object-fit: cover;
+    object-position: center;
+    height: 680px;
+    /* 'width: 100%' needs adding to prevent images shifting to the right on small screens */
+    width: 100%;
 }
 
 /* Buttons */
@@ -187,6 +189,10 @@ button#add-first-pokemon {
     border: 5px solid var(--quaternary-colour);
     border-bottom: 6px solid var(--secondary-colour);
     border-left: 6px solid var(--secondary-colour);
+}
+
+#add-walk-items, #add-first-pokemon {
+    padding: 8px 10px 3px 10px;
 }
 
 button#add-first-pokemon:hover {
@@ -274,6 +280,11 @@ nav .nav-link {
     margin: 20px 300px;
 }
 
+.pokemon-card-outer {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
 .pokemon-card {
     background-color: var(--primary-colour-pale);
     color: var(--secondary-colour);
@@ -282,11 +293,17 @@ nav .nav-link {
     border-left: 6px solid var(--secondary-colour);
     border-radius: 20px;
     margin: 10px 0;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .pokemon-card>h2 {
     line-height: 0.8;
+    font-size: 3.5rem;
+}
+
+/* to make the pokemon nickname stand out more from the rest of the title */
+.pokemon-nickname {
+    font-size: 1.1em;
 }
 
 .details>.level {
@@ -505,8 +522,9 @@ footer span {
         height: 200px;
     }
 
-    #pokemon-collection img {
-        height: 290px;
+    .pokemon-card-outer {
+        flex: 0 0 auto;
+        width: 50%;
     }
 
 }
@@ -517,8 +535,9 @@ footer span {
         font-size: 2.5rem;
     }
 
-    #pokemon-collection img {
-    height: 370px;
+    .pokemon-card-outer {
+        flex: 0 0 auto;
+        width: 100%;
     }
 
     .starter img {
@@ -527,12 +546,13 @@ footer span {
 
     /* Go for a walk modal image */
     #walk-image > img {
-        height: 310px;
+        height: 380px;
     }
 
     /* Wild encounter modal image */
     .wild-pokemon-image {
-        height: 340px;
+        /* needs to be this high for pidgeotto */
+        height: 460px;
     }
 
     .starter label {
@@ -568,12 +588,14 @@ footer span {
 
 @media (max-width: 767px) {
 
-    h2 {
+    .pokemon-card>h2 {
         font-size: 3rem;
     }
 
     .starter label {
-        display: inline;
+        display: inline-block;
+        /* this moves the label text down to be in line with the radio buttons */
+        transform: translateY(2px);
     }
 
     .starter-name {
@@ -606,10 +628,6 @@ footer span {
         margin: 0;
     }
 
-    #pokemon-collection img {
-        height: 350px;
-    }
-
     .carousel-item p {
         font-size: 1.8rem;
         /* min-height adjusted so height won't change with 3 rows of text */
@@ -619,18 +637,18 @@ footer span {
 
 @media (max-width: 450px) {
 
-    #pokemon-collection img {
-        height: 280px;
+    .pokemon-card>h2 {
+        font-size: 2.5rem;
     }
 
     /* Go for a walk modal image */
     #walk-image > img {
-        height: 230px;
+        height: 290px;
     }
 
     /* Wild encounter modal image */
     .wild-pokemon-image {
-        height: 280px;
+        height: 350px;
     }
 
     .starter img {
@@ -666,11 +684,11 @@ footer span {
 
     /* Go for a walk modal image */
     #walk-image > img {
-        height: 100px;
+        height: 230px;
     }
 
     /* Wild encounter modal image */
     .wild-pokemon-image {
-        height: 210px;
+        height: 280px;
     }
 }

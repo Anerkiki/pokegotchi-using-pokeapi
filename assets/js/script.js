@@ -87,10 +87,10 @@ $(document).ready(function () {
             // Loop through all pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
                 currentUserPokemon += `
-                    <div class="col-12 col-lg-6 col-xxl-4">
+                    <div class="pokemon-card-outer">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
-                            <h2 class="mb-1">${capitalizeWords(pokemon.nickname)}<br>the ${capitalizeWords(pokemon.name)}</h2>
+                            <h2><div class="pokemon-nickname">${capitalizeWords(pokemon.nickname)}</div>the ${capitalizeWords(pokemon.name)}</h2>
 
                             <div class = "row justify-content-center text-start">
                                     <div class="details">
@@ -99,7 +99,7 @@ $(document).ready(function () {
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
                                     <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
-                                <div class="progress-bars col-11 col-sm-5">
+                                <div class="progress-bars d-flex flex-column justify-content-evenly col-11 col-sm-5">
                                     <div>
                                         <p><label for="hunger">Hunger:</label></p>
                                         <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
