@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                             <div class = "row justify-content-center text-start">
                                     <div class="details">
-                                        <p class="level">Level: ${pokemon.level}</p>
+                                        <p id="level-${pokemon.index}" class="level">Level: ${pokemon.level}</p>
                                         <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
                                         <p class="personality">Personality: ${pokemon.personality}</p>
                                     </div>
@@ -468,25 +468,35 @@ $(document).ready(function () {
             if (pokemon.index === uniqueIndex) {
                 if (pokemon.health < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 5);
+                    // Display the updated happiness bar
+                    $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                     updateModalStateToOpen();
                 } else if (pokemon.hunger < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 10);
+                    // Display the updated happiness bar
+                    $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon is too hungry to train!</p><p>(Try feeding them some berries)</p>");
                     $("#alertModal").modal("show");
                     updateModalStateToOpen();
                 } else {
                     // Math.max will always find the maximum value, so if the first value is set to 0 then no
-                    // matter how low the health value gets from battling, it won't ever be less than 0
+                        // matter how low the health value gets from battling, it won't ever be less than 0
+                    // Remove 10 from health and 20 from hunger bars
                     pokemon.health = Math.max(0, pokemon.health - 10);
                     pokemon.hunger = Math.max(0, pokemon.hunger - 20);
+                    // Display the updated health and hunger bars
+                    $(`#health-${uniqueIndex}`).val(pokemon.health);
+                    $(`#hunger-${uniqueIndex}`).val(pokemon.hunger);
+                    // Add 1 to the pokémon's level
                     pokemon.level = pokemon.level + 1;
+                    // Display the updated level
+                    $(`#level-${uniqueIndex}`).html(`Level: ${pokemon.level}`);
                     break;
                 }
             }
         }
-        displayUserPokemon();
     }
 
     // 'Go For A Walk' button functions
