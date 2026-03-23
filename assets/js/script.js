@@ -3,7 +3,7 @@ $(document).ready(function () {
     // Global Variables
 
     // Where collected pokémon are stored/removed from
-    let userPokemon = []; 
+    let userPokemon = [];
 
     const inventory = {
         pokemon: userPokemon.length,
@@ -36,11 +36,11 @@ $(document).ready(function () {
     addNewPersonalitiesToStarters();
 
     // Basic Functions
-    function updateModalStateToClosed () {
+    function updateModalStateToClosed() {
         modalIsOpen = false;
     }
 
-    function updateModalStateToOpen () {
+    function updateModalStateToOpen() {
         modalIsOpen = true;
     }
 
@@ -101,16 +101,16 @@ $(document).ready(function () {
                                     <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
                                 <div class="progress-bars d-flex flex-column justify-content-evenly col-11 col-sm-5">
                                     <div>
-                                        <p><label for="hunger">Hunger:</label></p>
-                                        <progress id="hunger" max="100" value="${pokemon.hunger}"></progress>
+                                        <p><label for="hunger-${pokemon.index}">Hunger:</label></p>
+                                        <progress id="hunger-${pokemon.index}" max="100" value="${pokemon.hunger}"></progress>
                                     </div>
                                     <div>
-                                        <p><label for="health">Health:</label></p>
-                                        <progress id="health" max="100" value="${pokemon.health}"></progress>
+                                        <p><label for="health-${pokemon.index}">Health:</label></p>
+                                        <progress id="health-${pokemon.index}" max="100" value="${pokemon.health}"></progress>
                                     </div>
                                     <div>
-                                        <p><label for="happiness">Happiness:</label></p>
-                                        <progress id="happiness" max="100" value="${pokemon.happiness}"></progress>
+                                        <p><label for="happiness-${pokemon.index}">Happiness:</label></p>
+                                        <progress id="happiness-${pokemon.index}" max="100" value="${pokemon.happiness}"></progress>
                                     </div>
                                 </div>
 
@@ -378,11 +378,12 @@ $(document).ready(function () {
                 // Math.min will always find the minimum value, so if the first value is set to 100 then no
                 // matter how high the new happiness value gets after playing, it won't ever exceed 100
                 pokemon.happiness = Math.min(100, pokemon.happiness + 15);
+                // Update the happiness bar on screen
+                $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                 // This will stop cycling through the list of pokémon once the correct one has been found
                 break;
             }
         }
-        displayUserPokemon();
     }
 
     $("#pokemon-collection").on("click", ".action-berry", actionBerry);
@@ -390,7 +391,7 @@ $(document).ready(function () {
     function actionBerry() {
         // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
-            return; 
+            return;
         }
         if (inventory.berries < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;berries!</p><p>(Try going for a walk to&nbsp;find&nbsp;some)<p>");
@@ -421,7 +422,7 @@ $(document).ready(function () {
     function actionPotion() {
         // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
-            return; 
+            return;
         }
         if (inventory.potions < 1) {
             $("#alertModal .main-modal-content").html("<p class='larger-font'>You don't have any&nbsp;potions!</p><p>(Potions are rare, so you may have to go on a few walks to&nbsp;find&nbsp;some)</p>");
@@ -452,7 +453,7 @@ $(document).ready(function () {
     function actionTrain() {
         // A safeguard to prevent the multiple open modals issue
         if (modalIsOpen) {
-            return; 
+            return;
         }
         const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
         for (let pokemon of userPokemon) {
