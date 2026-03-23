@@ -378,7 +378,7 @@ $(document).ready(function () {
                 // Math.min will always find the minimum value, so if the first value is set to 100 then no
                 // matter how high the new happiness value gets after playing, it won't ever exceed 100
                 pokemon.happiness = Math.min(100, pokemon.happiness + 15);
-                // Update the happiness bar on screen
+                // Display the updated happiness bar
                 $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                 // This will stop cycling through the list of pokémon once the correct one has been found
                 break;
@@ -406,14 +406,18 @@ $(document).ready(function () {
                         $("#alertModal").modal("show");
                         updateModalStateToOpen();
                     } else {
+                        // Add 15 to the hunger bar
                         pokemon.hunger = Math.min(100, pokemon.hunger + 15);
+                        // Display the updated hunger bar
+                        $(`#hunger-${uniqueIndex}`).val(pokemon.hunger);
+                        // Remove 1 berry from the inventory
                         inventory.berries = inventory.berries - 1;
+                        // Display the updated inventory
+                        updateInventory();
                         break;
                     }
                 }
             }
-            displayUserPokemon();
-            updateInventory();
         }
     }
 
@@ -437,14 +441,18 @@ $(document).ready(function () {
                         $("#alertModal").modal("show");
                         updateModalStateToOpen();
                     } else {
+                        // Add 15 to the health bar
                         pokemon.health = Math.min(100, pokemon.health + 15);
+                        // Display the updated health bar
+                        $(`#health-${uniqueIndex}`).val(pokemon.health);
+                        // Remove 1 potion from the inventory
                         inventory.potions = inventory.potions - 1;
+                        // Display the updated inventory
+                        updateInventory();
                         break;
                     }
                 }
             }
-            displayUserPokemon();
-            updateInventory();
         }
     }
 
