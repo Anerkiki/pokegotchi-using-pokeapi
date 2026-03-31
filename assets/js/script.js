@@ -94,15 +94,15 @@ $(document).ready(function () {
 
                             <div class = "row justify-content-center text-start">
                                     <div class="details">
-                                        <p id="level-${pokemon.index}" class="level">Level: ${pokemon.level}</p>
-                                        <p>Type: ${capitalizeFirstLetter(pokemon.type)}</p>
-                                        <p class="personality">Personality: ${pokemon.personality}</p>
+                                        <p id="level-${pokemon.index}">Level: ${pokemon.level}</p>
+                                        <p><span>Type: ${capitalizeFirstLetter(pokemon.type)}</span></p>
+                                        <p>Personality: ${pokemon.personality}</p>
                                     </div>
                                     <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
                                 <div class="progress-bars d-flex flex-column justify-content-evenly col-11 col-sm-5">
                                     <div>
-                                        <p><label for="hunger-${pokemon.index}">Hunger:</label></p>
-                                        <progress id="hunger-${pokemon.index}" max="100" value="${pokemon.hunger}"></progress>
+                                        <p><label for="energy -${pokemon.index}">Energy:</label></p>
+                                        <progress id="energy-${pokemon.index}" max="100" value="${pokemon.energy}"></progress>
                                     </div>
                                     <div>
                                         <p><label for="health-${pokemon.index}">Health:</label></p>
@@ -123,28 +123,28 @@ $(document).ready(function () {
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <button class="action-train dropdown-item"
-                                            aria-label="Train with ${pokemon.nickname} to increase it's level">Train With</button>
+                                            aria-label="Train with ${pokemon.nickname} to increase it's level"><span class="interaction">Train With</span> (Increase Level)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-berry dropdown-item"
-                                            aria-label="Feed a berry to ${pokemon.nickname} to increase it's hunger bar">Feed Berry</button>
+                                            aria-label="Feed a berry to ${pokemon.nickname} to increase it's energy bar"><span class="interaction">Feed Berry</span> (Increase Energy)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-potion dropdown-item"
-                                            aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar">Feed Potion</button>
+                                            aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar"><span class="interaction">Feed Potion</span> (Increase Health)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-play dropdown-item"
-                                            aria-label="Play with ${pokemon.nickname} to increase it's happiness bar">Play With</button>
+                                            aria-label="Play with ${pokemon.nickname} to increase it's happiness bar"><span class="interaction">Play With</span> (Increase Happiness)</button>
                                     </li>
                                 </ul>
                             </div>
@@ -232,7 +232,7 @@ $(document).ready(function () {
         let level = 1;
         let happiness = 80;
         let health = 80;
-        let hunger = 80;
+        let energy = 80;
         let uniqueIndex = Date.now();
         // Fetch pokémon data from PokéAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
@@ -264,7 +264,7 @@ $(document).ready(function () {
                     level: level,
                     happiness: happiness,
                     health: health,
-                    hunger: hunger,
+                    energy: energy,
                 });
                 // Update displays in HTML
                 updateInventory();
@@ -377,7 +377,7 @@ $(document).ready(function () {
             if (pokemon.index === uniqueIndex) {
                 // Math.min will always find the minimum value, so if the first value is set to 100 then no
                 // matter how high the new happiness value gets after playing, it won't ever exceed 100
-                pokemon.happiness = Math.min(100, pokemon.happiness + 15);
+                pokemon.happiness = Math.min(100, pokemon.happiness + 20);
                 // Display the updated happiness bar
                 $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                 // This will stop cycling through the list of pokémon once the correct one has been found
@@ -401,15 +401,19 @@ $(document).ready(function () {
             const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
             for (let pokemon of userPokemon) {
                 if (pokemon.index === uniqueIndex) {
-                    if (pokemon.hunger === 100) {
+                    if (pokemon.energy === 100) {
                         $("#alertModal .main-modal-content").text("Your pokémon is now full!");
                         $("#alertModal").modal("show");
                         updateModalStateToOpen();
                     } else {
-                        // Add 15 to the hunger bar
-                        pokemon.hunger = Math.min(100, pokemon.hunger + 15);
-                        // Display the updated hunger bar
-                        $(`#hunger-${uniqueIndex}`).val(pokemon.hunger);
+                        // Add 15 to the energy bar
+                        pokemon.energy = Math.min(100, pokemon.energy + 15);
+                        // Display the updated energy bar
+                        $(`#energy-${uniqueIndex}`).val(pokemon.energy);
+                        // Add 5 to the happiness bar
+                        pokemon.happiness = Math.min(100, pokemon.happiness + 5);
+                        // Display the updated happiness bar
+                        $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                         // Remove 1 berry from the inventory
                         inventory.berries = inventory.berries - 1;
                         // Display the updated inventory
@@ -473,7 +477,7 @@ $(document).ready(function () {
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
                     $("#alertModal").modal("show");
                     updateModalStateToOpen();
-                } else if (pokemon.hunger < 20) {
+                } else if (pokemon.energy < 20) {
                     pokemon.happiness = Math.max(0, pokemon.happiness - 10);
                     // Display the updated happiness bar
                     $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
@@ -483,12 +487,12 @@ $(document).ready(function () {
                 } else {
                     // Math.max will always find the maximum value, so if the first value is set to 0 then no
                         // matter how low the health value gets from battling, it won't ever be less than 0
-                    // Remove 10 from health and 20 from hunger bars
+                    // Remove 10 from health and 20 from energy bars
                     pokemon.health = Math.max(0, pokemon.health - 10);
-                    pokemon.hunger = Math.max(0, pokemon.hunger - 20);
-                    // Display the updated health and hunger bars
+                    pokemon.energy = Math.max(0, pokemon.energy - 20);
+                    // Display the updated health and energy bars
                     $(`#health-${uniqueIndex}`).val(pokemon.health);
-                    $(`#hunger-${uniqueIndex}`).val(pokemon.hunger);
+                    $(`#energy-${uniqueIndex}`).val(pokemon.energy);
                     // Add 1 to the pokémon's level
                     pokemon.level = pokemon.level + 1;
                     // Display the updated level
@@ -555,8 +559,13 @@ $(document).ready(function () {
     $("#investigate-button").on("click", surpriseEncounter);
 
     function surpriseEncounter() {
+        // Disable the investigate button so 2 pokémon can't be added at the same time
+        $("#investigate-button").prop("disabled", true);
         // Don't need to update modalIsOpen state here as this function closes and opens a modal
         $("#walkDisturbanceModal").modal("hide");
+        $("#wildEncounterModal .main-modal-content").html('<p>You walk closer and...</p>');
+        // Don't need to update modalIsOpen state here as this function closes and opens a modal
+        $("#wildEncounterModal").modal("show");
         // Generate random species number and save to global variable
         wildSpeciesNum = Math.floor(Math.random() * 151) + 1;
         // Fetch details of random pokémon from PokeAPI
@@ -576,14 +585,18 @@ $(document).ready(function () {
                 let results = `<img class="wild-pokemon-image" src="${imageFront}" alt="${pokemonName}">`
                 results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
                 $("#wildEncounterModal .main-modal-content").html(results);
-                // Don't need to update modalIsOpen state here as this function closes and opens a modal
-                $("#wildEncounterModal").modal("show");
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
+
+                // Re-enable the investigate button
+                $("#investigate-button").prop("disabled", false);
             })
             .catch(error => {
                 console.error("Error fetching pokémon:", error);
+
+                // Re-enable the investigate button
+                $("#investigate-button").prop("disabled", false)
             });
     }
 
@@ -596,7 +609,7 @@ $(document).ready(function () {
         let level = Math.floor(Math.random() * 5) + 1;
         let happiness = 10;
         let health = 80;
-        let hunger = 40;
+        let energy = 40;
         let uniqueIndex = Date.now();
         // Fetch details of new pokémon from PokeAPI
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesNumber}/`)
@@ -628,7 +641,7 @@ $(document).ready(function () {
                     level: level,
                     happiness: happiness,
                     health: health,
-                    hunger: hunger,
+                    energy: energy,
                 });
                 // Update pokémon to edit index to new pokémon for renaming
                 pokemonToEditIndex = uniqueIndex;
