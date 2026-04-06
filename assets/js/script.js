@@ -101,7 +101,7 @@ $(document).ready(function () {
                                     <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
                                 <div class="progress-bars d-flex flex-column justify-content-evenly col-11 col-sm-5">
                                     <div>
-                                        <p><label for="energy -${pokemon.index}">Energy:</label></p>
+                                        <p><label for="energy-${pokemon.index}">Energy:</label></p>
                                         <progress id="energy-${pokemon.index}" max="100" value="${pokemon.energy}"></progress>
                                     </div>
                                     <div>
@@ -123,28 +123,28 @@ $(document).ready(function () {
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <button class="action-train dropdown-item"
-                                            aria-label="Train with ${pokemon.nickname} to increase it's level"><span class="interaction">Train With</span> (Increase Level)</button>
+                                            aria-label="Train with ${pokemon.nickname} to increase its level"><span class="interaction">Train With</span> (Increase Level)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-berry dropdown-item"
-                                            aria-label="Feed a berry to ${pokemon.nickname} to increase it's energy bar"><span class="interaction">Feed Berry</span> (Increase Energy)</button>
+                                            aria-label="Feed a berry to ${pokemon.nickname} to increase its energy bar"><span class="interaction">Feed Berry</span> (Increase Energy)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-potion dropdown-item"
-                                            aria-label="Feed a potion to ${pokemon.nickname} to increase it's health bar"><span class="interaction">Feed Potion</span> (Increase Health)</button>
+                                            aria-label="Feed a potion to ${pokemon.nickname} to increase its health bar"><span class="interaction">Feed Potion</span> (Increase Health)</button>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
                                         <button class="action-play dropdown-item"
-                                            aria-label="Play with ${pokemon.nickname} to increase it's happiness bar"><span class="interaction">Play With</span> (Increase Happiness)</button>
+                                            aria-label="Play with ${pokemon.nickname} to increase its happiness bar"><span class="interaction">Play With</span> (Increase Happiness)</button>
                                     </li>
                                 </ul>
                             </div>
@@ -547,7 +547,7 @@ $(document).ready(function () {
         inventory.berries = inventory.berries + lastBerryWalkResult;
         inventory.potions = inventory.potions + lastPotionWalkResult;
         updateInventory();
-        updateModalStateToClosed;
+        updateModalStateToClosed();
     }
 
     function walkDisturbance() {
@@ -583,7 +583,7 @@ $(document).ready(function () {
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal
                 let results = `<img class="wild-pokemon-image" src="${imageFront}" alt="${pokemonName}">`
-                results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?<p>`
+                results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?</p>`
                 $("#wildEncounterModal .main-modal-content").html(results);
                 // Update displays in HTML
                 updateInventory();
@@ -617,7 +617,7 @@ $(document).ready(function () {
             .then(data => {
                 let pokemonName = data.name;
                 if (pokemonName === "nidoran-f") {
-                    pokemonName = "Nidoran♀;"
+                    pokemonName = "Nidoran♀";
                 } else if (pokemonName === "nidoran-m") {
                     pokemonName = "Nidoran♂"
                 } else if (pokemonName === "mr-mime") {

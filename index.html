@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TO DO: Fill in description and keywords -->
     <meta name="description" content="">
     <meta name="keywords" content="">
     <title>Pokégotchi | Home</title>
@@ -12,9 +13,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Custom CSS Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- TO DO: Add Favicon -->
 </head>
 
@@ -74,10 +72,11 @@
                                     class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Bulbasaur">
                                 <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
                                     <p class="small-details d-sm-none">Personality: <span
-                                    class="starter-personality-1">Unknown</span></p>
+                                            class="starter-personality-1">Unknown</span></p>
                                     <div class="details">
                                         <p class="d-none d-sm-block">Type: <span>Grass</span></p>
-                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-1">Unknown</span></p>
+                                        <p class="personality d-none d-sm-block">Personality: <span
+                                                class="starter-personality-1">Unknown</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -96,10 +95,11 @@
                                     class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Charmander">
                                 <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
                                     <p class="small-details d-sm-none">Personality: <span
-                                    class="starter-personality-4">Unknown</span></p>
+                                            class="starter-personality-4">Unknown</span></p>
                                     <div class="details">
                                         <p class="d-none d-sm-block">Type: <span>Fire</span></p>
-                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-4">Unknown</span></p>
+                                        <p class="personality d-none d-sm-block">Personality: <span
+                                                class="starter-personality-4">Unknown</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -118,10 +118,11 @@
                                     class="col-8 col-sm-7 col-md-12 order-2 order-md-1" alt="Squirtle">
                                 <div class="col-4 col-md-12 order-1 order-md-2 align-self-center">
                                     <p class="small-details d-sm-none">Personality: <span
-                                    class="starter-personality-7">Unknown</span></p>
+                                            class="starter-personality-7">Unknown</span></p>
                                     <div class="details">
                                         <p class="d-none d-sm-block">Type: <span>Water</span></p>
-                                        <p class="personality d-none d-sm-block">Personality: <span class="starter-personality-7">Unknown</span></p>
+                                        <p class="personality d-none d-sm-block">Personality: <span
+                                                class="starter-personality-7">Unknown</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +145,9 @@
         <!-- End of Starter Options Form -->
 
         <!-- User Pokemon Collection -->
-        <div class="container-lg-fluid">
+        <div>
             <div id="pokemon-collection" class="row justify-content-center">
-            <!-- EMPTY UNTIL FILLED WITH JAVASCRIPT -->
+                <!-- EMPTY UNTIL FILLED WITH JAVASCRIPT -->
             </div>
         </div>
         <!-- End of User Pokemon Collection -->
@@ -165,20 +166,23 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3500">
-                    <p><br class="d-none d-md-block">To get berries and potions for your pokémon, go for a walk to find some!</p>
+                    <p><br class="d-none d-md-block">To get berries and potions for your pokémon, go for a walk to find
+                        some!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
                     <p><br class="d-none d-sm-block">Train with your pokémon to increase their level!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3500">
-                    <p><br class="d-none d-lg-block">If your pokémon is over level 5, there is a chance of encountering wild pokémon on walks with
+                    <p><br class="d-none d-lg-block">If your pokémon is over level 5, there is a chance of encountering
+                        wild pokémon on walks with
                         them!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
                     <p><br class="d-none d-sm-block">You can adopt wild pokémon encountered on walks!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3500">
-                    <p><br class="d-none d-lg-block">Your pokémon's happiness will go down if you try to train while it is hungry or at low health!
+                    <p><br class="d-none d-lg-block">Your pokémon's happiness will go down if you try to train while it
+                        is hungry or at low health!
                     </p>
                 </div>
             </div>
@@ -192,13 +196,14 @@
     <!-- Modals (data-bs-keyboard="false" is added so that my JavaScript handles any keyboard press, not Bootstrap) -->
 
     <!-- Alert Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal" id="alertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal" id="alertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title">Oh!</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="main-modal-content"><!-- Message will be injected here --></div>
@@ -213,13 +218,14 @@
     </div>
 
     <!-- Release Confirmation Modal -->
-    <div class="modal" id="releaseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-lg modal-dialog-centered">
+    <div class="modal" id="releaseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title">Release Pokémon</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p class="main-modal-content">Are you sure you want to release your Pokémon into the wild?</p>
@@ -227,7 +233,8 @@
                     <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
                             type="button">Cancel</button>
-                        <button id="confirm-release-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal">Release</button>
+                        <button id="confirm-release-button" class="confirm-modal-button" type="button"
+                            data-bs-dismiss="modal">Release</button>
                     </div>
                 </div>
             </div>
@@ -235,23 +242,25 @@
     </div>
 
     <!-- Rename Confirmation Modal -->
-    <div class="modal" id="renameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal" id="renameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title">Rename Pokémon</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="new-nickname" class="main-modal-content">Choose a new nickname for your pokémon:</label>
-                        <input id="new-nickname" type="text" maxlength="12" value="new-nickname">
+                        <label for="new-nickname" class="main-modal-content">Choose a new nickname for your
+                            pokémon:</label>
+                        <input id="new-nickname" type="text" maxlength="12">
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal"
                             type="button">Cancel</button>
-                            <!-- maybe remove this button? -->
-                        <button id="rename-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal">Rename</button>
+                        <button id="rename-button" class="confirm-modal-button" type="button"
+                            data-bs-dismiss="modal">Rename</button>
                     </div>
                 </div>
             </div>
@@ -260,18 +269,20 @@
 
     <!-- Walk Results Modal (Static) - Edited from Bootstrap Modal Example -->
     <div class="modal" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="walkResultsLabel" aria-hidden="true">
+        aria-labelledby="walkResultsModalLabel">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title">On your walk...</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h3 class="modal-title" id="walkResultsModalLabel">On your walk...</h3>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <span id="walk-image"></span>
-                        <p class="main-modal-content">You and <span id="random-user-pokemon">your pokémon</span> found <span
-                            id="walk-results">some invisible berries</span>!</p>
+                        <p class="main-modal-content">You and <span id="random-user-pokemon">your pokémon</span> found
+                            <span id="walk-results">some invisible berries</span>!
+                        </p>
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button id="add-walk-items" class="confirm-modal-button" data-bs-dismiss="modal"
@@ -284,13 +295,14 @@
 
     <!-- Walk Surprise Modal (Static) - Edited from Bootstrap Modal Example -->
     <div class="modal" id="walkDisturbanceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="walkDisturbanceModalLabel" aria-hidden="true">
+        aria-labelledby="walkDisturbanceModalLabel">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title" id="walkDisturbanceModalLabel">Oh!</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="main-modal-content"><!-- Message will be injected here --></div>
@@ -306,23 +318,23 @@
 
     <!-- Wild Pokémon Encounter Modal (Static) - Edited from Bootstrap Modal Example -->
     <div class="modal" id="wildEncounterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="wildEncounterModalLabel" aria-hidden="true">
+        aria-labelledby="wildEncounterModalLabel">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title" id="wildEncounterModalLabel">Well hello there!</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="main-modal-content"><!-- Message will be injected here --></div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal" type="button">Run
-                            Away</button>
-                            <!-- TO DO: check aria labels -->
-                        <button id="adopt-button" class="continue-modal-button" type="button"
-                            data-bs-dismiss="modal">Adopt</button>
+                        <button class="cancel-modal-button secondary-button" data-bs-dismiss="modal" type="button">
+                            Run Away</button>
+                        <button id="adopt-button" class="continue-modal-button" type="button" data-bs-dismiss="modal">
+                            Adopt</button>
                     </div>
                 </div>
             </div>
@@ -330,26 +342,32 @@
     </div>
 
     <!-- Rename Wild Pokémon Confirmation Modal -->
-    <div class="modal" id="wildRenameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal" id="wildRenameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
                         <h3 class="modal-title">What would you like to name them?</h3>
-                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="wild-new-nickname" class="main-modal-content">Choose a nickname for your new pokémon:</label>
+                        <label for="wild-new-nickname" class="main-modal-content">Choose a nickname for your new
+                            pokémon:</label>
                         <input id="wild-new-nickname" type="text" maxlength="12">
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button id="wild-rename-button" class="confirm-modal-button" type="button" data-bs-dismiss="modal">Great</button>
+                        <button id="wild-rename-button" class="confirm-modal-button" type="button"
+                            data-bs-dismiss="modal">Great</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Main JavaScript -->
     <script src="assets/js/script.js"></script>
     <!--Bootstrap JS-->
