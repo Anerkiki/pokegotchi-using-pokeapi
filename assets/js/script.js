@@ -69,7 +69,7 @@ $(document).ready(function () {
         });
     }
 
-    $("#refresh-personalities-nav, #refresh-personalities-main").on("click", addNewPersonalitiesToStarters);
+    $("#refresh-personalities-button").on("click", addNewPersonalitiesToStarters);
 
     function addNewPersonalitiesToStarters() {
         let personality1 = pokemonPersonality[Math.floor(Math.random() * pokemonPersonality.length)];
@@ -98,7 +98,7 @@ $(document).ready(function () {
                                         <p><span>Type: ${capitalizeFirstLetter(pokemon.type)}</span></p>
                                         <p>Personality: ${pokemon.personality}</p>
                                     </div>
-                                    <img src="${pokemon.image_front}" class="col-12 col-sm-7" alt="${pokemon.name}">
+                                    <img src="${pokemon.imageFront}" class="col-12 col-sm-7" alt="${pokemon.name}">
                                 <div class="progress-bars d-flex flex-column justify-content-evenly col-11 col-sm-5">
                                     <div>
                                         <p><label for="energy-${pokemon.index}">Energy:</label></p>
@@ -169,9 +169,11 @@ $(document).ready(function () {
             $("#pokemon-collection").html("");
             // Reset the starter form page
             $("#starter-options-form").removeClass("hidden");
+            // Remove walk and inventory buttons
             $("#walk-button").addClass("hidden");
+            $("#inventory-button").addClass("hidden");
             $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
-            $("#refresh-personalities-nav").removeClass("hidden");
+            $("#refresh-personalities-button").removeClass("hidden");
             $("#starter-nickname").focus();
         }
     }
@@ -256,8 +258,8 @@ $(document).ready(function () {
                     index: uniqueIndex,
                     species: species,
                     name: pokemonName,
-                    image_front: imageFront,
-                    image_back: imageBack,
+                    imageFront: imageFront,
+                    imageBack: imageBack,
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,
@@ -271,10 +273,10 @@ $(document).ready(function () {
                 displayUserPokemon();
                 // Remove starter choice form and 'Refresh Personality' buttons
                 $("#starter-options-form").addClass("hidden");
-                $("#refresh-personalities-nav").addClass("hidden");
-                $("#refresh-personalities-main").addClass("hidden");
-                // Add 'Go For A Walk' button
+                $("#refresh-personalities-button").addClass("hidden");
+                // Add 'Go For A Walk' and 'Inventory' buttons
                 $("#walk-button").removeClass("hidden");
+                $("#inventory-button").removeClass("hidden");
                 // testing ------------------------------------------------------------------------------------- REMOVE LATER
                 // To double check details of new pokémon added
                 console.log("Starter chosen:", userPokemon);
@@ -340,7 +342,7 @@ $(document).ready(function () {
         // Find the pokémon object to get its current nickname
         // find() is like doing a for loop through all of the userPokemon array
         const pokemonToRename = userPokemon.find(pokemon => pokemon.index === uniqueIndex);
-        // Store the index globally so releasePokemon can access it
+        // Store the index globally so renamePokemon can access it
         pokemonToEditIndex = uniqueIndex;
         // Pre-fill the modal input with original nickname
         $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
@@ -533,7 +535,7 @@ $(document).ready(function () {
             // Add the random pokémon nickname to the text in the modal
             $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
             // Add image to modal (reversed to look like user is walking behind pokémon)
-            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].image_back}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
+            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].imageBack}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
             // Update the inner text of walk results modal
             $("#walk-results").text(results);
             $("#walkResultsModal").modal("show");
@@ -633,8 +635,8 @@ $(document).ready(function () {
                     index: uniqueIndex,
                     species: speciesNumber,
                     name: capitalizeWords(pokemonName),
-                    image_front: imageFront,
-                    image_back: imageBack,
+                    imageFront: imageFront,
+                    imageBack: imageBack,
                     nickname: nickname,
                     type: primaryType,
                     personality: personality,

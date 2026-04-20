@@ -14,7 +14,7 @@
     /* Tertiary Colour - Off White (matches Bootstrap navbar) */
     --tertiary-colour: #f8f9fa;
     /* Quaternary Colour - Pink */
-    --quaternary-colour: #db0080;
+    --quaternary-colour: #DB0080;
 
     /* Not Used Colours - REMOVE once final colour pallette has been decided -------------- REMOVE LATER */
     --other-background: #3dd3b9;
@@ -104,7 +104,7 @@ input[type='text'] {
 #walk-image > img {
     object-fit: cover;
     object-position: center;
-    height: 570px;
+    height: 400px;
 }
 
 /* Wild encounter modal image */
@@ -262,10 +262,6 @@ button#add-first-pokemon:hover {
     margin: 0;
 }
 
-#refresh-personalities-main {
-    display: none;
-}
-
 .rename-pokemon {
     color: var(--secondary-colour);
     border: 4px solid var(--secondary-colour);
@@ -402,7 +398,7 @@ footer span {
 
 /* Carousel */
 
-#tipCarousel {
+#tip-carousel {
     background-color: var(--primary-colour-pale);
     border-bottom: 11px solid var(--primary-colour);
     padding: 30px 0 50px 0;
@@ -583,14 +579,6 @@ footer span {
         font-size: 2.2rem;
     }
 
-    /* Responsive visibility for 'Refresh Personalities' buttons  */
-    #refresh-personalities-nav {
-        display: none;
-    }
-
-    #refresh-personalities-main {
-        display: inline-block;
-    }
 }
 
 @media (max-width: 767px) {
@@ -626,6 +614,10 @@ footer span {
 }
 
 @media (max-width: 560px) {
+
+    #refresh-personalities-button {
+    font-size: 2rem;
+    }
 
     .small-details {
         font-size: 2.2rem;
