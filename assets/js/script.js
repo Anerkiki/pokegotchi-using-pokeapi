@@ -584,7 +584,7 @@ $(document).ready(function () {
                 }
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal
-                let results = `<img class="wild-pokemon-image" src="${imageFront}" alt="${pokemonName}">`
+                let results = `<span id="wild-pokemon-image"><img src="${imageFront}" alt="${pokemonName}"></span>`
                 results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?</p>`
                 $("#wildEncounterModal .main-modal-content").html(results);
                 // Update displays in HTML

@@ -108,12 +108,10 @@ input[type='text'] {
 }
 
 /* Wild encounter modal image */
-.wild-pokemon-image {
+#wild-pokemon-image > img {
     object-fit: cover;
     object-position: center;
-    height: 680px;
-    /* 'width: 100%' needs adding to prevent images shifting to the right on small screens */
-    width: 100%;
+    height: 400px;
 }
 
 /* Header and Navbar */
@@ -153,7 +151,15 @@ button:hover {
     border: 4px solid var(--quaternary-colour);
 }
 
-#inventory-button.secondary-button {
+.navbar button {
+    margin: 0;
+}
+
+.navbar .container {
+    row-gap: 5px;
+}
+
+#inventory-button {
     padding: 9px 10px 5px 10px;
     font-size: 2.2rem;
     color: var(--quaternary-colour);
@@ -256,10 +262,6 @@ button#add-first-pokemon:hover {
 
 .secondary-button {
     border-radius: 20px;
-}
-
-.navbar button {
-    margin: 0;
 }
 
 .rename-pokemon {
@@ -555,7 +557,7 @@ footer span {
     }
 
     /* Wild encounter modal image */
-    .wild-pokemon-image {
+    #wild-pokemon-image > img {
         height: 460px;
     }
 
@@ -616,7 +618,15 @@ footer span {
 @media (max-width: 560px) {
 
     #refresh-personalities-button {
-    font-size: 2rem;
+        font-size: 2rem;
+    }
+
+    #walk-button {
+        font-size: 2.1rem;
+    }
+
+    #inventory-button {
+        font-size: 1.8rem;
     }
 
     .small-details {
@@ -650,7 +660,7 @@ footer span {
     }
 
     /* Wild encounter modal image */
-    .wild-pokemon-image {
+    #wild-pokemon-image > img {
         height: 350px;
     }
 
@@ -673,8 +683,7 @@ footer span {
         padding: 0 10px;
     }
 
-    button.btn,
-    #inventory-button {
+    button.btn {
         font-size: 1.8rem;
     }
 
@@ -691,7 +700,7 @@ footer span {
     }
 
     /* Wild encounter modal image */
-    .wild-pokemon-image {
+    #wild-pokemon-image > img {
         height: 280px;
     }
 }
