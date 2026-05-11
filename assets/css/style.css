@@ -6,22 +6,16 @@
     --font-paragraph: "Dongle", sans-serif;
 
     /* Colour Palette */
-    /* Primary Colour - Aqua */
-    --primary-colour: #57ffcd;
-    --primary-colour-pale: #c2ffed;
-    /* Secondary Colour - Purple */
-    --secondary-colour: blueviolet;
-    /* Tertiary Colour - Off White (matches Bootstrap navbar) */
-    --tertiary-colour: #f8f9fa;
-    /* Quaternary Colour - Pink */
-    --quaternary-colour: #DB0080;
 
-    /* Not Used Colours - REMOVE once final colour pallette has been decided -------------- REMOVE LATER */
-    --other-background: #3dd3b9;
-    --aquamarine: aquamarine;
-    --other-purple: #8853d3;
-    --tertiary-colour-opaque: rgba(248, 249, 250, 0.9);
-    /* ------------------------------------------------------------------------------------ REMOVE LATER */
+    --primary-colour: #7e00c4;
+    --secondary-colour: #d60080;
+    /* only passes on white background - used for inventory and progress bars */
+    --secondary-colour-pale: #ce2b89;
+    /* Background Colours */
+    --primary-background-colour: #57ffcd;
+    --primary-background-colour-pale: #c2ffed;
+    --secondary-background-colour: #f8f9fa;
+    --darkest-colour: black;
 }
 
 /* Global Styles */
@@ -30,7 +24,7 @@ body {
     font-family: var(--font-paragraph);
     text-align: center;
     font-size: 2.5rem;
-    background-color: var(--primary-colour);
+    background-color: var(--primary-background-colour);
     display: flex;
     flex-direction: column;
     /* min-height added so the footer always sticks to the bottom */
@@ -40,7 +34,7 @@ body {
 h1 {
     font-family: var(--font-heading);
     font-size: 6rem;
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
     padding: 0;
     margin: 0;
 }
@@ -63,24 +57,19 @@ p {
 
 input[type='radio'] {
     transform: scale(2.2);
-    accent-color: var(--secondary-colour);
+    accent-color: var(--primary-colour);
 }
 
 input[type='text'] {
     padding: 10px;
-    color: var(--secondary-colour);
-    border: 4px solid var(--secondary-colour);
+    color: var(--primary-colour);
+    border: 4px solid var(--primary-colour);
     border-radius: 20px;
-    background-color: var(--tertiary-colour);
+    background-color: var(--secondary-background-colour);
 }
 
 .hidden {
     display: none;
-}
-
-.big-black-border {
-    border: 5px solid black;
-    border-radius: 20px;
 }
 
 .larger-font {
@@ -117,13 +106,12 @@ input[type='text'] {
 /* Header and Navbar */
 
 #page-title span {
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour);
 }
 
-nav p,
-nav .nav-link {
+nav p {
     padding: 0 20px;
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour-pale);
     margin-top: 7px;
 }
 
@@ -131,9 +119,9 @@ nav .nav-link {
 
 button {
     text-transform: capitalize;
-    color: var(--secondary-colour);
-    background-color: var(--primary-colour-pale);
-    border: 4px solid var(--secondary-colour);
+    color: var(--primary-colour);
+    background-color: var(--primary-background-colour-pale);
+    border: 4px solid var(--primary-colour);
     border-radius: 20px;
     margin: 3px 0;
     padding: 7px 10px 3px 10px;
@@ -141,14 +129,14 @@ button {
 }
 
 button:hover {
-    color: black;
+    color: var(--darkest-colour);
 }
 
 .secondary-button,
 .cancel-modal-button {
-    color: var(--quaternary-colour);
-    background-color: var(--primary-colour-pale);
-    border: 4px solid var(--quaternary-colour);
+    color: var(--secondary-colour);
+    background-color: var(--primary-background-colour-pale);
+    border: 4px solid var(--secondary-colour);
 }
 
 .navbar button {
@@ -162,43 +150,46 @@ button:hover {
 #inventory-button {
     padding: 9px 10px 5px 10px;
     font-size: 2.2rem;
-    color: var(--quaternary-colour);
-    border: 4px solid var(--quaternary-colour);
+    color: var(--secondary-colour-pale);
+    border: 4px solid var(--secondary-colour);
 }
 
 #walk-button {
     font-size: 3rem;
     padding: 12px 10px 7px 10px;
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
     /* text shadow placement (left), size and colour */
-    text-shadow: -2px 0 var(--quaternary-colour);
+    text-shadow: -2px 0 var(--secondary-colour);
     letter-spacing: 1px;
-    border: 5px solid var(--quaternary-colour);
+    border: 5px solid var(--secondary-colour);
+    border-bottom: 6px solid var(--primary-colour);
+    border-left: 6px solid var(--primary-colour);
+}
+
+#walk-button:hover {
+    color: var(--secondary-colour);
+    /* left shadow colour */
+    text-shadow: -2px 0 var(--primary-colour);
+    border: 5px solid var(--primary-colour);
     border-bottom: 6px solid var(--secondary-colour);
     border-left: 6px solid var(--secondary-colour);
 }
 
-#walk-button:hover {
-    color: var(--quaternary-colour);
-    /* left shadow colour */
-    text-shadow: -2px 0 var(--secondary-colour);
-}
-
 /* Interact Menu */
 ul.dropdown-menu {
-    background-color: var(--tertiary-colour);
-    border: 4px solid var(--secondary-colour);
+    background-color: var(--secondary-background-colour);
+    border: 4px solid var(--primary-colour);
     border-radius: 18px;
     padding: 10px 0;
 }
 
 ul.dropdown-menu button {
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
 }
 
 ul.dropdown-menu button:hover {
-    color: black;
-    background-color: var(--primary-colour-pale);
+    color: var(--darkest-colour);
+    background-color: var(--primary-background-colour-pale);
 }
 
 .dropdown-item {
@@ -212,30 +203,36 @@ ul.dropdown-menu button:hover {
 
 .interact-button,
 #inventory-button {
-    background-color: var(--tertiary-colour);
+    background-color: var(--secondary-background-colour);
 }
 
 .interaction {
     font-size: 2.5rem;
-    color: black;
+    color: var(--darkest-colour);
 }
 
 .interact-button {
     font-size: 2.5rem;
-    color: black;
-    border: 5px solid var(--quaternary-colour);
-    border-bottom: 6px solid var(--secondary-colour);
-    border-left: 6px solid var(--secondary-colour);
+    color: var(--darkest-colour);
+    border: 5px solid var(--secondary-colour);
+    border-bottom: 6px solid var(--primary-colour);
+    border-left: 6px solid var(--primary-colour);
     margin-bottom: 10px;
     padding: 12px 10px 7px 10px;
 }
 
-.interact-button:hover {
-    color: black;
+.interact-button>i {
+    text-shadow: 0 -1px var(--darkest-colour);
+}
+
+.interact-button:hover>i {
+    color: var(--primary-colour);
+    /* shadow above */
+    text-shadow: 0 -1px var(--secondary-colour);
 }
 
 .interact-button:focus {
-    background-color: var(--primary-colour-pale);
+    background-color: var(--primary-background-colour-pale);
 }
 
 /* Arrow icon inside 'Interact' button */
@@ -245,11 +242,11 @@ ul.dropdown-menu button:hover {
 }
 
 #add-first-pokemon {
-    color: black;
+    color: var(--darkest-colour);
     font-size: 3.2rem;
-    border: 5px solid var(--quaternary-colour);
-    border-bottom: 6px solid var(--secondary-colour);
-    border-left: 6px solid var(--secondary-colour);
+    border: 5px solid var(--secondary-colour);
+    border-bottom: 6px solid var(--primary-colour);
+    border-left: 6px solid var(--primary-colour);
 }
 
 #add-walk-items, #add-first-pokemon {
@@ -257,7 +254,7 @@ ul.dropdown-menu button:hover {
 }
 
 button#add-first-pokemon:hover {
-    background-color: var(--tertiary-colour);
+    background-color: var(--secondary-background-colour);
 }
 
 .secondary-button {
@@ -265,14 +262,14 @@ button#add-first-pokemon:hover {
 }
 
 .rename-pokemon {
-    color: var(--secondary-colour);
-    border: 4px solid var(--secondary-colour);
+    color: var(--primary-colour);
+    border: 4px solid var(--primary-colour);
 }
 
 /* Main - All Pokémon displays (used in both starter form and user collection) */
 
 .details>p {
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour);
 }
 
 .details>.level {
@@ -280,13 +277,13 @@ button#add-first-pokemon:hover {
 }
 
 p.small-details {
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour);
     line-height: 0.7;
     padding-left: 10px;
 }
 
 .details span, .small-details span {
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
     font-size: 0.95em;
 }
 
@@ -295,24 +292,24 @@ p.small-details {
 .form-container {
     margin: 20px 0;
     padding: 30px;
-    border: 5px solid var(--secondary-colour);
+    border: 5px solid var(--primary-colour);
     border-radius: 20px;
 }
 
 .starter {
-    background-color: var(--primary-colour-pale);
-    color: var(--secondary-colour);
-    border: 5px solid var(--quaternary-colour);
-    border-bottom: 5px solid var(--secondary-colour);
-    border-left: 5px solid var(--secondary-colour);
+    background-color: var(--primary-background-colour-pale);
+    color: var(--primary-colour);
+    border: 5px solid var(--secondary-colour);
+    border-bottom: 5px solid var(--primary-colour);
+    border-left: 5px solid var(--primary-colour);
     border-radius: 20px;
     margin: 2px 0;
     padding: 0 2px;
 }
 
 .starter.selected-starter {
-    border: 5px solid black;
-    background-color: var(--tertiary-colour);
+    border: 5px solid var(--darkest-colour);
+    background-color: var(--secondary-background-colour);
 }
 
 .starter label {
@@ -331,12 +328,6 @@ p.small-details {
     height matches even if personalities change to 2 lines */
 }
 
-.radio-arrow {
-    color: black;
-    font-weight: 900;
-    font-size: 1.4rem;
-}
-
 /* Main - Pokémon Collection */
 
 #pokemon-collection {
@@ -349,11 +340,11 @@ p.small-details {
 }
 
 .pokemon-card {
-    background-color: var(--primary-colour-pale);
-    color: var(--secondary-colour);
-    border: 5px solid var(--quaternary-colour);
-    border-bottom: 6px solid var(--secondary-colour);
-    border-left: 6px solid var(--secondary-colour);
+    background-color: var(--primary-background-colour-pale);
+    color: var(--primary-colour);
+    border: 5px solid var(--secondary-colour);
+    border-bottom: 6px solid var(--primary-colour);
+    border-left: 6px solid var(--primary-colour);
     border-radius: 20px;
     margin: 10px 0;
     padding: 10px 20px;
@@ -373,36 +364,41 @@ progress {
     /* this fixes the issues with progress bars not filling full space at some screen sizes */
     width: 100%;
     margin: 0;
+    accent-color: var(--secondary-colour-pale);
+}
+
+.progress-bars label {
+    color: var(--primary-colour);
 }
 
 /* Footer */
 
 footer {
-    background-color: var(--tertiary-colour);
+    background-color: var(--secondary-background-colour);
     /* this is added so the footer sticks to the bottom even on larger screens  */
     margin-top: auto;
 }
 
 #footer-text {
     margin-top: 6px;
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
 }
 
 #footer-text i {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour);
 }
 
 footer span {
-    color: var(--quaternary-colour);
+    color: var(--secondary-colour);
 }
 
 /* Carousel */
 
 #tip-carousel {
-    background-color: var(--primary-colour-pale);
-    border-bottom: 11px solid var(--primary-colour);
+    background-color: var(--primary-background-colour-pale);
+    border-bottom: 11px solid var(--primary-background-colour);
     padding: 30px 0 50px 0;
 }
 
@@ -415,10 +411,10 @@ footer span {
 /* Modals - modal-content > modal-inner > modal-header, modal-body, modal-footer */
 
 .modal-content {
-    background-color: var(--primary-colour-pale);
-    border: 4px solid var(--secondary-colour);
+    background-color: var(--primary-background-colour-pale);
+    border: 4px solid var(--primary-colour);
     border-radius: 30px;
-    color: var(--secondary-colour);
+    color: var(--primary-colour);
     padding: 20px;
 }
 
@@ -428,20 +424,20 @@ footer span {
 }
 
 .modal-content button {
-    color: var(--secondary-colour);
-    background-color: var(--tertiary-colour);
+    color: var(--primary-colour);
+    background-color: var(--secondary-background-colour);
     margin: 0 15px;
     font-size: 2.5rem;
 }
 
 .modal-content button:hover {
-    color: black;
-    background-color: var(--primary-colour-pale);
-    border: 4px solid var(--secondary-colour);
+    color: var(--darkest-colour);
+    background-color: var(--primary-background-colour-pale);
+    border: 4px solid var(--primary-colour);
 }
 
 .modal-inner {
-    background-color: var(--tertiary-colour);
+    background-color: var(--secondary-background-colour);
     border-radius: 50px;
 }
 
@@ -459,7 +455,7 @@ footer span {
 }
 
 .main-modal-content {
-    color: black;
+    color: var(--darkest-colour);
     font-size: 2.5rem;
     line-height: 0.8;
 }
@@ -472,15 +468,15 @@ footer span {
     border-top: 0px;
 }
 
-.modal-footer .confirm-modal-button {
-    border: 4px solid var(--quaternary-colour);
-    border-bottom: 4px solid var(--secondary-colour);
-    border-left: 4px solid var(--secondary-colour);
+.modal-footer .confirm-modal-button, .modal-footer .continue-modal-button {
+    border: 4px solid var(--secondary-colour);
+    border-bottom: 4px solid var(--primary-colour);
+    border-left: 4px solid var(--primary-colour);
 }
 
 .modal-footer .secondary-button {
-    color: var(--quaternary-colour);
-    border: 4px solid var(--quaternary-colour);
+    color: var(--secondary-colour);
+    border: 4px solid var(--secondary-colour);
 }
 
 /* Modal Inputs */
@@ -613,6 +609,11 @@ footer span {
         padding: 10px 2px 0 2px;
     }
 
+    /* labels above progress bars */
+    .progress-bars {
+        font-size: 2.2rem;
+    }
+
 }
 
 @media (max-width: 560px) {
@@ -683,12 +684,14 @@ footer span {
         padding: 0 10px;
     }
 
-    button.btn {
-        font-size: 1.8rem;
-    }
-
     .modal-footer button {
         margin: 0;
+    }
+
+    
+    /* labels above progress bars */
+    .progress-bars {
+        font-size: 2.2rem;
     }
 }
 

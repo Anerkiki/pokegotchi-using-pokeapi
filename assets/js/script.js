@@ -6,7 +6,6 @@ $(document).ready(function () {
     let userPokemon = [];
 
     const inventory = {
-        pokemon: userPokemon.length,
         berries: 0,
         potions: 0,
     };
@@ -94,7 +93,7 @@ $(document).ready(function () {
 
                             <div class = "row justify-content-center text-start">
                                     <div class="details">
-                                        <p id="level-${pokemon.index}">Level: ${pokemon.level}</p>
+                                        <p id="level-${pokemon.index}" class="level">Level: ${pokemon.level}</p>
                                         <p><span>Type: ${capitalizeFirstLetter(pokemon.type)}</span></p>
                                         <p>Personality: ${pokemon.personality}</p>
                                     </div>
@@ -172,6 +171,7 @@ $(document).ready(function () {
             // Remove walk and inventory buttons
             $("#walk-button").addClass("hidden");
             $("#inventory-button").addClass("hidden");
+            $("#inventory-expanded").addClass("hidden");
             $("#add-first-pokemon").prop("disabled", false).text("Add To Collection");
             $("#refresh-personalities-button").removeClass("hidden");
             $("#starter-nickname").focus();
@@ -277,10 +277,7 @@ $(document).ready(function () {
                 // Add 'Go For A Walk' and 'Inventory' buttons
                 $("#walk-button").removeClass("hidden");
                 $("#inventory-button").removeClass("hidden");
-                // testing ------------------------------------------------------------------------------------- REMOVE LATER
-                // To double check details of new pokémon added
-                console.log("Starter chosen:", userPokemon);
-                // testing ------------------------------------------------------------------------------------- REMOVE LATER
+                $("#inventory-expanded").removeClass("hidden");
             })
             .catch(error => {
                 console.error("Error fetching pokémon:", error);
@@ -565,7 +562,7 @@ $(document).ready(function () {
         $("#investigate-button").prop("disabled", true);
         // Don't need to update modalIsOpen state here as this function closes and opens a modal
         $("#walkDisturbanceModal").modal("hide");
-        $("#wildEncounterModal .main-modal-content").html('<p>You walk closer and...</p>');
+        $("#wildEncounterModal .main-modal-content").html('<p>Wait for it...</p>');
         // Don't need to update modalIsOpen state here as this function closes and opens a modal
         $("#wildEncounterModal").modal("show");
         // Generate random species number and save to global variable
@@ -650,10 +647,6 @@ $(document).ready(function () {
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
-                // testing ------------------------------------------------------------------------------------- REMOVE LATER
-                // To double check details of new pokémon added
-                console.log("New pokemon added:", userPokemon);
-                // testing ------------------------------------------------------------------------------------- REMOVE LATER
                 $("#wildRenameModal").modal("show");
                 updateModalStateToOpen();
             })
