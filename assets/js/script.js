@@ -43,14 +43,14 @@ $(document).ready(function () {
         modalIsOpen = true;
     }
 
-    function capitalizeFirstLetter(string) {
+    function capitaliseFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function capitalizeWords(str) {
+    function capitaliseWords(str) {
         return str
             .split(" ")
-            .map(word => capitalizeFirstLetter(word))
+            .map(word => capitaliseFirstLetter(word))
             .join(" ");
     }
 
@@ -82,19 +82,19 @@ $(document).ready(function () {
     // Triggered every time user pokémon collection is updated
     function displayUserPokemon() {
         if (userPokemon.length > 0) {
-            let currentUserPokemon = "";
+            let pokemonCardContent = "";
             // Loop through all pokémon in the userPokemon array
             for (const pokemon of userPokemon) {
-                currentUserPokemon += `
+                pokemonCardContent += `
                     <div class="pokemon-card-outer">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
-                            <h2><div class="pokemon-nickname">${capitalizeWords(pokemon.nickname)}</div>the ${capitalizeWords(pokemon.name)}</h2>
+                            <h2><span class="pokemon-nickname">${capitaliseWords(pokemon.nickname)}</span>the ${capitaliseWords(pokemon.name)}</h2>
 
-                            <div class = "row justify-content-center text-start">
+                            <div class="row justify-content-center text-start">
                                     <div class="details">
                                         <p id="level-${pokemon.index}" class="level">Level: ${pokemon.level}</p>
-                                        <p><span>Type: ${capitalizeFirstLetter(pokemon.type)}</span></p>
+                                        <p><span>Type: ${capitaliseFirstLetter(pokemon.type)}</span></p>
                                         <p>Personality: ${pokemon.personality}</p>
                                     </div>
                                     <img src="${pokemon.imageFront}" class="col-12 col-sm-7" alt="${pokemon.name}">
@@ -117,7 +117,7 @@ $(document).ready(function () {
 
                             <div>
                                 <button type="button" class="interact-button btn-lg text-wrap" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Interact with ${capitalizeWords(pokemon.nickname)} <i class="fa-solid fa-chevron-down"></i>
+                                        Interact with ${capitaliseWords(pokemon.nickname)} <i class="fa-solid fa-chevron-down"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
@@ -149,12 +149,12 @@ $(document).ready(function () {
                             </div>
                             <div>
                                 <button class="release-pokemon secondary-button" type="button">
-                                    Release ${capitalizeWords(pokemon.nickname)}
+                                    Release ${capitaliseWords(pokemon.nickname)}
                                 </button>
                             </div>
                             <div>
                                 <button class="rename-pokemon secondary-button" type="button">
-                                    Rename ${capitalizeWords(pokemon.nickname)}
+                                    Rename ${capitaliseWords(pokemon.nickname)}
                                 </button>
                             </div>
                         </div>
@@ -162,7 +162,7 @@ $(document).ready(function () {
                 `;
             }
             // Replace #pokemon-collection content with updated list
-            $("#pokemon-collection").html(currentUserPokemon);
+            $("#pokemon-collection").html(pokemonCardContent);
         } else {
             // If the last pokémon has been deleted, this ensures the userCollection shows as empty/0
             $("#pokemon-collection").html("");
@@ -195,9 +195,6 @@ $(document).ready(function () {
                 currentlyOpenModal.querySelector('.confirm-modal-button, .continue-modal-button').click();
             }
         }
-        // testing ------------------------------------------------------------------------------------- REMOVE LATER
-        console.log(modalIsOpen);
-        // testing ------------------------------------------------------------------------------------- REMOVE LATER
     }
 
     $(".starter").on("click", selectAndStyleStarter);
@@ -219,9 +216,9 @@ $(document).ready(function () {
     function addStarterPokemon(event) {
         event.preventDefault();
         // Get the selected starter value
-        const species = $("input[name='starter']:checked").val();
-        // If no starter selected, show modal and stop
-        if (!species) {
+        const speciesId = $("input[name='starter']:checked").val();
+        // If no starter selected, show alert modal and stop
+        if (!speciesId) {
             $("#alertModal .main-modal-content").text("You need to pick a pokémon!");
             $("#alertModal").modal("show");
             updateModalStateToOpen();
@@ -230,14 +227,14 @@ $(document).ready(function () {
         // Disables button so double clicks don't work and changes text so the user knows click has worked
         $("#add-first-pokemon").prop("disabled", true).text("Adding...");
         let nicknameInput = $("#starter-nickname").val().trim();
-        let personality = $(`.starter-personality-${species}`).first().text();
+        let personality = $(`.starter-personality-${speciesId}`).first().text();
         let level = 1;
         let happiness = 80;
         let health = 80;
         let energy = 80;
         let uniqueIndex = Date.now();
         // Fetch pokémon data from PokéAPI
-        fetch(`https://pokeapi.co/api/v2/pokemon/${species}/`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${speciesId}/`)
             .then(response => response.json())
             .then(data => {
                 const pokemonName = data.name;
@@ -256,8 +253,8 @@ $(document).ready(function () {
                 // Adding the new details as an object in the userPokemon array
                 userPokemon.push({
                     index: uniqueIndex,
-                    species: species,
-                    name: pokemonName,
+                    species: speciesId,
+                    name: capitaliseWords(pokemonName),
                     imageFront: imageFront,
                     imageBack: imageBack,
                     nickname: nickname,
@@ -312,15 +309,15 @@ $(document).ready(function () {
             $(".starter").removeClass("selected-starter");
             addNewPersonalitiesToStarters();
         } else {
-            let newPokemonArray = [];
+            let remainingPokemon = [];
             for (let i = 0; i < userPokemon.length; i++) {
                 let pokemon = userPokemon[i];
 
                 if (pokemon.index !== pokemonToEditIndex) {
-                    newPokemonArray.push(pokemon);
+                    remainingPokemon.push(pokemon);
                 }
             }
-            userPokemon = newPokemonArray;
+            userPokemon = remainingPokemon;
         }
         $("#releaseModal").modal("hide");
         updateModalStateToClosed();
@@ -342,7 +339,7 @@ $(document).ready(function () {
         // Store the index globally so renamePokemon can access it
         pokemonToEditIndex = uniqueIndex;
         // Pre-fill the modal input with original nickname
-        $("#new-nickname").val(capitalizeWords(pokemonToRename.nickname));
+        $("#new-nickname").val(capitaliseWords(pokemonToRename.nickname));
         $("#renameModal").modal("show");
         updateModalStateToOpen();
     }
@@ -511,30 +508,30 @@ $(document).ready(function () {
         if (modalIsOpen) {
             return;
         }
-        // Generate random pokémon from user's pokémon collection
-        const randomPokemon = Math.floor(Math.random() * userPokemon.length);
-        // Generate random number
-        let randomNumber = Math.floor(Math.random() * 5);
-        if (userPokemon[randomPokemon].level > 4 && randomNumber === 3) {
+        // Generate random pokémon from user's pokémon collection to join on the walk
+        const randomPokemonIndex = Math.floor(Math.random() * userPokemon.length);
+        // Generates a 20% chance of triggering a walk disturbance if the joining pokémon's level is over 5
+        let disturbanceOutcomeNumber = Math.floor(Math.random() * 5);
+        if (userPokemon[randomPokemonIndex].level > 4 && disturbanceOutcomeNumber === 3) {
             walkDisturbance();
         } else {
-            // Set the walk results
+            // Set the berry and potion amounts found on the walk
             lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
             lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
-            // Results to display in modal
-            let results = lastBerryWalkResult + " berries"
+            // Set walk results that are displayed in the modal
+            let itemsFound = lastBerryWalkResult + " berries"
             if (lastBerryWalkResult < 5) {
-                results += " and " + lastPotionWalkResult + " potions"
+                itemsFound += " and " + lastPotionWalkResult + " potions"
             } else {
                 lastPotionWalkResult = 0;
             }
             // Updating the modal:
             // Add the random pokémon nickname to the text in the modal
-            $("#random-user-pokemon").text(capitalizeWords(userPokemon[randomPokemon].nickname));
+            $("#random-user-pokemon").text(capitaliseWords(userPokemon[randomPokemonIndex].nickname));
             // Add image to modal (reversed to look like user is walking behind pokémon)
-            $("#walk-image").html(`<img src="${userPokemon[randomPokemon].imageBack}" alt="pixelated image of ${userPokemon[randomPokemon].name}">`)
+            $("#walk-image").html(`<img src="${userPokemon[randomPokemonIndex].imageBack}" alt="pixelated image of ${userPokemon[randomPokemonIndex].name}">`)
             // Update the inner text of walk results modal
-            $("#walk-results").text(results);
+            $("#walk-results").text(itemsFound);
             $("#walkResultsModal").modal("show");
             updateModalStateToOpen();
         }
@@ -581,9 +578,9 @@ $(document).ready(function () {
                 }
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal
-                let results = `<span id="wild-pokemon-image"><img src="${imageFront}" alt="${pokemonName}"></span>`
-                results += `<p>A wild ${capitalizeWords(pokemonName)} appears in front of you. What do you do?</p>`
-                $("#wildEncounterModal .main-modal-content").html(results);
+                let encounterDescription = `<span id="wild-pokemon-image"><img src="${imageFront}" alt="${pokemonName}"></span>`
+                encounterDescription += `<p>A wild ${capitaliseWords(pokemonName)} appears in front of you. What do you do?</p>`
+                $("#wildEncounterModal .main-modal-content").html(encounterDescription);
                 // Update displays in HTML
                 updateInventory();
                 displayUserPokemon();
@@ -631,7 +628,7 @@ $(document).ready(function () {
                 userPokemon.push({
                     index: uniqueIndex,
                     species: speciesNumber,
-                    name: capitalizeWords(pokemonName),
+                    name: capitaliseWords(pokemonName),
                     imageFront: imageFront,
                     imageBack: imageBack,
                     nickname: nickname,

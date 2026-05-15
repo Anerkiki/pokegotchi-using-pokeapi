@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A virtual pet collection game built with PokéAPI merging pokémon and tamagotchi.">
-    <meta name="keywords" content="pokemon, pokémon, tamagotchi, pet, game, collection, encounters, starter, train, virtual, cute">
+    <meta name="keywords"
+        content="pokemon, pokémon, tamagotchi, pet, game, collection, encounters, starter, train, virtual, cute">
     <title>Pokégotchi</title>
     <!--Bootstrap CSS link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,7 +14,8 @@
     <!-- Custom CSS Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
 </head>
 
 <body>
@@ -171,8 +173,7 @@
                 </div>
                 <div class="carousel-item" data-bs-interval="3500">
                     <p><br class="d-none d-lg-block">If your pokémon is over level 5, there is a chance of encountering
-                        wild pokémon on walks with
-                        them!</p>
+                        wild pokémon on walks with them!</p>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
                     <p><br class="d-none d-sm-block">You can adopt wild pokémon encountered on walks!</p>
@@ -193,12 +194,13 @@
     <!-- Modals (data-bs-keyboard="false" is added so that my JavaScript handles any keyboard press, not Bootstrap) -->
 
     <!-- Alert Modal - Edited from Bootstrap Modal Example -->
-    <div class="modal" id="alertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div id="alertModal" class="modal" role="dialog" aria-labelledby="alertModalLabel" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title">Oh!</h3>
+                        <h3 id="alertModalLabel" class="modal-title">Oh!</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -214,13 +216,14 @@
         </div>
     </div>
 
-    <!-- Release Confirmation Modal -->
-    <div class="modal" id="releaseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <!-- Release Confirmation Modal - Edited from Bootstrap Modal Example -->
+    <div id="releaseModal" class="modal" role="dialog" aria-labelledby="releaseModalLabel" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title">Release Pokémon</h3>
+                        <h3 id="releaseModalLabel" class="modal-title">Release Pokémon</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -238,13 +241,14 @@
         </div>
     </div>
 
-    <!-- Rename Confirmation Modal -->
-    <div class="modal" id="renameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <!-- Rename Confirmation Modal - Edited from Bootstrap Modal Example -->
+    <div id="renameModal" class="modal" role="dialog" aria-labelledby="renameModalLabel" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title">Rename Pokémon</h3>
+                        <h3 id="renameModalLabel" class="modal-title">Rename Pokémon</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -264,14 +268,14 @@
         </div>
     </div>
 
-    <!-- Walk Results Modal (Static) - Edited from Bootstrap Modal Example -->
-    <div class="modal" id="walkResultsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="walkResultsModalLabel">
+    <!-- Walk Results Modal - Edited from Bootstrap Modal Example -->
+    <div id="walkResultsModal" class="modal" role="dialog" aria-labelledby="walkResultsModalLabel"
+        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="walkResultsModalLabel">On your walk...</h3>
+                        <h3 id="walkResultsModalLabel" class="modal-title">On your walk...</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -290,14 +294,14 @@
         </div>
     </div>
 
-    <!-- Walk Surprise Modal (Static) - Edited from Bootstrap Modal Example -->
-    <div class="modal" id="walkDisturbanceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="walkDisturbanceModalLabel">
+    <!-- Walk Surprise Modal - Edited from Bootstrap Modal Example -->
+    <div id="walkDisturbanceModal" class="modal" role="dialog" aria-labelledby="walkDisturbanceModalLabel"
+        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="walkDisturbanceModalLabel">Oh!</h3>
+                        <h3 id="walkDisturbanceModalLabel" class="modal-title">Oh!</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -313,14 +317,14 @@
         </div>
     </div>
 
-    <!-- Wild Pokémon Encounter Modal (Static) - Edited from Bootstrap Modal Example -->
-    <div class="modal" id="wildEncounterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="wildEncounterModalLabel">
+    <!-- Wild Pokémon Encounter Modal - Edited from Bootstrap Modal Example -->
+    <div class="modal" id="wildEncounterModal" role="dialog" aria-labelledby="wildEncounterModalLabel"
+        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="wildEncounterModalLabel">Well hello there!</h3>
+                        <h3 id="wildEncounterModalLabel" class="modal-title">Well hello there!</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -338,13 +342,14 @@
         </div>
     </div>
 
-    <!-- Rename Wild Pokémon Confirmation Modal -->
-    <div class="modal" id="wildRenameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <!-- Rename Wild Pokémon Confirmation Modal - Edited from Bootstrap Modal Example -->
+    <div class="modal" id="wildRenameModal" role="dialog" aria-labelledby="wildRenameModalLabel"
+        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-inner">
                     <div class="modal-header">
-                        <h3 class="modal-title">What would you like to name them?</h3>
+                        <h3 id="wildRenameModalLabel" class="modal-title">What would you like to name them?</h3>
                         <button type="button" class="btn-close cancel-modal-button" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
