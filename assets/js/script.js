@@ -89,7 +89,7 @@ $(document).ready(function () {
                     <div class="pokemon-card-outer">
                         <div class="pokemon-card" data-index="${pokemon.index}">
 
-                            <h2><span class="pokemon-nickname">${capitaliseWords(pokemon.nickname)}</span>the ${capitaliseWords(pokemon.name)}</h2>
+                            <h2><span class="pokemon-nickname">${capitaliseWords(pokemon.nickname)}</span> the ${capitaliseWords(pokemon.name)}</h2>
 
                             <div class="row justify-content-center text-start">
                                     <div class="details">
@@ -467,7 +467,7 @@ $(document).ready(function () {
         for (let pokemon of userPokemon) {
             if (pokemon.index === uniqueIndex) {
                 if (pokemon.health < 20) {
-                    pokemon.happiness = Math.max(0, pokemon.happiness - 5);
+                    pokemon.happiness = Math.max(0, pokemon.happiness - 10);
                     // Display the updated happiness bar
                     $(`#happiness-${uniqueIndex}`).val(pokemon.happiness);
                     $("#alertModal .main-modal-content").html("<p class='larger-font'>Your pokémon needs to heal before anymore training!</p><p>(Try giving them a potion)</p>");
@@ -491,6 +491,12 @@ $(document).ready(function () {
                     $(`#energy-${uniqueIndex}`).val(pokemon.energy);
                     // Add 1 to the pokémon's level
                     pokemon.level = pokemon.level + 1;
+                    // An alert modal to show once pokémon reaches level 5
+                    if (pokemon.level === 5) {
+                        $("#alertModal .main-modal-content").html(`<p>${capitaliseWords(pokemon.nickname)} is now at level 5!</p><p> You can now encounter wild pokémon with them on walks!</p>`);
+                        $("#alertModal").modal("show");
+                        updateModalStateToOpen();
+                    }
                     // Display the updated level
                     $(`#level-${uniqueIndex}`).html(`Level: ${pokemon.level}`);
                     break;
