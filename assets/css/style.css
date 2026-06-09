@@ -15,6 +15,7 @@
     --primary-background: #57ffcd;
     --primary-background-pale: #c2ffed;
     --secondary-background: #f8f9fa;
+    /* I named this darkest-colour incase I wanted to change black to a different colour in future */
     --darkest-colour: black;
 }
 
@@ -130,6 +131,10 @@ button {
 
 button:hover {
     color: var(--darkest-colour);
+}
+
+.secondary-button {
+    border-radius: 20px;
 }
 
 .secondary-button,
@@ -255,10 +260,6 @@ ul.dropdown-menu button:hover {
 
 button#add-first-pokemon:hover {
     background-color: var(--secondary-background);
-}
-
-.secondary-button {
-    border-radius: 20px;
 }
 
 .rename-pokemon {
@@ -678,22 +679,12 @@ footer span {
         font-size: 3rem;
     }
 
-    h3 {
-        font-size: 2.5rem;
-    }
-
     input[type='text'] {
         padding: 0 10px;
     }
 
     .modal-footer button {
         margin: 0;
-    }
-
-    
-    /* labels above progress bars */
-    .progress-bars {
-        font-size: 2.2rem;
     }
 }
 

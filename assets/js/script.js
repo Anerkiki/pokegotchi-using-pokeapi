@@ -205,7 +205,7 @@ $(document).ready(function () {
         // so they don't all end up highlighted if more are clicked
         $(".starter").removeClass("selected-starter");
         // Find and select the radio that is a child of the div clicked on
-        const radio = $(this).find('input[type="radio"]')
+        const radio = $(this).find('input[type="radio"]');
         radio.prop("checked", true);
         // Adds the highlight to selected starter div
         $(this).addClass("selected-starter");
@@ -525,9 +525,9 @@ $(document).ready(function () {
             lastBerryWalkResult = Math.floor(Math.random() * 9) + 2; // 2 - 10
             lastPotionWalkResult = Math.floor(Math.random() * 4) + 2; // 2 - 5
             // Set walk results that are displayed in the modal
-            let itemsFound = lastBerryWalkResult + " berries"
+            let itemsFound = lastBerryWalkResult + " berries";
             if (lastBerryWalkResult < 5) {
-                itemsFound += " and " + lastPotionWalkResult + " potions"
+                itemsFound += " and " + lastPotionWalkResult + " potions";
             } else {
                 lastPotionWalkResult = 0;
             }
@@ -535,7 +535,7 @@ $(document).ready(function () {
             // Add the random pokémon nickname to the text in the modal
             $("#random-user-pokemon").text(capitaliseWords(userPokemon[randomPokemonIndex].nickname));
             // Add image to modal (reversed to look like user is walking behind pokémon)
-            $("#walk-image").html(`<img src="${userPokemon[randomPokemonIndex].imageBack}" alt="pixelated image of ${userPokemon[randomPokemonIndex].name}">`)
+            $("#walk-image").html(`<img src="${userPokemon[randomPokemonIndex].imageBack}" alt="pixelated image of ${userPokemon[randomPokemonIndex].name}">`);
             // Update the inner text of walk results modal
             $("#walk-results").text(itemsFound);
             $("#walkResultsModal").modal("show");
@@ -576,16 +576,16 @@ $(document).ready(function () {
             .then(data => {
                 let pokemonName = data.name;
                 if (pokemonName === "nidoran-f") {
-                    pokemonName = "Nidoran♀"
+                    pokemonName = "Nidoran♀";
                 } else if (pokemonName === "nidoran-m") {
-                    pokemonName = "Nidoran♂"
+                    pokemonName = "Nidoran♂";
                 } else if (pokemonName === "mr-mime") {
-                    pokemonName = "Mr Mime"
+                    pokemonName = "Mr Mime";
                 }
                 const imageFront = data.sprites.front_default;
                 // Adding the new details to the modal
-                let encounterDescription = `<span id="wild-pokemon-image"><img src="${imageFront}" alt="${pokemonName}"></span>`
-                encounterDescription += `<p>A wild ${capitaliseWords(pokemonName)} appears in front of you. What do you do?</p>`
+                let encounterDescription = `<span id="wild-pokemon-image"><img src="${imageFront}" alt="${pokemonName}"></span>`;
+                encounterDescription += `<p>A wild ${capitaliseWords(pokemonName)} appears in front of you. What do you do?</p>`;
                 $("#wildEncounterModal .main-modal-content").html(encounterDescription);
                 // Update displays in HTML
                 updateInventory();
@@ -598,7 +598,7 @@ $(document).ready(function () {
                 console.error("Error fetching pokémon:", error);
 
                 // Re-enable the investigate button
-                $("#investigate-button").prop("disabled", false)
+                $("#investigate-button").prop("disabled", false);
             });
     }
 
@@ -621,9 +621,9 @@ $(document).ready(function () {
                 if (pokemonName === "nidoran-f") {
                     pokemonName = "Nidoran♀";
                 } else if (pokemonName === "nidoran-m") {
-                    pokemonName = "Nidoran♂"
+                    pokemonName = "Nidoran♂";
                 } else if (pokemonName === "mr-mime") {
-                    pokemonName = "Mr Mime"
+                    pokemonName = "Mr Mime";
                 }
                 const imageFront = data.sprites.front_default;
                 const imageBack = data.sprites.back_default;
@@ -664,7 +664,7 @@ $(document).ready(function () {
         $('#wild-new-nickname').val('').trigger('focus');
     });
 
-    $("#wild-rename-button").on("click", renameNewPokemon)
+    $("#wild-rename-button").on("click", renameNewPokemon);
 
     function renameNewPokemon() {
         let newNickname = $("#wild-new-nickname").val().trim();
