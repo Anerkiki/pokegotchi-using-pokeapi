@@ -297,6 +297,11 @@ p.small-details {
     border-radius: 20px;
 }
 
+form fieldset legend {
+    font-size: 4rem;
+    margin: 0;
+}
+
 .starter {
     background-color: var(--primary-background-pale);
     color: var(--primary-colour);

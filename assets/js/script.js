@@ -493,7 +493,7 @@ $(document).ready(function () {
                     pokemon.level = pokemon.level + 1;
                     // An alert modal to show once pokémon reaches level 5
                     if (pokemon.level === 5) {
-                        $("#alertModal .main-modal-content").html(`<p>${capitaliseWords(pokemon.nickname)} is now at level 5!</p><p> You can now encounter wild pokémon with them on walks!</p>`);
+                        $("#alertModal .main-modal-content").html(`<p class="larger-font">${capitaliseWords(pokemon.nickname)} is now at level 5.</p><p> You can now encounter wild pokémon with them on walks!</p>`);
                         $("#alertModal").modal("show");
                         updateModalStateToOpen();
                     }
