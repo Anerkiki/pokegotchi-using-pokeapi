@@ -297,9 +297,11 @@ p.small-details {
     border-radius: 20px;
 }
 
+/* 'Select Your First Pokémon:' title */
 form fieldset legend {
     font-size: 4rem;
     margin: 0;
+    line-height: 1;
 }
 
 .starter {
@@ -590,6 +592,12 @@ footer span {
 @media (max-width: 767px) {
 
     h2 {
+        font-size: 2.9rem;
+        line-height: 0.8;
+    }
+
+    /* 'Select Your First Pokémon:' title */
+    form fieldset legend {
         font-size: 2.9rem;
         line-height: 0.8;
     }
