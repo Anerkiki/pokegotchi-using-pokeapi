@@ -3,10 +3,11 @@
 
 # Pokégotchi
 
-![Starter Page Mockup](assets/images/mockup-starter-page.png)
-*TO DO: Add more of these in Features*
-
 View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (Hosted on GitHub pages)
+
+![Starter Form Mockup](assets/images/mockup-starter.png)
+
+![User Collection Mockup](assets/images/mockup-collection.png)
 
 ---
 
@@ -16,12 +17,12 @@ View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (
 
 - [Planning](#planning)
   - [Objectives](#objectives)
-  - [User Experience/User Interface (UX/UI)](#user-experienceuser-interfaceuxui)
+  - [User Experience/User Interface (UX/UI)](#user-experienceuser-interface-uxui)
     - [User Stories](#user-stories)
   - [Wireframes](#wireframes)
+    - [Changes I made](#changes-i-made)
     - [Starter Selection Wireframe](#starter-selection-wireframe)
     - [User Collection Wireframe](#user-collection-wireframe)
-      - [Changes I made](#changes-i-made)
 
 - [Design](#design)
   - [Typography/Fonts](#typographyfonts)
@@ -35,7 +36,7 @@ View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (
     - [Title and Navbar](#title-and-navbar)
     - [Footer](#footer)
     - [Modals/Pop Up Boxes](#modalspop-up-boxes)
-      - [Keyboard Shortcuts](#keyboard-shortcuts)
+    - [Keyboard Shortcuts](#keyboard-shortcuts)
   - [Starter Selection Page](#starter-selection-page)
   - [User Collection Page](#user-collection-page)
     - [Navbar - Go For A Walk Button](#navbar---go-for-a-walk-button)
@@ -67,8 +68,9 @@ View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (
   - [Manual Testing](#manual-testing)
     - [How I achieved my User Stories](#how-i-achieved-my-user-stories)
     - [Table to test modalIsOpen variable status](#table-to-test-modalisopen-variable-status)
-
-- [Fixed Issues](#fixed-issues)
+  - [Resolved Issues](#resolved-issues)
+  - [Other Resolved Issues](#other-resolved-issues)
+  - [Other Completed Steps](#other-completed-steps)
 
 - [Deployment](#deployment)
 
@@ -78,7 +80,7 @@ View live website [here](https://anerkiki.github.io/pokegotchi-using-pokeapi/) (
   - [Acknowledgements](#acknowledgements)
 
 - [Other](#other)
-  - [Future Enhancements](#future-enhancements)
+  - [Possible Future Additions](#possible-future-additions)
 
 ---
 
@@ -129,14 +131,13 @@ I have explained how each of these have been achieved in the [How I achieved my 
 
 ## Wireframes
 
-*[TO DO: Add wireframes for small screens - need new Balsamiq key as license has expired]*
-*[TO DO: Finish this section]*
-
 #### Changes I made
 
 I did plan to have a few separate pages at first, which included a Shop/Shelter, but for simplicity, and after realising I would need to use local storage to save the inventory/pokémon lists, I decided to stick to having just the 1 page, and have various pop up modals which can make changes to the page, i.e. adding a new pokémon or items to the user's collection or inventory.
 
 So because of this change, I decided to remove the `Home` and `Shop` navigation from the navbar and use it only to display the `Inventory` items and buttons. I chose to have important buttons that I didn't want the user to miss in the navbar too, and changed the order, so that any buttons were on the left, and the less important `Inventory` was on the right, as it can't be interacted with. I also removed the `Coins` option from the navbar `Inventory` list and chose to stick to only `Pokémon`, `Berries`, and `Potions`.
+
+I also added a footer, with a tip carousel and copyright information.
 
 ### Starter Selection Wireframe
 
@@ -146,7 +147,7 @@ So because of this change, I decided to remove the `Home` and `Shop` navigation 
 
 **Starter Selection Page - Changes I made**
 
-I changed the layout slightly so that the radio selector was at the top, above the pokémon name, and details like the type and personality were under the image. I removed `Level` entirely, as I set all starter pokémon to start at level 1, so it is pointless adding this before it will ever be used, and I wanted the starter description boxes to be as small as possible so that the rest of the steps in the form could be seen.
+I changed the layout slightly so that the radio selector was at the top, above the pokémon name, and details like the type and personality were under the image. I removed `Level` entirely, as I set all starter pokémon to start at level 1, so it is unnecessary at this point, and I wanted the starter description boxes to be as small as possible so that the rest of the form steps were more visible.
 
 I chose to also drop the `Type` option from each of the starter pokémon when on a smaller screen, as the options then stack, so I wanted to make them less tall still, so it is clear for mobile users etc. that there are more options below the first one, instead of each option taking up a large portion of, or all of the screen.
 
@@ -156,15 +157,15 @@ I chose to add a `Refresh Personalities` button to the navbar to give the user m
 
 | User Collection Page on larger screens (laptops & larger): | User Collection Page on smaller screens (mobile & tablet): |
 | :---: | :---: |
-| ![User Collection Page Wireframe - large screens](assets/images/wireframe-main-lg.png) | ![User Collection Page Wireframe - small screens](assets/images/wireframe-main-sm.png) |
+| ![User Collection Page Wireframe - large screens](assets/images/wireframe-collection-lg.png) | ![User Collection Page Wireframe - small screens](assets/images/wireframe-collection-sm.png) |
 
 **User Collection Page - Changes I made**
 
-I chose to remove the speech bubble tips from inside each of the pokémon profile boxes and instead have a carousel of tips along the footer to help advise the user instead.
+I chose to remove the speech bubble tips from inside each of the pokémon profile boxes and instead have a carousel of tips along the footer to help advise the user with the next steps to take.
 
 I reordered the status bars and `Interact` button options so they matched in order, making sure the `Train With` option was at the top as this is the option that will be needed first to progress in the game to get to unlock more pokémon encounters. I also added descriptions of which interaction affects which status bar so it is very clear to the user how to manipulate each status bar, and leaves no room for guessing.
 
-I changed the option `Pet` to `Play With` as looks nicer and is the same amount of words as other actions (eg. `Train With`, `Feed Berry`) so looks neater and more aligned.
+I changed the option `Pet` to `Play With` as it looks nicer and is the same amount of words as other actions (eg. `Train With`, `Feed Berry`) so also looks neater and more aligned.
 
 I changed the `Hunger` to `Energy` as having the hunger bar which increases when a pokémon is fed didn't make sense and I wanted every status bar to increase when actions are made like feeding a berry or potion.
 
@@ -174,15 +175,23 @@ I also changed `Delete` to `Release` so the game is more child friendly and it w
 
 **Interact Button Options**
 
-I also included a small key, which included ideas for what would happen when each button option was pressed.
+I also included a small key I made to include ideas for what would happen when each button option was pressed.
 
-![Interact Button Options](assets/images/wireframe-main-key.png)
+![Interact Button Options](assets/images/wireframe-balsamiq-main-key.png)
 
 **Interact Button options - Changes I made**
+
+I changed the `Train` option to increase the level by 1, instead of 0.5, so the levels stay as integers and it is easier for users to get to level 5 immediately before having to use the `Go For A Walk` option.
 
 I moved the `Go For A Walk` button to the navbar instead of in the `Interact` menu, as this is a key component in playing the game and I felt it was too hidden inside a dropdown button and should be visible and clear always when in the User Collection stage.
 
 The button also doesn't affect happiness, and only gives inventory items such as berries/potions, or a pokémon encounter chance.
+
+**Modals**
+
+A big part of the game journey will be through pop up modals, so I made a wireframe for what the modal would look like too. The background has been greyed out.
+
+![Wireframe of modal](assets/images/wireframe-modal.png)
 
 ---
 
@@ -217,7 +226,7 @@ For some parts of the website, I wanted to have a muted, paler version of 2 of t
 - Secondly, I wanted a paler pink for the inventory button/counts and status bar values, as this is less important, and isn't an option the user can interact with so I wanted it to not stand out as much, and as will be shown against a nearly white background, so a paler pink would work there, and still be able to pass the contrast tests. I also used this colour for the progress bar values, as they didn't look right with the brightest pink colouring so the muted pink worked perfectly here too.
 
 To get these paler colours, I used the RGBA value of the navbar colour and overlaid the colour over the teal and pink colours I had chosen
-using the RBG value from [ColorZilla](https://www.colorzilla.com/) and adding A so I could also adjust the opacity, e.g. `rgba(248, 249, 250, 0.5)` - This shows the colour at 50% opacity.
+using the RGB value from [ColorZilla](https://www.colorzilla.com/) and adding A so I could also adjust the opacity, e.g. `rgba(248, 249, 250, 0.5)` - This shows the colour at 50% opacity.
 After testing which opacities looked good by manually testing the colours in the places they would be used, and finding the one that looked best, I used [ColorZilla](https://www.colorzilla.com/) again to just add the hexcode of that colour to my palette, which I used for individual pokémon profile backgrounds/buttons etc., testing that the coloured text still passed the [WebAIM Contrast Checker Test](#webaim-contrast-checker-test).
 
 ### Font Colouring
@@ -244,10 +253,10 @@ The inventory button and inventory item count I had in a paler pink, as these ca
 
 ![Colour Palette](assets/images/colour-palette.png)
 
-For future maintainability, I defined each colour as a CSS variable (e.g., `var(--colour-name)`). This approach made it easy to update the palette later if needed - changing a single variable would update the colour everywhere it was used.
-
-*try and make pic smaller*
-![CSS Variables](assets/images/colour-css-variables.png)
+|  |  |
+| :--- | :---: |
+| For future maintainability, I defined each colour as a CSS variable, for example: `var(--colour-name)`. | This approach made it easy to update the palette later if needed - changing a single variable would update the colour everywhere it was used. |
+| ![CSS Variables](assets/images/colour-css-variables.png) | I used ordinal prefixes to name the variables, (e.g. Primary, Secondary, Tertiary) and added background to the colours that would only be used as backgrounds so the names didn't end up too abstract. |
 
 ## Favicon
 
@@ -285,7 +294,7 @@ I used a photo carousel from Bootstrap and adjusted it to be able to work with t
 
 I also adjusted each tip's location within the carousel area, so if it is on a large screen where there is only 1 row of text, the tip is nicely centralised with an even gap above and below etc. I did this using `br` tags which appeared or disappeared depending on the screen size.
 
-I adjusted the time each tip stayed on the screen for using Bootstrap's intervals which are part of their carousels, also shown below.
+I adjusted the time each tip stayed on the screen for using Bootstrap's intervals which are part of their carousels, also shown below. I adjusted the times for each of the tips in the carousel dependant on how long the text in the tip was and asked friends and family to check if it was long enough for them to read, and then chose those times.
 
 ```html
 <div class="carousel-item" data-bs-interval="3000">
@@ -311,25 +320,24 @@ I ensured that the height was always consistent, regardless of how many lines of
 
 ### Modals/Pop Up Boxes
 
-I used a lot of pop up modals which were inspired from the old pokémon style games, where pop ups used to take you to different areas or parts of the story.
+I used a lot of pop up modals which were inspired from the old pokémon style games, where pop ups used to take you to different areas or parts of the story/journey.
 
-As I decided to stick with having just 1 page, I decided having different modals could be a fun way to add some excitement.
-*To Do: Add more here*
+As I decided to stick with having just 1 page, I decided having different modals could be a fun way to add some excitement and progress in the game.
 
-I made a few modal 'shells' in HTML from Bootstrap, and then used JavaScript to edit the content. Where the layout and purpose of the modal was different, I used a different modal to keep things clearer, but for modals where only the text changed, I reused the same modal, for example my alertModal was used for when a pokémon hasn't been selected on the Starter Selection page, and also if the user is trying to use items they don't have in their inventory.
+I took a few modal 'shells' in HTML from Bootstrap, and then used JavaScript to edit the content. Where the layout and purpose of the modal was different, I used a different modal to keep things clearer, but for modals where only the text changed, I reused the same modal, for example, my `alertModal` was used for when a pokémon hasn't been selected on the Starter Selection page, and also if the user is trying to use items they don't have in their inventory.
 
-*[TO DO: explain about needing modalIsOpen - link to problem explained]*
+Some of the modals lead to other modals, so I made slightly different classes for the 'continuing' buttons, which opened another modal, so that the key interactions and the variable tracking if a modal is open both still worked seamlessly.
 
-*[TO DO: add about adding key press functionality to close modals]*
+I have explained these issues more thoroughly and how I fixed them in my [Resolved Issues](#resolved-issues) section.
 
-Some of the modals lead to other modals, so I made slightly different classes for these 'continuing' buttons, so that the key interactions still worked seamlessly and the variable tracking if a modal is open still worked. *[TO DO: maybe link to issue here too?]*
+### Keyboard Shortcuts
 
-#### Keyboard Shortcuts
-
-`ENTER` and ESC work with modals.
-*Add more here*
+I added a JavaScript function so that the `ENTER` and `ESC` keys will work with modal buttons so they can be pressed without the mouse. The `TAB` key also cycles through the options well, so accessibility in all modals is very good.
 
 ## Starter Selection Page
+
+![Starter Form Mockup](assets/images/mockup-starter.png)
+
 - Shows a form with starter options at initial page load, or when user deletes their last pokémon from their collection.
 
 **Featuring:**
@@ -350,18 +358,18 @@ The images are pulled from an API, however, as the names and types of these pok�
 
 The refresh personalities button changes the personality inside these options when clicked, and will still work to change the personality even if a pokémon has been selected.
 
-Once a pokémon selection has been clicked, the styling of the option 'box' changes from a pink and purple border with pale aqua background to a black border and white background so it is clear this step has been done.
+Once a pokémon selection has been clicked, the styling of the option 'box' changes from a pink and purple border with pale aqua background to a black border and white background so it is clear this step has been completed.
 
-Below this is the next step: `Give your Pokémon a name:`, with a text box below to input a name. This is an optional step, and if the text box is left blank, the nickname will default to the pokémon's species name, e.g. 'Bulbasaur the Bulbasaur'. I have set the cursor to start in this box as soon as the page loads so writing a nickname is easier. [TO DO: reword?] I have set any words written in here to automatically capitalise the first letter, and also it has a character limit of 12 [add in pic here].
+Below is the next step: `Give your Pokémon a name:`, with a text box below to input a name. This is an optional step, and if the text box is left blank, the nickname will default to the pokémon's species name, e.g. 'Bulbasaur the Bulbasaur'. I have set the cursor to start in this box as soon as the page loads so writing a nickname is easier. I have set any words written in here to automatically capitalise the first letter, and also it has a character limit of 12, which I explain in the [Rename Button](#pokémon-profile---rename-button) section.
 
-The final step is to click the `Add to collection` button, so this has black text too to make sure it stands out to the user, as with the other steps.
+The final step is to click the `Add To Collection` button, so this has black text too to make sure it stands out to the user, as with the other steps.
 
 | Small Mobile: | Large Mobile: | Tablet: |
 | :---: | :---: | :---: |
-| ![Small Mobile](assets/images/form-xs.png) | ![Large Mobile](assets/images/form-sm.png) | ![Tablet](assets/images/form-md.png) |
+| ![Starter page on small mobile](assets/images/form-xs.png) | ![Starter page on large mobile](assets/images/form-sm.png) | ![Starter page on tablet](assets/images/form-md.png) |
 
 **Laptop:**
-![alt text](assets/images/form-lg.png)
+![Starter page on laptop](assets/images/form-lg.png)
 
 *Note: The tips are only showing as not centralised because I took the screenshot while they were moving, when they stop, they are central.*
 
@@ -376,6 +384,8 @@ There is also a pop up that appears if no pokémon have been selected and the bu
 | ![Full Sized Footer](assets/images/modal-alert-pick-small.png) | ![Collapsed Footer](assets/images/modal-alert-pick-large.png) |
 
 ## User Collection Page
+
+![User Collection Mockup](assets/images/mockup-collection.png)
 
 Once the user has 1 or more pokémon added to their collection, I have set the starter option form and refresh personality button to disappear, a 'Go For A Walk' button becomes visible in the navbar instead, along with the user Inventory, and the new chosen pokémon's profile will now be displayed in the centre of the page.
 This has details like its Level, which starts at 1, and 3 status bars showing 'Energy', 'Health' and 'Happiness' along with 3 buttons, Interact With, Release and Rename. The pokémon's nickname has been dynamically added to these buttons so whatever the user has chosen the nickname to be is part of the button name, e.g. 'Interact with Bob'.
@@ -418,7 +428,7 @@ There are 2 outcomes from going for a walk:
 
 For this option, the accompanying pokémon's nickname is shown in the walk description, along with a backwards image of the pokémon, to look as if it is walking ahead of the user.
 
-A random amount of berries (between 2 and 10(?)), and a random amount of potions (3-5) are generated. If the berry count is 2 or 3, the user will find the generated number of potions as well as the berries. However if the berry count is more, then the user and their pokémon will only find berries.
+A random amount of berries (between 2 and 10), and a random amount of potions (between 2 and 5) are generated. If the berry count is under 5, the user will find the generated number of potions as well as the berries. However if the berry count is 5 or more, then the user and their pokémon will only find berries.
 
 I did this because I wanted to make the chance of finding potions less, so they increased in rarity.
 
@@ -426,13 +436,13 @@ Once the pop up has come up, there are 2 options, however I chose to only have 1
 
 Once the Collect button has been pressed, any items that were found on the walk are now shown in the inventory and can be used to interact with any of the user's pokémon using the [Pokémon Profile - Interact Button](#pokémon-profile---interact-button).
 
-The second option is to select the `x` in the top corner to close the modal, which just exits the modals without adding anything to the modal. I have these in all of my modals for consistency.
+The second option is to select the `x` in the top corner to close the modal, which just exits the modals without adding anything to the inventory or making any changes. I have these in all of my modals for consistency.
 
 #### Encountering New Pokémon
 
 Once the pokémon the user is walking with has reached level 5, there is a chance to encounter a new pokémon. The chance is 20% if the pokémon the user is walking with is level 5, and 0% if it is under level 5. If the user has 2 pokémon and only 1 is 5 or above, there will only be a chance of an encounter when walking with that specific pokémon.
 
-When this encounter happens, instead of the walk results pop up, an alert pop up appears saying "You hear a rustling coming from the long grass." with a button below with the text "Investigate". There is also an `x` in the top corner to close the modal, which just exits the modals without adding or continuing the encounter.
+When this encounter happens, instead of the walk results pop up, an alert pop up appears saying `"You hear a rustling coming from the long grass."` with a button below with the text `"Investigate"`. There is also an `x` in the top corner to close the modal, which just exits the modals without adding or continuing the encounter.
 
 I did debate adding another message for water pokémon encounters, but I felt "the long grass" covered it fine, as there could be ponds, lakes or marshes in long grass, and having a description like this makes it feel like more of an adventure. In future I could add other options and have it randomly select one each time.
 
@@ -442,13 +452,23 @@ Sometimes if the internet was running slow, the image etc would take a while to 
 
 The buttons at the bottom give 2 options: `Run Away` or `Adopt`. If the user chooses to run away, nothing happens and no pokémon is added. However if they choose to adopt, a new modal appears with the option to give the new pokémon a nickname. If no nickname is chosen, i.e. the input box is left blank, or the `x` in the corner is selected, the nickname will default to the pokémon's species name, as it does for selecting a starter pokémon. This pokémon is now added to the user's collection and is ready to interact with.
 
-I set the status bars to [TO DO: continue this sentence]. I decided to make the Happiness low as it hasn't been interacted before so might be lonely, and this also encourages the user to use the `Play With` interaction and feel like they have grown a bond with their new pokémon.
+I randomised the personality of the new pokémon to be one of the 24 options, set the level to randomise between 1 and 5, set the energy bar to 40/100, health bar to 80/100 and happiness bar to 10/100.
 
-*[TO DO: add image table showing loading modal and loaded modal side by side]*
+I decided to make the Happiness low as it hasn't been interacted before so might be lonely, and this also encourages the user to use the `Play With` interaction and feel like they have grown a bond with their new pokémon.
+
+|  |  |
+| --- | :---: |
+| Loading encounter modal | Encounter modal once image has been fetched |
+| ![Loading encounter modal](assets/images/features-modal-encounter-loading.png) | ![Encounter modal once image has been fetched](assets/images/features-modal-encounter-loaded.png) |
 
 ### Navbar - Inventory Display
 
-*[TO DO: Add description]*
+I decided to display the Inventory amounts at the top of the page, inside the navbar, similar to a navbar menu, which changes to a button menu on smaller screens. These aren't interactable, but the amounts will change throughout the game as more pokémon/berries etc are collected, and will reduce if berries/potions are used, or pokémon are released.
+
+|  |  |
+| --- | :---: |
+| Inventory Button | Inventory Button expanded |
+| ![Inventory Button](assets/images/features-inventory-button.png) | ![Inventory Expanded](assets/images/features-inventory-expanded.png) |
 
 ### Pokémon Profile - Title showing Nickname and Species
 
@@ -474,26 +494,27 @@ This only displays on larger screens, as on smaller screens there is less space 
 
 #### - Personality
 
-This is chosen randomly for each pokémon from a collection of 24. There is an option to reshuffle the personalities using a button while the starter selection form is visible, but for encountering wild pokémon on walks, the personality is randomised when they are encountered. The personalities currently don't do anything else, but are a cute addition, and can make the user feel more connected to their pokémon.
-In future I could make personalities influence how much a status bar increases or decreases, or the likelihood of a pokémon joining for walks.
+This is chosen randomly for each pokémon from a collection of 24. There is an option to reshuffle the personalities using a button while the starter selection form is visible, but for encountering wild pokémon on walks, the personality is randomly chosen when they are encountered. The personality can't be changed once the pokémon has been added to the collection.
 
-*[TO DO: Add more here]*
+The personalities currently don't do anything else, but are a cute addition, and can make the user feel more connected to their pokémon.
+In future I could make personalities influence how much a status bar increases or decreases, or the likelihood of a pokémon joining for walks.
 
 ### Pokémon Profile - Image
 
 The image, like the type and species name in the title are fetched from the specific pokémon details in PokéAPI.
 
-*[TO DO: Maybe add link to an image to show]*
+This is a link to one of the images from PokéAPI that is fetched and used within the website:
+`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`
 
 ### Pokémon Profile - Status Bars
 
 I decided upon 3 status bars: `Energy`, `Health` and `Happiness`, which can be manipulated using the `Interact with` dropdown button options, these are explained in detail in the [Pokémon Profile - Interact Button](#pokémon-profile---interact-button) section below. Each status bar shows the current amount out of 100.
 
-*[TO DO: Add more here?]*
+Depending on the size of the pokémon profile box, the status bars can have even gaps, to ensure the bars look neat at all screen sizes, shown below:
 
 | Status bars with no gaps | Status bars with even gaps |
 | :---: | :---: |
-| ![alt text](assets/images/profile-no-spacing.png) | ![alt text](assets/images/profile-gap-spacing.png) |
+| ![Status bars with no gaps](assets/images/profile-no-spacing.png) | ![Status bars with even gaps](assets/images/profile-gap-spacing.png) |
 
 ### Pokémon Profile - Interact Button
 
@@ -507,7 +528,7 @@ There are 4 options:
 #### - Train With
 
 This option increases a pokémon's `Level` by `1`, and decreases 2 of the status bars: `Energy` by `10` and `Health` by `20`.
-If the pokémon's `Health` or `Energy` are already lower than 20 out of the possible 100, and the user tries to use the `Train With` option, the pokémon's `Happiness` will drop by `10` and a modal will pop up explaining that they are too tired or `...` to train.
+If the pokémon's `Health` or `Energy` are already lower than 20 out of the possible 100, and the user tries to use the `Train With` option, the pokémon's `Happiness` will drop by `10` and a modal will pop up explaining that they are too hungry or need to heal before they can train anymore.
 I have also added a pop up to let users know when their pokémon has reached level 5 that they are now able to encounter wild pokémon while on walks with them.
 
 #### - Feed Berry
@@ -542,6 +563,8 @@ I googled what the widest character in most fonts is, which is M or W, and in my
 
 ![The maximum width of a pokémon nickname](assets/images/profile-nickname-max-width.png)
 
+---
+
 # Testing
 
 ---
@@ -573,21 +596,24 @@ There were some warnings (only 2 different) which are due to using CSS variables
 
 ## Lighthouse Performance
 
-*TO DO: Ask about doing this test for both pages, seems to only do the starter form page as the rest is generated with javascript*
+<!-- *[TO DO: Check with tutor which are needed and choose 1, above or below, and if a score of 81 is okay]* -->
 
-These are the lighthouse scores below for each of the pages:
+I tested this website using Lighthouse in DevTools and there are my results:
 
-Starter Selection Page:
+|  |  |
+| :---: | :---: |
+| Desktop Results: | Mobile Results: |
+| ![Lighthouse Desktop Test Scores](assets/images/testing-lighthouse-desktop.png) | ![Lighthouse Mobile Test Scores](assets/images/testing-lighthouse-mobile.png) |
 
-![Starter Selection Page Lighthouse](assets/images/testing-)
+<details>
+<summary>From deployed website on GitHub Pages:</summary>
 
-*[TO DO: Add]*
+|  |  |
+| :---: | :---: |
+| Desktop Results: | Mobile Results: |
+| ![Lighthouse Desktop Test Scores](assets/images/testing-lighthouse-desktop-pages.png) | ![Lighthouse Mobile Test Scores](assets/images/testing-lighthouse-mobile-pages.png) |
 
-User Collection Page:
-
-![User Collection Page Lighthouse](assets/images/testing-)
-
-*[TO DO: Add]*
+</details>
 
 ---
 
@@ -601,44 +627,42 @@ https://accessibleweb.com/website-accessibility-checker/
 
 ## WAVE Test
 
-*[TO DO: Add]*
+After correcting a couple of `alerts`, these were my WAVE test results:
 
-<!-- These were my test results:
+There were **no Errors** or **Contrast Errors**, and **15 Alerts**, which aren't issues that need any corrections.
 
-There were **no Errors** or **Contrast Errors**.
+From running this test, I did manage to change things in my code to remove 2 of the Alerts, so the only remaining Alerts are due to large font being flagged as being a possible heading. However, when checked, it was only picking up things like the Type and Personality details, and the Tips inside the footer, which are all not headings.
 
-|  |  |
-| :---: | :---: |
-| ![Home Page Summary](assets/images/testing-) | ![Home Page Details](assets/images/testing-) |
+The 2 fixed alerts:
 
-The Alerts above are due to ...
+I previously had a `Redundant alternative text` alert, which I fixed by removing the alt attribute in my 3 starter choice images, as the name was already set using the label, so removing these removed this alert.
 
-![Alerts from Home Page Wave Tests](assets/images/testing-) -->
+The other alert was a `missing fieldset` alert, and to get rid of this I wrapped the 3 radio starter options in a `<fieldset>`, and change the title to a `legend` instead of a `h2`.
+
+|  |  |  |
+| :---: | :---: | :---: |
+| Original WAVE test | WAVE test after fixes made | WAVE Contrast Test |
+| ![Original WAVE Test](assets/images/testing-wave-original.png) | ![Fixed WAVE Test](assets/images/testing-wave-fixed.png) | ![WAVE Contrast Test](assets/images/testing-wave-contrast.png) |
 
 ---
 
 ## WebAIM Contrast Checker Test
 
-There are only 2 background colours which I will have with any text on, which are (as shown in the [Colour Palette](#colour-palette))-  Icy Aqua and Bright Snow.
+There are only 2 background colours which I will have with any text on, which are Icy Aqua and Bright Snow, as shown in the [Colour Palette](#colour-palette).
 
-*TO DO: Put images below in table so they aren't so big*
+As shown below, these all pass all of the WebAim contrast checker tests, apart from the secondary colours, but as all fonts in this project are large text, this will still pass all of the AAA tests.
 
-Colours used for text on the pale teal background:
+| Colours used for text on the Icy Aqua background |  |  |
+| --- | --- | --- |
+| Primary Font Colour | Secondary Font Colour | Black |
+| ![Testing Primary Colour on Primary Background Pale](assets/images/testing-webaim-primary-colour-on-teal.png) | ![Testing Secondary Colour on Primary Background Pale](assets/images/testing-webaim-secondary-colour-on-teal.png) | ![Testing black on Primary Background Pale](assets/images/testing-webaim-black-on-teal.png) |
 
-![Testing Primary Colour on Primary Background Pale](assets/images/testing-webaim-primary-colour-on-teal.png)
-![Testing Secondary Colour on Primary Background Pale](assets/images/testing-webaim-secondary-colour-on-teal.png)
-![Testing black on Primary Background Pale](assets/images/testing-webaim-black-on-teal.png)
+| Colours used for text on the Bright Snow background |  |  |
+| --- | --- | --- |
+| Primary Font Colour | Secondary Font Colour | Secondary Pale Font Colour |
+| ![Testing Primary Colour on White](assets/images/testing-webaim-primary-colour-on-white.png) | ![Testing Secondary Colour on White](assets/images/testing-webaim-secondary-colour-on-white.png) | ![Testing secondary-colour-pale on White](assets/images/testing-webaim-secondary-colour-pale-on-white.png) |
 
-Colours used for text on the off white background:
-
-![Testing Primary Colour on White](assets/images/testing-webaim-primary-colour-on-white.png)
-![Testing Secondary Colour on White](assets/images/testing-webaim-secondary-colour-on-white.png)
-![Testing secondary-colour-pale on White](assets/images/testing-webaim-secondary-colour-pale-on-white.png)
-![Testing Black on White](assets/images/testing-webaim-black-on-white.png)
-
-As shown above, these all pass all of the WebAim contrast checker tests, apart from the secondary colours, but as all fonts in this project are large text, this will still pass the AAA test.
-
-*TO DO: double check this - what counts as large text?*
+*The only other colour which I used on the off white background was black, which had a contrast ratio of 19.92:1.*
 
 ---
 
@@ -646,11 +670,15 @@ As shown above, these all pass all of the WebAim contrast checker tests, apart f
 
 ### How I achieved my User Stories
 
+---
+
 **- As a user I want to adopt a pokémon that feels like it's really mine.**
 
 |  |  |
 | --- | :---: |
 | I have achieved this by having a button to change and customisable personalities, so the user can shuffle them until they find one they like on a starter pokémon they like, and then on top of that they can also choose a personal nickname to make them feel even more like it's "theirs". | ![Showing personality and nickname options](assets/images/testing-user-stories-personable.png) |
+
+---
 
 **- As a user I want to increase the Energy, Health and Happiness status bars on my pokémon.**
 
@@ -658,13 +686,15 @@ As shown above, these all pass all of the WebAim contrast checker tests, apart f
 | --- | :---: |
 | I have achieved this by having actions in my interact button which increase each status bar, and sometimes interacting with several at a time. | ![Interact Button Options](assets/images/testing-user-stories-interact.png) |
 
+---
+
 **- As a user I want to increase the level of my pokémon so that I can find and catch more & different pokémon.**
 
 To level up you can `Train With` your pokémon, so this achieves the first part of the user story, and then once the user has trained enough so that the level is 5 or more, there is automatically a 20% chance of encountering a wild pokémon on a walk, so to achieve the second part, the user can click the `Go For A Walk` button until an encounter takes place, and then select to `Adopt` the pokémon that appears.
 
 |  |  |
 | --- | :---: |
-| First train with pokemon using the `Train With` interaction option until the level gets to 5 or higher. | ![Train With option](assets/images/testing-user-stories-catch-1.png) |
+| First train with pokémon using the `Train With` interaction option until the level gets to 5 or higher. | ![Train With option](assets/images/testing-user-stories-catch-1.png) |
 
 |  |  |
 | --- | :---: |
@@ -682,34 +712,36 @@ To level up you can `Train With` your pokémon, so this achieves the first part 
 | --- | :---: |
 | The user's collection now, showing the new pokémon. | ![User Collection](assets/images/testing-user-stories-catch-5.png) |
 
+---
+
 ### Table to test modalIsOpen variable status
 
 I made a table whilst testing, which looked similar to this example below, to narrow down which button options I needed to work on.
 
-| Modal Name | Action | modalIsOpen state | Works as Intended |
+| Modal Name | Action | `modalIsOpen` state | Works as Intended |
 | --- | --- | --- | --- |
-| releaseModal | Release | false | Yes |
-| releaseModal  | Cancel/x | true | No |
-| releaseModal  | Click off modal | true | No |
-| renameModal | Rename | false | Yes |
-| renameModal | Cancel/x | true | No |
-| renameModal | Click off modal | true | No |
+| `releaseModal` | Release | false | Yes |
+| `releaseModal` | Cancel/x | true | No |
+| `releaseModal` | Click off modal | true | No |
+| `renameModal` | Rename | false | Yes |
+| `renameModal` | Cancel/x | true | No |
+| `renameModal` | Click off modal | true | No |
 
 *Note: I changed all modals to static after creating this table, so the `click off modal` actions are now irrelevant.*
 
-*TO DO: Finish table below to include all options*
+---
 
 | Test Area | What I'm Testing | Did it Pass? |
 | --- | --- |:---:|
-| Starter Options Page | Does the `Refresh Personalities` button change the personality for all 2 starter options? | Yes |
+| Starter Options Page | Does the `Refresh Personalities` button change the personality for all 3 starter options? | Yes |
 | Starter Options Page | If no pokémon has been selected and the `Add To Collection` button is pressed, does an alert pop up to tell the user they need to select a pokémon? | Yes |
 | Starter Options Page | When a starter option is clicked anywhere inside the border, does the background colouring and border change and is the relevant radio filled? | Yes |
 | Starter Options Page | When a different starter option is clicked after clicking another one, is the background colouring, border and filled radio changed to the newly selected option? | Yes |
-| Starter Options Page | When a starter option is chosen and `Add To Collection` is pressed, is the selected pokémon added to the starter collection? | Yes |
+| Starter Options Page | When a starter option is chosen and `Add To Collection` is pressed, is the selected pokémon with the correct personality added to the starter collection? | Yes |
 | Starter Options Page | When a name is typed into the input box and `Add To Collection` is pressed, is the nickname of the new pokémon the same as the name inputted? | Yes |
 | Starter Options Page | When a starter option is chosen and `Add To Collection` is pressed, is the `Refresh Personalities` button and form removed from visibility? | Yes |
 | Starter Options Page | When a starter option is chosen and `Add To Collection` is pressed, does the `Go For A Walk` button and `Inventory` appear in the navbar? | Yes |
-| Buttons | Does the `Go For A Walk` button open a model when pressed? | Yes |
+| Buttons | Does the `Go For A Walk` button open a modal when pressed? | Yes |
 | Buttons | Does the `Interact With` button open the dropdown menu when pressed? | Yes |
 | Buttons | Does the `Train With` dropdown option increase the Level when pressed? | Yes |
 | Buttons | Does the `Train With` dropdown option decrease the relevant status bar amounts when pressed? | Yes |
@@ -718,74 +750,50 @@ I made a table whilst testing, which looked similar to this example below, to na
 | Buttons | Does the `Feed Potion` dropdown option decrease the potion amount by 1 when pressed? | Yes |
 | Buttons | Does the `Feed Potion` dropdown option increase the relevant status bar amounts when pressed? | Yes |
 | Buttons | Does the `Play With` dropdown option increase the relevant status bar amounts when pressed? | Yes |
-| Buttons | Does the `Release` button open a model when pressed? | Yes |
-| Buttons | Does the `Rename` button open a model when pressed? | Yes |
-| Modals | Do all the modals close as intended when the `Cancel`/`x`/`ESC` key is pressed? | Yes |
-| Modals | ... | Yes |
+| Buttons | Does the `Release` button open a modal when pressed? | Yes |
+| Buttons | Does the `Rename` button open a modal when pressed? | Yes |
+| Modals | Do all the modals close as intended when the `Cancel`/`x` button or `ESC` key is pressed? | Yes |
+| Modals | Do all the modals continue as intended when the `Confirm` (or similar) button or `ENTER` key is pressed? | Yes |
+| Modals | When the user attempts to feed a berry or potion to their pokémon, but they have none, does a modal pop up to explain this and how to get more? | Yes |
+| Modals | When the user presses `Collect` after going for a walk, are all the found berries added to the `Inventory`? | Yes |
+| Modals | When the user deletes a pokémon, is this pokémon fully removed from the user's collection and the `Inventory` Pokémon count? | Yes |
 | Modals | Once a new nickname has been typed and the Rename button has been pressed has the nickname changed to the new nickname? | Yes |
+| Modals | When the user presses `Investigate` whilst on a walk, does a randomly generated pokémon appear, complete with image, name, type and randomised personality? | Yes |
+| Modals | If the user selects `Adopt`, is this pokémon added to the user's collection, increasing the `Inventory` Pokémon count and does the image, type and personality match the one shown in the modal? | Yes |
 | Responsive Design | Does the Inventory amounts adapt to a button at smaller screen sizes as intended? | Yes |
-| Responsive Design | Does the Inventory button close the menu once pressed again? | Yes |
-| ... | ... | Yes |
+| Responsive Design | Does the Inventory button open the menu when clicked and close once clicked again? | Yes |
 
 ---
 
-# Fixed Issues
+## Resolved Issues
 
-*[TO DO: Add more, and add from below in To Delete section]*
-
----
-
-### Multiple modals/pop ups can be open at the same time (multiple step fixes)
-
-*/ stops the user from breaking the game by clicking faster than the modals could pop up*
+| Issue | How I fixed it |
+| :--- | :--- |
+| When the `Go for a Walk` button is clicked, a modal is triggered, but if this happens too slowly and the user clicks the `Go for a Walk` button again, another modal opening is triggered, resulting in more than 1 modal being open at a time and this can get confusing for the user. | I need to stop the `Go For A Walk` button working whenever any modal is open. I decided to do this by creating a boolean variable which will change from `false` to `true` when modal is open, and then disable the `Go For A Walk` button anytime the variable is set to `true`. |
 
 <details>
-<summary>Issue & Solution:</summary>
+<summary>Extra details explaining how I fixed the above issue</summary>
 
-**Issue:** When the 'Go for a Walk' button is clicked, a modal is triggered, but if this happens too slowly and the user clicks the 'Go for a Walk' button again, another modal opening is triggered, resulting in more than 1 modal being open at a time and this can get confusing for the user.
-
-**Solution:** I need to stop the button working if there is already a modal open.
-
-I decided to do this by creating a boolean variable which will change from false to true when modal is open, and then disable the 'Go For A Walk' button when this is variable is set as true.
-
-Step 1:
-I decided to call this variable modalIsOpen, which automatically is set to false, but can be changed to true within functions that open on button clicks. I kept this global so that it can be altered within any function in my code.
+I decided to call the new boolean variable needed `modalIsOpen`, which automatically is set to `false`, but can be changed to `true` within functions that open on button clicks. I kept this variable global so that it can be altered within any function in my code.
 
 ```js
-let modalIsOpen = false; // Used to ensure multiple modals can't be opened at the same time
+let modalIsOpen = false;
 ```
 
-Step 2:
-I then go through my code and change this variable to true within all of my functions at the time a modal is opened.
+I then went through my code and changed this variable to `true` within all of my functions at the time a modal is opened.
 
-**Example:**
 Existing line of code:
 ```js
 $("#walkResultsModal").modal("show");
 ```
-Line I add beside it:
+Line I add below it:
 ```js
 modalIsOpen = true;
 ```
 
-Step 3:
-Now I need to make sure that the variable is switched back to off whenever a modal is closed. I can do this in a similar way by searching my code for any lines that close a specific modal, so instead of saying `"show"`, it will say `"hide"`, and then I added a line similar to the one above, but with `true` changed to `false` instead.
+Then I needed to make sure that the variable is switched back to `false` whenever a modal is closed. I did this in a similar way by searching my code for any lines that close a specific modal, instead of looking `"show"` to open a modal, I searched for where it said `"hide"` to close the modal, and then I added a line similar to the one above, but with `true` changed to `false` instead.
 
-Step 4 (Fix issue with modalState not being changed to closed when cancel button on modal clicked):
-
-During the previous step, I noticed there were far less lines with modal.("hide"), compared to modal.("show"), so I added less of this line: `modalIsOpen = false;`, than I did this line: `modalIsOpen = true;`.
-
-Because of this, I decided to write up all functions and how they could be opened and closed, and did some manual testing, adding `console.log(modalIsOpen);` to my event listener for any keypress to check the boolean state of the modalIsOpen variable at various stages.
-
-This is an example of the [table I used to test modalIsOpen variable status](#table-to-test-modalisopen-variable-status).
-
-Step 5:
-
-I added this step to tidy my code by putting the repeated code which changes the state of modalIsOpen into 2 functions, including one which I created above - updateModalStateToClosed.
-
-So instead of having this line of code - `modalIsOpen = false;` - in various functions throughout my script file, I just called the function, which is clearly named, and saves writing the repeated code again, keeping my code DRY.
-
-I also did the same with a new function called updateModalStateToOpen, which does the opposite, changing the state to `true`.
+As there were a lot of repeated lines of code I was adding to functions to change the boolean state of `modalIsOpen` so I decided to tidy my code by putting the repeated code into 2 new functions: `updateModalStateToClosed` and `updateModalStateToOpen`. These names depict clearly what these functions do, and keeps my code DRY.
 
 Added functions:
 ```js
@@ -802,65 +810,36 @@ Inside other functions before:
 ```js
 $("#alertModal").modal("show");
 modalIsOpen = true;
-```
 
-After:
-```js
-$("#alertModal").modal("show");
-updateModalStateToOpen();
-```
-
-Inside other functions before:
-```js
 $("#releaseModal").modal("hide");
 modalIsOpen = false;
 ```
 
 After:
 ```js
+$("#alertModal").modal("show");
+updateModalStateToOpen();
+
 $("#releaseModal").modal("hide");
 updateModalStateToClosed();
 ```
 
-Step 6
+During the previous step, I noticed there were far less lines with `modal.("hide")`, compared to `modal.("show")`, so I added less of this line: `updateModalStateToOpen();`, than I did this line: `updateModalStateToClosed();`.
 
-I then discovered that the state didn't change when closing alerts (such as alerts that the pokémon needs a berry).
-Also, when any modal was closed using the cancel/closing x in the corner.
+Because of this, I decided to write up all functions and how they could be opened and closed, and did some manual testing, and added `console.log(modalIsOpen);` to my event listener for any keypress to check the boolean state of the `modalIsOpen` variable at various stages in the game.
 
-I had previously targeted these buttons that closed/cancelled modals with a class: `cancel-modal-button` before, so to fix this issue, I decided to also target this class to turn the modalIsOpen state to false, to fix the above issue.
+This is an example of the [table I used to test modalIsOpen variable status](#table-to-test-modalisopen-variable-status), which shows just a couple of the tests I checked for, although this was done manually in a notepad at the time.
 
-```js
-    // Event Listener to change state of modalIsOpen when any modal is closed using a 'cancel modal' button
-    $(".cancel-modal-button").on("click", updateModalStateToClosed);
+| New Issue discovered during Manual Testing | How I fixed it |
+| --- | --- |
+| I then discovered that the state of `modalIsOpen` didn't change to `false` as it should when closing alert modals (such as alerts that the pokémon needs a berry). Also, when any modal was closed using the `Cancel`/closing `x` in the corner. | I had previously added a class to buttons that closed/cancelled modals called `cancel-modal-button`, so to fix this issue, I decided to target this class using an event listener, so that when any button with this class is clicked, the function `updateModalStateToClosed` is triggered, turning the `modalIsOpen` state to `false`. The new event listener: `$(".cancel-modal-button").on("click", updateModalStateToClosed);` |
+| Another issue I found during testing is if the user clicks outside of the modal (only for modals that aren't static), this closed the modal, but again hasn't triggered the `modalIsOpen` boolean state to be changed back to `false`. <br><br>The modals that this happened with are the `alertModal`, `releaseModal`, `renameModal`, and the `wildRenameModal`. All the other modals are static, so will stay open unless either a button has been clicked to close it/open a new modal, or a key has been pressed to trigger a click, which I have already fixed to change the `modalIsOpen` state above. | I decided to make all my modals static, instead of just some, which fixed the problem, and will also prompt the user to interact with the options as they can't click off the modal anymore. |
 
-    // Function to close modalIsOpenState
-    function updateModalStateToClosed () {
-        modalIsOpen = false;
-    }
-```
+</details>
 
-Step 7 (Fix issue with modalState not being changed to closed when modal is closed by clicking outside of modal):
-
-Another issue I found during testing is if the user clicks outside of the modal (only for modals that aren't static), which closes the modal but again hasn't triggered the modalIsOpen boolean state to be changed back to false.
-
-The modals that this is possible with are the alertModal, releaseModal, renameModal, and the wildRenameModal. All the other modals are static, so will stay open unless either a button has been clicked to close it/open a new modal, or a key has been pressed to trigger a click, which I have already fixed to change the modalIsOpen state in the steps above.
-
-I decided to make all my modals static, instead of just some, which will fix the problem, and probe the user to interact more with the options.
-
-*[TO DO: maybe add more explanation to this]*
-
-Step 8:
-
-Tidied `handleModalKeyActions` function, adding check for `modalIsOpen` variable.
-
-<!-- I implemented a conditional check to ensure the modal element was present in the DOM before attempting to access its child elements. This prevents potential null pointer exceptions and ensures the script doesn't crash if a keydown event occurs while no modal is active. -->
-
-*[Also add -]* I could have changed .show to looking at if modals have .hidden (and add class to and from modals) if I didn't want to use Bootstraps .show class, like I did with the starter options form/walk button etc, but I decided to do it this way to show my understanding of Bootstraps modals/classes.
-
-Step 9:
-Once I know this works as intended, I look at fixing the main problem (Multiple modals/pop ups can be open at the same time), and a check to the start of any functions that can trigger a modal to open, to check if there is already a modal open, and if so, abort.
-
-This is how I do this...
+| Final step to fix above issue | How I fixed it |
+| :--- | :--- |
+| There was one addition needed to fix the issue above once the `modalIsOpen` variable has been created and placed in the right place, as described above. | Once I know this works as intended, I look at fixing the main problem - multiple modals/pop ups being able to be opened at the same time. I did this by adding a check to the start of any functions that can trigger a modal to open, to check if there is already a modal open, and if so, abort. This means there should never be 2 modals open at the same time. The code added for this is shown below: |
 
 ```js
 // a safeguard to prevent the multiple open modals issue
@@ -869,200 +848,118 @@ if (modalIsOpen) {
 }
 ```
 
-I also added this safeguard code to the actionBerry, actionPotion and actionTrain functions, as an alertModal pops up if the pokémon's health/... is low, or the user doesn't have any berries or potions.
+I also added this safeguard code to the `actionBerry`, `actionPotion` and `actionTrain` functions, as an `alertModal` pops up if the pokémon's health or energy are low, or the user doesn't have any berries or potions.
 
 I didn't add the safeguard code to the `walkDisturbance`, `surpriseEncounter` or `addWildPokemon` (which also trigger modals to be opened) as they are only triggered after/because of the `goForAWalk` function, which the safeguard has already been added to.
 
-*[MAYBE TO DO - add why I didn't add to others?]*
+---
 
-</details>
-
-### Multiple Modals being opened when using modals that trigger opening other modals
-
-<details>
-<summary>Issue & Solution:</summary>
-
-**Issue:** During testing, I woukd press `ENTER` multiple times to open/skip through modals triggered by the `Go For A Walk` button, and sometimes 2 modals would open at the same time, despite having created the `modalIsOpen` variable which should disable the button if a modal is already showing as open.
-
-I discovered that the event listener that sets the status of modalIsOpen would set the status to false every time a modal was closed, although some modals triggered another modal to open straight away, so the status shouldn't be changing at these times.
-
-**Solution:** I had attached the event listener which changes the `modalIsOpen` state to false when either of 2 classes attached to buttons were pressed: `cancel-modal-button` and `confirm-modal-button`. If one of the buttons which has the `cancel-modal-button` class is pressed, the modal is fully closed, the state of the `modalIsOpen` variable is correct, and no issues occur.
-
-However, the problem lies with the buttons with the `confirm-modal-button` class, as for some modals, this being clicked opens another modal so the `modalIsOpen` state should remain as true.
-
-I decided to change the name on these specific modals which trigger another modal opening to `continue-modal-button` instead, so the event listener I had created before (shown below) didn't target these interactions and update the modal state to false.
-
-I then needed to update my function that meant the user can use the `ENTER`/`ESC` key to close or open modals to also include this new class for the `ENTER` press, which I did here:
+| Issue | Why? | How I fixed it |
+| :--- | :--- | :--- |
+| Multiple Modals still being opened when using modals that trigger opening other modals. During testing, when I pressed `ENTER` multiple times to open/skip through modals triggered by the `Go For A Walk` button, sometimes 2 modals would still open at the same time, despite having created the `modalIsOpen` variable which should have disabled the button if a modal is already showing as open. I discovered that the event listener that sets the status of `modalIsOpen` would set the status to `false` every time a modal was closed, although some modals triggered another modal to open straight away, so the status shouldn't be changing at these times. | I had attached the event listener which changes the `modalIsOpen` state to `false` when either of 2 classes attached to buttons were pressed: `cancel-modal-button` and `confirm-modal-button`. If one of the buttons which has the `cancel-modal-button` class is pressed, the modal is fully closed, the state of the `modalIsOpen` variable is correct, and no issues occur. However, the problem lies with the buttons with the `confirm-modal-button` class, as for some modals, this being clicked opens another modal so the `modalIsOpen` state should remain as true. | I decided to change the name on these specific modals which trigger another modal opening to `continue-modal-button` instead, so the event listener I had created before (shown below) didn't target these interactions and update the modal state to false. I then needed to update my function that meant the user can use the `ENTER`/`ESC` key to close or open modals to also include this new class for the `ENTER` press, which I did in the code below: |
 
 ```js
 //Changed from:
-`currentlyOpenModal.querySelector('.confirm-modal-button').click();`
+currentlyOpenModal.querySelector('.confirm-modal-button').click();
 
 //To:
-`currentlyOpenModal.querySelector('.confirm-modal-button, .continue-modal-button').click();`
+currentlyOpenModal.querySelector('.confirm-modal-button, .continue-modal-button').click();
 ```
+
 The comma acts like an 'OR', so this now looks for either button class.
 
 Now this event listener:
 `$(".cancel-modal-button, .confirm-modal-button").on("click", updateModalStateToClosed);`
-won't change the state of modalIsOpen if the `continue-modal-button` is now pressed, on a modal which always triggers another modal to open.
-
-</details>
-
-### Bootstrap overriding custom keypress function
-
-<details>
-<summary>Issue & Solution:</summary>
-
-**Issue:** I had an issue with Bootstrap handling keypresses for my modals, which messed with the function I made to use the `ENTER` and `ESC` keys to control buttons in my modals, stopping them working as intended at times.
-
-**Solution:** I found out this is caused by Bootstrap, so I added `data-bs-keyboard="false"` to every modal, which stops Bootstrap from handling and keyboard behaviour, instead letting me control it using my custom JavaScript function everytime instead.
-
-</details>
+won't change the state of `modalIsOpen` if the `continue-modal-button` is now pressed, on a modal which always triggers another modal to open.
 
 ---
 
-### Screen 'jumps' when interact menu option is used & multiple ids with the same value
+| Issue | Why? | How I fixed it |
+| :--- | :--- | :--- |
+| Screen 'jumps' when interact menu options are used to edit status bars or level. I would like to be able to interact with a pokémon in my collection (eg. feed a berry), without the whole page being refreshed, causing a 'jump' in the visual. I only want to change the status bars (and inventory amount if necessary). | The problem comes from the function `displayUserPokemon`, which reloads the display for ALL the pokémon in the collection every time it is called. Currently the `actionTrain`, `actionBerry`, `actionPotion` and `actionPlay` functions all call the `displayUserPokemon` function, refreshing the entire collection, when each function actually only changes 1 or 2 of the status/progress bars of 1 pokémon, one of the berry/potion counts displayed in the navbar, and sometimes the level. | I worked out it would run quicker if I only changed these specific things within the action function, rather than reloaded the whole user collection of pokémon every time. I removed `displayUserPokemon` entirely from the `actionTrain`, `actionBerry`, `actionPotion` and `actionPlay` functions, and instead amended the display for only the part that was changed, rather than the whole page. |
 
-<details>
-<summary>Issue & Solution:</summary>
+Before:
+```js
+function actionPlay() {
+    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+    for (let pokemon of userPokemon) {
+        if (pokemon.index === uniqueIndex) {
+            pokemon.happiness = Math.min(100, pokemon.happiness + 15);
+            break;
+        }
+    }
+    displayUserPokemon(); // REMOVED
+}
+```
 
-**Issue:** I would like to be able to interact with a pokémon in my collection (eg. feed a berry), without the whole page being refreshed, causing a 'jump' in the visual. I only want to change the status bars (and inventory amount if necessary).
-
-The problem comes from the function `displayUserPokemon` - which reloads the display for ALL the pokémon in the collection every time it is called.
-
-Currently the `actionTrain`, `actionBerry`, `actionPotion` and `actionPet` functions all call the `displayUserPokemon` function, refreshing the entire collection, when each function actually only changes 1 or 2 of the status/progress bars of 1 pokémon, one of the berry/potion counts displayed in the navbar, and sometimes the level, so it would run quicker if I only changed these specific things rather than reloaded the whole user collection of pokémon.
-
-I also realised when looking into the HTML in my script file used to generate/display a pokémon in the user's collection, I had ids for each of the status bars, which meant that if the user has more than 1 pokémon in  their collection, there will be multiple ids with the same name, which is not ideal!
-
-**Solution:** To start with, I changed the `id`s of the progress bars to include the uniquely generated index number of each pokémon, to solve the last problem addressed above, and also make it easier to target a specific status from a pokémon to be updated.
-
-I then addressed the first problem, starting with the `actionPet` function first, as this is the most simple action function, and the only change is to the happiness bar.
-[...add code...]
-
-Then I changed the `actionBerry` and `actionPotion` functions, as these both target 1 status and 1 item from the inventory, so the changes to the code is almost identical.
-[...add code...]
-
-Lastly, I changed the `actionTrain` function, as this was the most complex function, affecting 3 status bars, and the level, which will need to be displayed too within the function.
-[...add code...]
+After:
+```js
+function actionPlay() {
+    const uniqueIndex = parseInt($(this).closest(".pokemon-card").data("index"));
+    for (let pokemon of userPokemon) {
+        if (pokemon.index === uniqueIndex) {
+            pokemon.happiness = Math.min(100, pokemon.happiness + 15);
+            $(`#happiness-${uniqueIndex}`).val(pokemon.happiness); // ADDED
+            break;
+        }
+    }
+}
+```
 
 **Possible other changes:** I could have updated these action functions to change the specific inventory item too instead of running the `updateInventory` function which targets all 3 inventory items, but I decided to leave it as it was as it is a relatively quick and easy to run function which shouldn't cause any visual 'jumps' like `displayUserPokemon` did. I could have also added similar changes to the `renamePokemon` function, but as this runs from closing a modal, having the page refresh doesn't look odd or unnatural, like it did when interacting using the interact button options.
 
-</details>
+---
+
+| Issue | How I fixed it |
+| :--- | :--- |
+| Just before the above fix, I realised when looking into the HTML in my script file used to generate/display a pokémon in the user's collection, I had the same `id`s for each of the status bars, which meant that if the user has more than 1 pokémon in their collection, there will be multiple `id`s with the same name, which is not ideal! | To start with, I changed the `id`s of the progress bars to include the uniquely generated index number of each pokémon, to solve the last problem addressed above, and also make it easier to target a specific status from a pokémon to be updated. This is shown in the 'After' code segment above, with the code: `#happiness-${uniqueIndex}` |
+| Bootstrap overriding custom keypress function. I had an issue because Bootstrap was trying to handle keypresses for my modals, which tried to override sometimes and messed with the function I made to use the `ENTER` and `ESC` keys to control buttons in my modals, stopping them working as intended at times. | I found out this is caused by Bootstrap, so I added `data-bs-keyboard="false"` to every modal, which stops Bootstrap from handling keyboard behaviour, instead letting me control it using my custom JavaScript function everytime instead. |
+| I wasn't able to change the line height of a label. The title of the status bars couldn't be edited, for example, trying to add different number line-heights was doing nothing. | A label is automatically treated as if it is `inline`, like a `span` rather than a `div`, so the `display:` needed to be changed to `block` or `inline-block`, which allowed me to edit things like the `line-height`. |
 
 ---
 
-### Couldn't change the line height of a label
+| Issue | Secondary Issue caused by original Fix | Fix for both issues |
+| :--- | :--- | :--- |
+| I had an issue with some images being stretched or squashed at some screen sizes, and some having extra gaps around them which didn't look right. | I did try cutting off the top and bottom of the images, but as all of the images were different, some filling the space more as the image was larger, this ended up cutting the top and bottom or sides off different ones at different sizes. | I decided to use this cropping method for only the starter images, as I could easily test all 3 at any screen size, and for modals which could fetch up to 151 pokémon with dramatically different image widths/lengths, I left the image whole and just fixed the squashing issue without any cropping, which ensured all of the images would always be shown fully and never cut off. |
 
-<details>
-<summary>Issue & Solution:</summary>
+This image shows the issue I had with the top and bottom being cut off.
 
-**Issue:** The title of the [status bar] couldn't be edited, for example, adding different number line heights was doing nothing.
-
-**Solution:** A label is automatically treated as if it is `inline`, like a `span` rather than a `div`, so the `display:` needed to be changed to `block` or `inline-block`, which allowed me to edit things like the `line-height`.
-
-</details>
+![Image with top and bottom cut off](assets/images/testing-issue-image-cropped.png)
 
 ---
 
-## Other issues I have fixed
+## Other Resolved Issues
 
-**/These are issues which I resolved while making my project:**
+- When using `ENTER` to press `Investigate` button it was sometimes really slow loading the next modal.
+- When `Collect` button had been clicked, there was a blue background on the button - I changed this to a colour from my palette.
+- When closing the rename wild pokémon modal by pressing `ESC` or `x`, `modalIsOpen` was still set to `true`, so the `Go For A Walk` button is disabled when it shouldn't be.
+- `ENTER`/`ESC` didn't work for Wild Encounter modal, for clicking `Adopt`/`Run Away`/`x` buttons.
+- Issue when pressing `ESC` with some modals due to type error.
+- Images of starter pokémon having too much empty space around the actual image, so I crop off the blank space, from the top and bottom at some screen sizes, and edges at some sizes so that the images didn't take up too much of the selection box.
+- The user was unable to feed a berry or pet their pokémon if the health is at 0 without the modal coming up, which should only come up when trying to battle.
+- When on laptop or larger screen sizes, user collection was too condensed in the middle of the page and only showed 2 pokémon per row, so I expanded them to show 3 per row if space.
+- Radio buttons weren't centralised in starter form when all 3 are next to each other on a smaller/medium screen.
+- Added a limit to nickname renaming inputs.
+- Progress bars were not filling the full width next to image and the interact button/progress bars were too long or short at some sizes.
+- If `Add To Collection` starter button is clicked while still adding (whilst the button text had changed to `Adding...`), multiples of the same pokémon are added, when only 1 should have been.
+- Modals were appearing in different places on the screen, alerts were centre and walks were top, so I changed it so they were all in the same place.
+- The heights of starter boxes were uneven if the personalities were longer so became 2 lines, so I added a minimum height so all the boxes would line up at the bottom despite how many rows of text there were.
+- A small line border was appearing between sections in modals, so I removed this.
+- In the modal to rename a wild pokémon being adopted, the input box appeared next to the label for it, so I changed it to appear beneath.
+- I changed the `line-height` for input labels, so that there weren't such big gaps between lines when the label was on more than 1 line.
+- The rename input box looked too wide at smaller screen sizes so I amended this to look better.
+- When a pokémon's health was at 0, and the user selected `Train With`, the level was still going up even though it shouldn't have been, and there should have been an alert modal which wasn't working, so I fixed both of these issues.
 
-- When using `ENTER` to press `Investigate` button it is sometimes really slow loading the next modal.
-- When `Collect` button has been clicked, there is a blue background on the button that shows up - changed this to a colour from palette.
+### Other Completed Steps
 
-- When closing the rename wild pokémon modal by pressing `ESC` or `x`, `modalIsOpen` is still set to `true`, so the `Go For A Walk` button is disabled when it shouldn't be.
-- `ENTER`/`ESC` doesn't work for 'Well hello there' modal, for adopt/run away/x options.
-- Issue when pressing `ESC` with some modals modal due to type error.
-- Images of starter pokémon having too much empty space around the actual image, so the blank space around each was cropped off, from the top and bottom at some screen sizes, and edges at some sizes.
-
-- The user is unable to feed a berry or pet their pokémon if the health is at 0, without the modal coming up, which should only come up when trying to battle.
-
-- Problem with aria-hidden="true" - shows up in console when using go for a walk/`ENTER`/`ESC`/modals.
-
-- Radio buttons aren't centralised in starter form when all 3 are next to each other on a smaller/medium screen.
-
-- Add in `ENTER` and `ESC` to work instead of okay/cancel
-
-- Add a limit to nickname renaming inputs
-
-
-- Images are being stretched sometimes so doesn't look right.
-
-- When on laptop size, user collection is too condensed in the middle of the page and only shows 2 pokemon per row.
-
-- Issue with progress bars not filling full width next to image and interact button/progress bars sometimes being too long or short
-- When clicking 'Add To Collection' in starter form, when slow loading, double clicking adds multiple of the same pokémon.
-  - Add code to script to prevent multiple starter pokemon being added if page is slow to load
-
-- Modals appear in different places on the screen - alerts are centre, and walks are top
-
-- fix heights of starter boxes so that even if personalities goes over 2 lines the boxes still line up at the bottom
-- Remove the small line border appearing between sections in modals
-
-- Fix wild rename input appearing next to label for it sometimes, not under it, how it looks better
-  - FIXED - input box not going below label - added a min-width to inputs of 60%
-
-- Change line height for labels for inputs, so that there aren't such big gaps between lines when on more than 1 line
-
-- Issue with rename input box looking too wide under about 500px
-
-
-**Other steps I have completed during this project**
-
-- In `releasePokemon` - ensure the input box is cleared and radio button is deselected when last pokémon deleted and form comes back.
-
-- add backwards image to walks
-
-- Make sure add `ENTER` key to be able to adopt/interact/say okay on modals
- 
-- Stick footer to the bottom of the page
-
-- When starter pokémon is selected, change the colour of the background/border to something different
-
-- to fix - actionTrain - if health is on 0 - there should be an error/alert modal - checkForStats() one shown not actionTrain()
-
-- When delete last pokémon, refresh the starter choices too - make delete button also click refresh personalities button
-  - Did this by calling the addNewPersonalitiesToStarters function in the releasePokemon function if it is the last one in collection
-
-- Check why button in navbar is working seamlessly to refresh pokemon yet one in main section reloads the whole page - not linked to function
-  - Fix: the button didn't have type="button", so pressing the button was acting as if it was submitting the form, refreshing the whole page, adding this fixed the issue
-
-- Ensure if health is at 0, level does not go up
-
-- remove arrow in dropdown menu button for interacting with pokemon and replace with fontawesome arrow so that it can be coloured using CSS. (I did this by removing the class dropdown-toggle from the button)
-
-- Sort focus - html added (autofocus to end of input tag): <input id="starter-nickname" type="text" class="col-10" autofocus>
-
-- Make sure all variable/id/class names are consistent - all ids and classes are all in kebab-case, with the exception of modal ids which are in camelCase.
-
-
-
-*TO DO: Already above - find and merge*
-- If `Add To Collection` starter button is clicked while still adding (says Adding...), then another duplicate is added.
-
-*TO DO: Check if explained already in fixed issues*
-- Screen 'jumps' when berries are fed to pokemon/interact menu is used
-
-
-<!-- ---
-
-### [Fixed Issue]
-
-<details>
-<summary>Issue & Solution:</summary>
-
-**Issue:** [Issue.]
-
-**Solution:** [Solution.]
-
-</details> -->
-
-*TO DO: Add to testing*
-table with 2 columns
-description in first
-how it was fixed - e.g. restructured html
+- Inside the `releasePokemon` function, I ensured the input box was cleared, radio button was deselected and the starter choice personalities were refreshed when the last pokémon was deleted which prompts the starter selection form to reappear.
+- I added backwards image of pokémon of the pokémon joining on a walk, so that it looks like the pokémon is walking ahead of the user.
+- I ensured the `ENTER` key will click `Confirm`/`Continue` button option on modals, and `ESC` key will click `Cancel` button option on modals.
+- I ensured the footer stayed stuck to the bottom of the page no matter how high the main page content was.
+- When a starter pokémon is selected, I changed the colour of the background/border to something different so it is clearer that a pokémon has been selected.
+- I removed the original arrow in the dropdown button and replaced it with a [Font Awesome](https://fontawesome.com/) arrow so that it could be coloured using CSS.
+- I ensured that in the starter form, the typing cursor is automatically placed in the input box below the `Give your Pokémon a name:` prompt, so that when the user types, it will appear in the input box without them having to click inside first.
+- I ensured all `variable`/`id`/`class` names were consistent - all `id` and `class` names are all in `kebab-case`, with the exception of modal `id`s which are in `camelCase`.
 
 ---
 
@@ -1072,8 +969,7 @@ The following steps outline how I created my project and cloned it locally from 
 
 **GitHub**
 
-- Firstly, I made a new repository in GitHub from the code institute template, with my chosen name for my project, which is `pokegotchi-using-pokeapi`
-    - I ensured that this was in *snake case*.
+- Firstly, I made a new repository in GitHub from the code institute template, with my chosen name for my project, which is `pokegotchi-using-pokeapi`. (I ensured that this was in *snake case*).
 
 - I then copied the GitHub repository URL from the top of the page, as shown below.
 
@@ -1109,6 +1005,8 @@ Then I set up the initial project structure:
 
 - After verifying that all dependencies and styles were correctly linked, I staged, committed, and pushed these initial changes to the GitHub repository.
 
+<!-- *[TO DO: Find out if this needs more]* -->
+
 ---
 
 # Credits
@@ -1128,20 +1026,22 @@ Then I set up the initial project structure:
 - I used Font Awesome to add icons to the website so that they could be coloured to match my design, specifically gender symbols in the Pokémon name Nidoran.
 
 ### [Bootstrap](https://getbootstrap.com/)
-I used Bootstrap templates for my navbar, modals, tip carousel, and flexbox for interchangeable sizes, e.g. for the Pokémon Profiles and Starter Selections.
-*TO DO: Check if flexbox is right*
+- I used Bootstrap templates for my navbar, modals, tip carousel, and its flexbox grid system for interchangeable sizes, e.g. for the Pokémon Profiles and Starter Selections.
 
 ### [Google](https://google.com/)
 - I used Google to research features, troubleshoot issues, and find solutions for implementing various aspects of the website.
 
 ### [Notion](https://www.notion.com/)
-- I used Notion to write up ideas, to do lists/issues that needed fixing, and paste screenshots, images and their links, etc.
+- I used Notion to write up ideas, to do lists/issues that needed fixing, and paste screenshots etc.
 
 ### [ColorZilla (Chrome Extension)](https://www.colorzilla.com/)
-I used ColorZilla to extract precise colour codes from images and web pages, which I modified to use in my design.
+- I used ColorZilla to extract precise colour codes from images and web pages, which I modified to use in my design.
+
+### [Drawio](https://app.diagrams.net/)
+- I used Drawio to make my wireframes.
 
 ### [Balsamiq](https://balsamiq.com/)
-- I used Balsamiq to make my wireframes.
+- I used Balsamiq to make a wireframe of the dropdown button options and what they do.
 
 ### [PokéAPI](https://pokeapi.co/)
 - I used data from the PokéAPI API for pokémon names, types and images.
@@ -1162,99 +1062,32 @@ I would like to thank the team at Code Institute, the members of the Slack/Disco
 
 # Other
 
-## Future Enhancements
+## Possible Future Additions
 
-- Add pokémon collection and inventory to local storage so that if window is closed/refreshed the user's pokémon collection and inventory remain.
-- Add genders.
-- Add evolving - once you get pokémon leveled up enough.
-- Add a pokédex with previously owned pokémon checked off.
+- Add pokémon collection and inventory to local storage so that if window is closed/refreshed, the user's pokémon collection and inventory will remain.
+- Add genders to pokémon.
+- If a pokémon is too unhappy (i.e. when training) add a modal to advise you to play with it to increase its happiness.
+- Add evolving to pokémon (once the pokémon has levelled up enough).
+- Add a pokédex with all previously owned pokémon checked off.
+- Image changes with low bars, eg. if low health, pokémon image is faded/if happiness bar is low, pokémon image is facing away.
+- Make personalities make a difference to how much a status bar increases or decreases, or the likelihood of the pokémon joining for walks, etc.
+- If pokémon image is clicked on, a speech bubble could appear and give hints, or say that it's hungry/needs healing etc if any bars are low.
+- Add other areas for walk encounter text other than just "long grass" and have it randomly select one each time.
+- Have clicking off any of the starter boxes (onto the screen anywhere else) deselect the currently selected starter.
+- Change `Go For A Walk` button text to be `Walking` when investigating a wild pokémon and change back once modals are closed.
+- Add specificity to pokémon that needs healing/feeding - "Your Pokémon {nickname of one with 0 status bar} needs feeding", and also for deleting or renaming too.
+- Add listener that presses the `Go For Walk` button when the `W` key is pressed.
+- Add in the second type if there is one in PokéAPI & join to the first with ` & `.
+- Change location of `Interact with` dropdown menu to be to the right of the button, instead of in line with it.
+- Remove the walk modal title and x on mobiles so that the full modal is visible with image and buttons are more accessible.
 
-- Make interactions/status bar changes slightly different for different personalities.
-  - Make personalities influence how much a status bar increases or decreases, or the likelihood of the pokémon joining for walks.
+<!-- ### [Fixed Issue]
 
-- Add other areas for walk encounter text other than just long grass.
-  - In future I could add other options and have it randomly select one each time.
+<details>
+<summary>Issue & Solution:</summary>
 
-- Have clicking off one of the starter boxes deselect the selected starter
+**Issue:** [Issue.]
 
-- Add specificity to pokémon that needs healing/feeding - "Your Pokémon {nickname of one with 0 status bar} needs feeding"
-  - Maybe add in nickname (specificity) to modals for deleting and renaming pokémon
-- Add listener to make go for walk button be clicked when w is pressed
-- Add in 2nd type if there is one in PokéAPI & join with " & "
+**Solution:** [Solution.]
 
-- If there is only 1 pokémon then remove the class that shrinks it to col-6 (col-md-6?) so that it stays full screen, but have a max-width though so it doesn't look too wide.
-
-*TO DO: Decide whether to add below*
-
-- Change location of dropdown to be to the right of the button, instead of in line with it
-- Image changes with low bars
-  - eg. if low health, pokémon image is faded
-  - if happiness bar is low, pokémon image is facing away
-    - could be done by adding backwards image to userCollection objects
-- Have a comment relating to a wild pokémon's personality - if personality is 'Hasty', have it jumping around etc etc.
-- If pokémon image is clicked on, a speech bubble will appear and give hints. or say that it's hungry/needs healing etc if any bars are low
-
-- Maybe rename pokemon-nickname id to starter-nickname/original-nickname or something so it's clearer?
-
-- Add if pokémon is too unhappy (to train) modal pops up and advises you to play with it to increase its happiness
-
-- Add a modal alert to tell users that the pokémon is unhappy and suggesting to play with it
-- Change 'go for a walk' button text to be 'Walking' when investigating a wild pokémon and change back once modals are closed
-- Remove the walk modal title and x on mobiles so that the full modal is visible with image and buttons are more accessible
-- Changes go for a walk button text so the user knows the click has worked
-  - similar to `$("#add-first-pokemon").prop("disabled", true).text("Adding...");`
-
----
-
-# !IMPORTANT! - Delete ALL below from README after
-
-
-*TO DO: check all below and Move above or DELETE*
-
-<!-- # To Dos -->
-
-<!-- - Leave only descriptive code and console.log -->
-
-<!-- ## Bugs to Fix (maybe not done?):
-- Bug discovered after testing:
-  - When I delete last pokémon and the form comes back up, on mobile/small screen it stays at the bottom and I have to scroll up
-
-- Sometimes if I accidentally highlight the text in a modal, when that modal re-opens the text is still highlighted - fix this so it isn't. -->
-
-**Add to readme**
-- Choose a slide time and match all - 4000
-  - I adjusted the times dependant on how long the text in the tip was and asked friends and family to check if it seemed long enough
-
-**Add to readme**
-
-- Stop the images being squashed and make height match if width shrinks
-- Cut top and bottom off images, only have middle 60% or so
-
-- Fix image heights in user collection
-- Fix image heights in modals (wildEncounterModal & walkResultsModal)
-
-The image before I have changed the height, showing the top being cut off
-
-![alt text](assets/images/walk-modal-image-cropped.png)
-
-In devtools - changing the height to make sure none is cut off
-
-![alt text](assets/images/devtools-walk-image-height-100.png)
-![alt text](assets/images/devtools-walk-image-height-media.png)
-![alt text](assets/images/devtools-walk-image-height-150.png)
-
-The image with the correct height so none of the picture is cut off (150px)
-
-![alt text](assets/images/walk-modal-correct-height.png)
-
-Once I have found the right height in devtools then I can change it in my code and save
-
-![alt text](assets/images/css-walk-image-height-fix.png)
-
-**New Issue**
-I then had issues with the width being cut off as the height is too much, so at some screen sizes, only in the collection, when the screen was larger and I had 3 pokemon side by side, some of the larger images were cropped at the sides, and then others were cropped at the top if the height wasn't enough.
-
-I fixed this by changing `object-fit: cover;` to `object-fit: contain;`, which means that none of the image will be cropped off at all, but I left the starter and modal images as `cover`, as the modals will be given more space, as only 1 image will be shown in a modal at one time, and I left the starters, as there are only ever going to be 3 images for those, not randomised from 151 sprites, so I have already tested that they will never crop any of the images at any screen size.
-
-<!-- Commit msg -->
-<!-- Remove redundant CSS and add missing semicolons to script file. -->
+</details> -->

@@ -366,7 +366,7 @@ form fieldset legend {
 .pokemon-nickname {
     /* to make the pokemon nickname stand out more from the rest of the title */
     font-size: 1.1em;
-    /* this keeps the nickname on a seperate line to the rest of the title */
+    /* this keeps the nickname on a separate line to the rest of the title */
     display: block;
 }
 
